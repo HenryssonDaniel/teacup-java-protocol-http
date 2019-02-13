@@ -58,9 +58,13 @@ class ClientImplTest {
   }
 
   @Test
-  void sendAsynchronously() {
+  void sendAsynchronously() throws ExecutionException, InterruptedException {
     when(httpClient.sendAsync(httpRequest, bodyHandler)).thenReturn(completableFuture);
-    assertThat(client.sendAsynchronously(handler, httpRequest)).isCompletedWithValue(httpResponse);
+
+    var future = client.sendAsynchronously(handler, httpRequest);
+    future.get();
+
+    assertThat(future).isCompletedWithValue(httpResponse);
   }
 
   @Test
@@ -83,29 +87,39 @@ class ClientImplTest {
   }
 
   @Test
-  void sendAsynchronouslyWithPushPromiseHandler() {
+  void sendAsynchronouslyWithPushPromiseHandler() throws ExecutionException, InterruptedException {
     when(handler.getPushPromiseHandler()).thenReturn(pushPromiseHandler);
     when(httpClient.sendAsync(httpRequest, bodyHandler, pushPromiseHandler))
         .thenReturn(completableFuture);
 
-    assertThat(client.sendAsynchronously(handler, httpRequest)).isCompletedWithValue(httpResponse);
+    var future = client.sendAsynchronously(handler, httpRequest);
+    future.get();
+
+    assertThat(future).isCompletedWithValue(httpResponse);
   }
 
   @Test
-  void sendAsynchronouslyWithSsl() {
+  void sendAsynchronouslyWithSsl() throws ExecutionException, InterruptedException {
     when(httpClient.sendAsync(httpRequest, bodyHandler)).thenReturn(completableFuture);
     when(httpResponse.sslSession()).thenReturn(Optional.of(sslSession));
 
-    assertThat(client.sendAsynchronously(handler, httpRequest)).isCompletedWithValue(httpResponse);
+    var future = client.sendAsynchronously(handler, httpRequest);
+    future.get();
+
+    assertThat(future).isCompletedWithValue(httpResponse);
   }
 
   @Test
-  void sendAsynchronouslyWithSslError() throws SSLPeerUnverifiedException {
+  void sendAsynchronouslyWithSslError()
+      throws ExecutionException, InterruptedException, SSLPeerUnverifiedException {
     when(httpClient.sendAsync(httpRequest, bodyHandler)).thenReturn(completableFuture);
     when(httpResponse.sslSession()).thenReturn(Optional.of(sslSession));
     when(sslSession.getPeerPrincipal()).thenThrow(new SSLPeerUnverifiedException(MESSAGE));
 
-    assertThat(client.sendAsynchronously(handler, httpRequest)).isCompletedWithValue(httpResponse);
+    var future = client.sendAsynchronously(handler, httpRequest);
+    future.get();
+
+    assertThat(future).isCompletedWithValue(httpResponse);
   }
 
   @Test

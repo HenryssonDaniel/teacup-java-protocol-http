@@ -26,6 +26,7 @@ class ClientImpl implements Client {
   public <T> HttpResponse<T> send(Handler<T> handler, HttpRequest httpRequest)
       throws IOException, InterruptedException {
     LOGGER.log(Level.FINE, String.format(SEND, ""));
+    logRequest(httpRequest);
 
     try {
       var httpResponse = httpClient.send(httpRequest, handler.getBodyHandler());
@@ -41,6 +42,7 @@ class ClientImpl implements Client {
   public <T> CompletableFuture<HttpResponse<T>> sendAsynchronously(
       Handler<T> handler, HttpRequest httpRequest) {
     LOGGER.log(Level.FINE, String.format(SEND, " asynchronously"));
+    logRequest(httpRequest);
 
     var bodyHandler = handler.getBodyHandler();
     var pushPromiseHandler = handler.getPushPromiseHandler();
@@ -180,6 +182,10 @@ class ClientImpl implements Client {
                     .append(sslSession.getValue(name)));
 
     return stringBuilder.toString();
+  }
+
+  private static void logRequest(HttpRequest httpRequest) {
+    LOGGER.log(Level.INFO, getHttpRequest(httpRequest));
   }
 
   private static <T> void logResponse(HttpResponse<T> httpResponse, Throwable throwable) {
