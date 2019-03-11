@@ -1,7 +1,5 @@
 package org.teacup.protocol.http.node;
 
-import static org.teacup.protocol.http.node.Constants.CREATE_BUILDER;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,6 +11,7 @@ import java.util.logging.Logger;
 public enum Factory {
   ;
 
+  private static final String CREATE_BUILDER = "Creating a new %s builder";
   private static final Logger LOGGER = Logger.getLogger(Factory.class.getName());
 
   /**

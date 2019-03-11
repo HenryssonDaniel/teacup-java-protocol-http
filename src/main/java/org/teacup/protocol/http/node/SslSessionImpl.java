@@ -1,6 +1,6 @@
 package org.teacup.protocol.http.node;
 
-import static org.teacup.protocol.http.node.Constants.ERROR_FETCH;
+import static org.teacup.protocol.http.Constants.ERROR_FETCH;
 import static org.teacup.protocol.http.node.Constants.SETTING_THE;
 import static org.teacup.protocol.http.node.Constants.VERIFY;
 

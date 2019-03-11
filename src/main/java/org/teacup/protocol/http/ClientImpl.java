@@ -1,6 +1,6 @@
 package org.teacup.protocol.http;
 
-import static org.teacup.protocol.http.node.Constants.ERROR_FETCH;
+import static org.teacup.protocol.http.Constants.ERROR_FETCH;
 
 import java.io.IOException;
 import java.net.http.HttpClient;
