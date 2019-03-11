@@ -1,5 +1,7 @@
 package org.teacup.protocols.http;
 
+import static org.teacup.protocols.http.Constants.ERROR_FETCH;
+
 import java.io.IOException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -96,7 +98,16 @@ class ClientImpl implements Client {
           .append(System.lineSeparator())
           .append(getHttpRequest(httpResponse.request()))
           .append(System.lineSeparator())
-          .append(getSslSession(httpResponse.sslSession().orElse(null)));
+          .append(getSslSession(httpResponse.sslSession().orElse(null)))
+          .append(System.lineSeparator())
+          .append("Status code: ")
+          .append(httpResponse.statusCode())
+          .append(System.lineSeparator())
+          .append("URI: ")
+          .append(httpResponse.uri())
+          .append(System.lineSeparator())
+          .append("Version: ")
+          .append(httpResponse.version());
 
     return stringBuilder.toString();
   }
@@ -107,7 +118,7 @@ class ClientImpl implements Client {
     try {
       peerPrincipal.append(sslSession.getPeerPrincipal());
     } catch (SSLPeerUnverifiedException e) {
-      LOGGER.log(Level.SEVERE, "Could not fetch the peer principal", e);
+      LOGGER.log(Level.SEVERE, String.format(ERROR_FETCH, "principal"), e);
     }
 
     return peerPrincipal.toString();
