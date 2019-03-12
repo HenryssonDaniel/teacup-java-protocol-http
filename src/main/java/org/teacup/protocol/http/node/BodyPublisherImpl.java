@@ -9,16 +9,9 @@ import java.util.logging.Logger;
 import org.teacup.core.assertion.LongAssert;
 import org.teacup.core.assertion.ObjectAssert;
 
-class BodyPublisherImpl implements BodyPublisherSetter {
+class BodyPublisherImpl extends SetterImpl<BodyPublisher> implements BodyPublisherSetter {
   private static final Logger LOGGER = Logger.getLogger(BodyPublisherImpl.class.getName());
-
-  private ObjectAssert<? super BodyPublisher, ?> assertion;
   private ObjectAssert<Long, LongAssert> contentLength;
-
-  @Override
-  public void setAssertion(ObjectAssert<? super BodyPublisher, ?> assertion) {
-    this.assertion = assertion;
-  }
 
   @Override
   public void setContentLength(LongAssert contentLength) {
@@ -29,8 +22,13 @@ class BodyPublisherImpl implements BodyPublisherSetter {
   @Override
   public void verify(BodyPublisher bodyPublisher) {
     LOGGER.log(Level.FINE, String.format(VERIFY, "body publisher"));
+    verifyAssertion(bodyPublisher, getAssertion());
 
-    if (assertion != null) assertion.verify(bodyPublisher);
     if (contentLength != null) contentLength.verify(bodyPublisher.contentLength());
+  }
+
+  private static void verifyAssertion(
+      BodyPublisher bodyPublisher, ObjectAssert<? super BodyPublisher, ?> objectAssert) {
+    if (objectAssert != null) objectAssert.verify(bodyPublisher);
   }
 }

@@ -9,16 +9,9 @@ import java.util.logging.Logger;
 import org.teacup.core.assertion.ObjectAssert;
 import org.teacup.core.assertion.StringAssert;
 
-class PrincipalImpl implements PrincipalSetter {
+class PrincipalImpl extends SetterImpl<Principal> implements PrincipalSetter {
   private static final Logger LOGGER = Logger.getLogger(PrincipalImpl.class.getName());
-
-  private ObjectAssert<? super Principal, ?> assertion;
   private ObjectAssert<String, StringAssert> name;
-
-  @Override
-  public void setAssertion(ObjectAssert<? super Principal, ?> assertion) {
-    this.assertion = assertion;
-  }
 
   @Override
   public void setName(StringAssert name) {
@@ -29,8 +22,13 @@ class PrincipalImpl implements PrincipalSetter {
   @Override
   public void verify(Principal principal) {
     LOGGER.log(Level.FINE, String.format(VERIFY, "principal"));
+    verifyAssertion(getAssertion(), principal);
 
-    if (assertion != null) assertion.verify(principal);
     if (name != null) name.verify(principal.getName());
+  }
+
+  private static void verifyAssertion(
+      ObjectAssert<? super Principal, ?> objectAssert, Principal principal) {
+    if (objectAssert != null) objectAssert.verify(principal);
   }
 }

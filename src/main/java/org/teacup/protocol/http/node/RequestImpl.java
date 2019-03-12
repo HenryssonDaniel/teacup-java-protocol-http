@@ -18,10 +18,9 @@ import org.teacup.core.assertion.MapAssert;
 import org.teacup.core.assertion.ObjectAssert;
 import org.teacup.core.assertion.StringAssert;
 
-class RequestImpl implements RequestSetter {
+class RequestImpl extends SetterImpl<HttpRequest> implements RequestSetter {
   private static final Logger LOGGER = Logger.getLogger(RequestImpl.class.getName());
 
-  private ObjectAssert<? super HttpRequest, ?> assertion;
   private Node<HttpRequest.BodyPublisher> bodyPublisher;
   private ObjectAssert<Boolean, BooleanAssert> expectContinue;
   private ObjectAssert<Map<String, List<String>>, ?> headers;
@@ -29,11 +28,6 @@ class RequestImpl implements RequestSetter {
   private Node<java.time.Duration> timeout;
   private Node<URI> uri;
   private ObjectAssert<? super Version, ?> version;
-
-  @Override
-  public void setAssertion(ObjectAssert<? super HttpRequest, ?> assertion) {
-    this.assertion = assertion;
-  }
 
   @Override
   public void setBodyPublisher(BodyPublisher bodyPublisher) {
@@ -80,8 +74,8 @@ class RequestImpl implements RequestSetter {
   @Override
   public void verify(HttpRequest httpRequest) {
     LOGGER.log(Level.FINE, String.format(VERIFY, "HTTP request"));
-    if (assertion != null) assertion.verify(httpRequest);
 
+    verifyAssertion(httpRequest, getAssertion());
     verifyBodyPublisher(httpRequest);
     verifyExpectContinue(httpRequest);
     verifyHeaders(httpRequest);
@@ -89,6 +83,11 @@ class RequestImpl implements RequestSetter {
     verifyTimeout(httpRequest);
     verifyUri(httpRequest);
     verifyVersion(httpRequest);
+  }
+
+  private static void verifyAssertion(
+      HttpRequest httpRequest, ObjectAssert<? super HttpRequest, ?> objectAssert) {
+    if (objectAssert != null) objectAssert.verify(httpRequest);
   }
 
   private void verifyBodyPublisher(HttpRequest httpRequest) {

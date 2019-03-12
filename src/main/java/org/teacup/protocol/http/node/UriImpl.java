@@ -12,11 +12,10 @@ import org.teacup.core.assertion.IntegerAssert;
 import org.teacup.core.assertion.ObjectAssert;
 import org.teacup.core.assertion.StringAssert;
 
-class UriImpl implements UriSetter {
+class UriImpl extends SetterImpl<URI> implements UriSetter {
   private static final Logger LOGGER = Logger.getLogger(UriImpl.class.getName());
 
   private ObjectAssert<Boolean, BooleanAssert> absolute;
-  private ObjectAssert<? super URI, ?> assertion;
   private ObjectAssert<String, StringAssert> authority;
   private ObjectAssert<String, StringAssert> fragment;
   private ObjectAssert<String, StringAssert> host;
@@ -38,11 +37,6 @@ class UriImpl implements UriSetter {
   public void setAbsolute(BooleanAssert absolute) {
     LOGGER.log(Level.FINE, String.format(SETTING_WHETHER, "absolute"));
     this.absolute = absolute;
-  }
-
-  @Override
-  public void setAssertion(ObjectAssert<? super URI, ?> assertion) {
-    this.assertion = assertion;
   }
 
   @Override
@@ -144,8 +138,8 @@ class UriImpl implements UriSetter {
   @Override
   public void verify(URI uri) {
     LOGGER.log(Level.FINE, String.format(VERIFY, "URI"));
-    if (assertion != null) assertion.verify(uri);
 
+    verifyAssertion(getAssertion(), uri);
     verifyBoolean(absolute, uri.isAbsolute());
     verifyString(authority, uri.getAuthority());
     verifyString(fragment, uri.getFragment());
@@ -163,6 +157,10 @@ class UriImpl implements UriSetter {
     verifyString(scheme, uri.getScheme());
     verifyString(schemeSpecificPart, uri.getSchemeSpecificPart());
     verifyString(userInfo, uri.getUserInfo());
+  }
+
+  private static void verifyAssertion(ObjectAssert<? super URI, ?> objectAssert, URI uri) {
+    if (objectAssert != null) objectAssert.verify(uri);
   }
 
   private static void verifyBoolean(

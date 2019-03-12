@@ -16,11 +16,10 @@ import org.teacup.core.assertion.ListAssert;
 import org.teacup.core.assertion.LongAssert;
 import org.teacup.core.assertion.ObjectAssert;
 
-class DurationImpl implements DurationSetter {
+class DurationImpl extends SetterImpl<java.time.Duration> implements DurationSetter {
   private static final Logger LOGGER = Logger.getLogger(DurationImpl.class.getName());
 
   private Node<java.time.Duration> abs;
-  private ObjectAssert<? super java.time.Duration, ?> assertion;
   private ObjectAssert<Integer, IntegerAssert> nano;
   private Node<java.time.Duration> negated;
   private ObjectAssert<Boolean, BooleanAssert> negative;
@@ -44,11 +43,6 @@ class DurationImpl implements DurationSetter {
   public void setAbs(Duration abs) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "abs"));
     this.abs = abs;
-  }
-
-  @Override
-  public void setAssertion(ObjectAssert<? super java.time.Duration, ?> assertion) {
-    this.assertion = assertion;
   }
 
   @Override
@@ -162,8 +156,8 @@ class DurationImpl implements DurationSetter {
   @Override
   public void verify(java.time.Duration duration) {
     LOGGER.log(Level.FINE, String.format(VERIFY, "duration"));
-    if (assertion != null) assertion.verify(duration);
 
+    verifyAssertion(duration, getAssertion());
     verifyDuration(abs, duration.abs());
     verifyInteger(nano, duration.getNano());
     verifyLong(seconds, duration.getSeconds());
@@ -183,6 +177,11 @@ class DurationImpl implements DurationSetter {
     verifyInteger(toNanosPart, duration.toNanosPart());
     verifyLong(toSeconds, duration.toSeconds());
     verifyInteger(toSecondsPart, duration.toSecondsPart());
+  }
+
+  private static void verifyAssertion(
+      java.time.Duration duration, ObjectAssert<? super java.time.Duration, ?> objectAssert) {
+    if (objectAssert != null) objectAssert.verify(duration);
   }
 
   private static void verifyBoolean(

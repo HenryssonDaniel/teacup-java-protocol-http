@@ -19,11 +19,10 @@ import org.teacup.core.assertion.ObjectArrayAssert;
 import org.teacup.core.assertion.ObjectAssert;
 import org.teacup.core.assertion.StringAssert;
 
-class SslSessionImpl implements SslSessionSetter {
+class SslSessionImpl extends SetterImpl<SSLSession> implements SslSessionSetter {
   private static final Logger LOGGER = Logger.getLogger(SslSessionImpl.class.getName());
 
   private ObjectAssert<? super Integer, IntegerAssert> applicationBufferSize;
-  private ObjectAssert<? super SSLSession, ?> assertion;
   private ObjectAssert<? super String, StringAssert> cipherSuite;
   private ObjectAssert<Long, LongAssert> creationTime;
   private ObjectAssert<byte[], ByteArrayAssert> id;
@@ -44,11 +43,6 @@ class SslSessionImpl implements SslSessionSetter {
   public void setApplicationBufferSize(IntegerAssert applicationBufferSize) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "application buffer size"));
     this.applicationBufferSize = applicationBufferSize;
-  }
-
-  @Override
-  public void setAssertion(ObjectAssert<? super SSLSession, ?> assertion) {
-    this.assertion = assertion;
   }
 
   @Override
@@ -144,11 +138,8 @@ class SslSessionImpl implements SslSessionSetter {
   @Override
   public void verify(SSLSession sslSession) {
     LOGGER.log(Level.FINE, String.format(VERIFY, "SSL session"));
-    if (assertion != null) assertion.verify(sslSession);
-    verifyFields(sslSession);
-  }
 
-  private void verifyFields(SSLSession sslSession) {
+    verifyAssertion(getAssertion(), sslSession);
     verifyInteger(applicationBufferSize, sslSession.getApplicationBufferSize());
     verifyString(cipherSuite, sslSession.getCipherSuite());
     verifyLong(creationTime, sslSession.getCreationTime());
@@ -165,6 +156,11 @@ class SslSessionImpl implements SslSessionSetter {
     verifySessionContext(sslSession);
     verifyValid(sslSession);
     verifyValueNames(sslSession);
+  }
+
+  private static void verifyAssertion(
+      ObjectAssert<? super SSLSession, ?> objectAssert, SSLSession sslSession) {
+    if (objectAssert != null) objectAssert.verify(sslSession);
   }
 
   private void verifyId(SSLSession sslSession) {

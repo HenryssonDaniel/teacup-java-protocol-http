@@ -18,10 +18,9 @@ import org.teacup.core.assertion.IntegerAssert;
 import org.teacup.core.assertion.MapAssert;
 import org.teacup.core.assertion.ObjectAssert;
 
-class ResponseImpl<T> implements ResponseSetter<T> {
+class ResponseImpl<T> extends SetterImpl<HttpResponse<T>> implements ResponseSetter<T> {
   private static final Logger LOGGER = Logger.getLogger(ResponseImpl.class.getName());
 
-  private ObjectAssert<? super HttpResponse<T>, ?> assertion;
   private ObjectAssert<? super T, ?> body;
   private ObjectAssert<Map<String, List<String>>, ?> headers;
   private Node<HttpResponse<T>> previousResponse;
@@ -30,11 +29,6 @@ class ResponseImpl<T> implements ResponseSetter<T> {
   private ObjectAssert<Integer, IntegerAssert> statusCode;
   private Node<URI> uri;
   private ObjectAssert<? super Version, ?> version;
-
-  @Override
-  public void setAssertion(ObjectAssert<? super HttpResponse<T>, ?> assertion) {
-    this.assertion = assertion;
-  }
 
   @Override
   public void setBody(ObjectAssert<? super T, ?> body) {
@@ -86,8 +80,8 @@ class ResponseImpl<T> implements ResponseSetter<T> {
   @Override
   public void verify(HttpResponse<T> httpResponse) {
     LOGGER.log(Level.FINE, String.format(VERIFY, "HTTP response"));
-    if (assertion != null) assertion.verify(httpResponse);
 
+    verifyAssertion(httpResponse, getAssertion());
     verifyBody(httpResponse);
     verifyHeaders(httpResponse);
     verifyRequest(httpResponse);
@@ -96,6 +90,11 @@ class ResponseImpl<T> implements ResponseSetter<T> {
     verifyStatusCode(httpResponse);
     verifyUri(httpResponse);
     verifyVersion(httpResponse);
+  }
+
+  private void verifyAssertion(
+      HttpResponse<T> httpResponse, ObjectAssert<? super HttpResponse<T>, ?> objectAssert) {
+    if (objectAssert != null) objectAssert.verify(httpResponse);
   }
 
   private void verifyBody(HttpResponse<? extends T> httpResponse) {
