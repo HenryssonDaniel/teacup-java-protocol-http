@@ -5,12 +5,9 @@ import org.teacup.core.assertion.BooleanAssert;
 import org.teacup.core.assertion.IntegerAssert;
 import org.teacup.core.assertion.ListAssert;
 import org.teacup.core.assertion.LongAssert;
-import org.teacup.core.assertion.ObjectAssert;
 
-interface DurationSetter extends Duration {
+interface DurationSetter extends Duration, Setter<java.time.Duration> {
   void setAbs(Duration abs);
-
-  void setAssertion(ObjectAssert<? super java.time.Duration, ?> assertion);
 
   void setNano(IntegerAssert nano);
 

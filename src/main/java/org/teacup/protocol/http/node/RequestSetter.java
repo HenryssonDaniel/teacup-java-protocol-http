@@ -6,12 +6,9 @@ import java.util.List;
 import org.teacup.core.assertion.BooleanAssert;
 import org.teacup.core.assertion.ComparableAssert;
 import org.teacup.core.assertion.MapAssert;
-import org.teacup.core.assertion.ObjectAssert;
 import org.teacup.core.assertion.StringAssert;
 
-interface RequestSetter extends Request {
-  void setAssertion(ObjectAssert<? super HttpRequest, ?> assertion);
-
+interface RequestSetter extends Request, Setter<HttpRequest> {
   void setBodyPublisher(BodyPublisher bodyPublisher);
 
   void setExpectContinue(BooleanAssert expectContinue);

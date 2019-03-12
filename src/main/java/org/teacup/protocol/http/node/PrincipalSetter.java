@@ -1,10 +1,7 @@
 package org.teacup.protocol.http.node;
 
-import org.teacup.core.assertion.ObjectAssert;
 import org.teacup.core.assertion.StringAssert;
 
-interface PrincipalSetter extends Principal {
-  void setAssertion(ObjectAssert<? super java.security.Principal, ?> assertion);
-
+interface PrincipalSetter extends Principal, Setter<java.security.Principal> {
   void setName(StringAssert name);
 }

@@ -3,13 +3,10 @@ package org.teacup.protocol.http.node;
 import java.net.URI;
 import org.teacup.core.assertion.BooleanAssert;
 import org.teacup.core.assertion.IntegerAssert;
-import org.teacup.core.assertion.ObjectAssert;
 import org.teacup.core.assertion.StringAssert;
 
-interface UriSetter extends Uri {
+interface UriSetter extends Setter<URI>, Uri {
   void setAbsolute(BooleanAssert absolute);
-
-  void setAssertion(ObjectAssert<? super URI, ?> assertion);
 
   void setAuthority(StringAssert authority);
 

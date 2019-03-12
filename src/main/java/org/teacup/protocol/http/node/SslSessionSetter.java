@@ -7,13 +7,10 @@ import org.teacup.core.assertion.ByteArrayAssert;
 import org.teacup.core.assertion.IntegerAssert;
 import org.teacup.core.assertion.LongAssert;
 import org.teacup.core.assertion.ObjectArrayAssert;
-import org.teacup.core.assertion.ObjectAssert;
 import org.teacup.core.assertion.StringAssert;
 
-interface SslSessionSetter extends SslSession {
+interface SslSessionSetter extends Setter<SSLSession>, SslSession {
   void setApplicationBufferSize(IntegerAssert applicationBufferSize);
-
-  void setAssertion(ObjectAssert<? super SSLSession, ?> assertion);
 
   void setCipherSuite(StringAssert cipherSuite);
 

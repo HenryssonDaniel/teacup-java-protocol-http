@@ -8,9 +8,7 @@ import org.teacup.core.assertion.IntegerAssert;
 import org.teacup.core.assertion.MapAssert;
 import org.teacup.core.assertion.ObjectAssert;
 
-interface ResponseSetter<T> extends Response<T> {
-  void setAssertion(ObjectAssert<? super HttpResponse<T>, ?> assertion);
-
+interface ResponseSetter<T> extends Response<T>, Setter<HttpResponse<T>> {
   void setBody(ObjectAssert<? super T, ?> body);
 
   void setHeaders(MapAssert<String, List<String>, ?> headers);
