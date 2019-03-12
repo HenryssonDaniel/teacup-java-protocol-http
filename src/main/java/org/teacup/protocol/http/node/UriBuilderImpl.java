@@ -1,6 +1,5 @@
 package org.teacup.protocol.http.node;
 
-import static org.teacup.protocol.http.node.Constants.BUILD;
 import static org.teacup.protocol.http.node.Constants.SETTING_THE;
 import static org.teacup.protocol.http.node.Constants.SETTING_WHETHER;
 
@@ -9,146 +8,136 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.teacup.core.assertion.BooleanAssert;
 import org.teacup.core.assertion.IntegerAssert;
-import org.teacup.core.assertion.ObjectAssert;
 import org.teacup.core.assertion.StringAssert;
 
-class UriBuilderImpl implements UriBuilder {
+class UriBuilderImpl extends BuilderImpl<URI, Uri, UriSetter, UriBuilder> implements UriBuilder {
   private static final Logger LOGGER = Logger.getLogger(UriBuilderImpl.class.getName());
-  private UriSetter uriSetter = new UriImpl();
 
-  @Override
-  public Uri build() {
-    LOGGER.log(Level.FINE, String.format(BUILD, "URI"));
-
-    Uri uri = uriSetter;
-    uriSetter = new UriImpl();
-
-    return uri;
+  UriBuilderImpl() {
+    super(new UriImpl());
   }
 
   @Override
   public UriBuilder setAbsolute(BooleanAssert absolute) {
     LOGGER.log(Level.FINE, String.format(SETTING_WHETHER, "absolute"));
-    uriSetter.setAbsolute(absolute);
-    return this;
-  }
-
-  @Override
-  public UriBuilder setAssertion(ObjectAssert<URI, ?> assertion) {
-    LOGGER.log(Level.FINE, String.format(SETTING_THE, "assertion"));
-    uriSetter.setAssertion(assertion);
+    getSetter().setAbsolute(absolute);
     return this;
   }
 
   @Override
   public UriBuilder setAuthority(StringAssert authority) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "authority"));
-    uriSetter.setAuthority(authority);
+    getSetter().setAuthority(authority);
     return this;
   }
 
   @Override
   public UriBuilder setFragment(StringAssert fragment) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "fragment"));
-    uriSetter.setFragment(fragment);
+    getSetter().setFragment(fragment);
     return this;
   }
 
   @Override
   public UriBuilder setHost(StringAssert host) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "host"));
-    uriSetter.setHost(host);
+    getSetter().setHost(host);
     return this;
   }
 
   @Override
   public UriBuilder setOpaque(BooleanAssert opaque) {
     LOGGER.log(Level.FINE, String.format(SETTING_WHETHER, "opaque"));
-    uriSetter.setOpaque(opaque);
+    getSetter().setOpaque(opaque);
     return this;
   }
 
   @Override
   public UriBuilder setPath(StringAssert path) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "path"));
-    uriSetter.setPath(path);
+    getSetter().setPath(path);
     return this;
   }
 
   @Override
   public UriBuilder setPort(IntegerAssert port) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "port"));
-    uriSetter.setPort(port);
+    getSetter().setPort(port);
     return this;
   }
 
   @Override
   public UriBuilder setQuery(StringAssert query) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "query"));
-    uriSetter.setQuery(query);
+    getSetter().setQuery(query);
     return this;
   }
 
   @Override
   public UriBuilder setRawAuthority(StringAssert rawAuthority) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "raw authority"));
-    uriSetter.setRawAuthority(rawAuthority);
+    getSetter().setRawAuthority(rawAuthority);
     return this;
   }
 
   @Override
   public UriBuilder setRawFragment(StringAssert rawFragment) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "raw fragment"));
-    uriSetter.setRawFragment(rawFragment);
+    getSetter().setRawFragment(rawFragment);
     return this;
   }
 
   @Override
   public UriBuilder setRawPath(StringAssert rawPath) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "raw path"));
-    uriSetter.setRawPath(rawPath);
+    getSetter().setRawPath(rawPath);
     return this;
   }
 
   @Override
   public UriBuilder setRawQuery(StringAssert rawQuery) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "raw query"));
-    uriSetter.setRawQuery(rawQuery);
+    getSetter().setRawQuery(rawQuery);
     return this;
   }
 
   @Override
   public UriBuilder setRawSchemeSpecificPart(StringAssert rawSchemeSpecificPart) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "raw scheme specific part"));
-    uriSetter.setRawSchemeSpecificPart(rawSchemeSpecificPart);
+    getSetter().setRawSchemeSpecificPart(rawSchemeSpecificPart);
     return this;
   }
 
   @Override
   public UriBuilder setRawUserInfo(StringAssert rawUserInfo) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "raw user info"));
-    uriSetter.setRawUserInfo(rawUserInfo);
+    getSetter().setRawUserInfo(rawUserInfo);
     return this;
   }
 
   @Override
   public UriBuilder setScheme(StringAssert scheme) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "scheme"));
-    uriSetter.setScheme(scheme);
+    getSetter().setScheme(scheme);
     return this;
   }
 
   @Override
   public UriBuilder setSchemeSpecificPart(StringAssert schemeSpecificPart) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "scheme specific part"));
-    uriSetter.setSchemeSpecificPart(schemeSpecificPart);
+    getSetter().setSchemeSpecificPart(schemeSpecificPart);
     return this;
   }
 
   @Override
   public UriBuilder setUserInfo(StringAssert userInfo) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "user info"));
-    uriSetter.setUserInfo(userInfo);
+    getSetter().setUserInfo(userInfo);
     return this;
+  }
+
+  @Override
+  protected UriSetter createSetter() {
+    return new UriImpl();
   }
 }
