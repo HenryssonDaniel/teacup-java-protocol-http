@@ -4,27 +4,33 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.teacup.core.DefaultNodeBuilder;
-import org.teacup.core.Utils;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.teacup.core.assertion.StringAssert;
 
 class PrincipalBuilderImplTest {
+  @InjectMocks private final PrincipalBuilder principalBuilder = new PrincipalBuilderImpl();
+
+  @Mock private PrincipalSetter setter;
+
+  @BeforeEach
+  void beforeEach() {
+    MockitoAnnotations.initMocks(this);
+  }
+
   @Test
   void createSetter() {
     assertThat(new PrincipalBuilderImpl().createSetter()).isExactlyInstanceOf(PrincipalImpl.class);
   }
 
   @Test
-  void setName() throws IllegalAccessException, NoSuchFieldException {
-    var principalSetter = mock(PrincipalSetter.class);
-
-    PrincipalBuilder principalBuilder = new PrincipalBuilderImpl();
-    Utils.setField(DefaultNodeBuilder.class, principalBuilder, "setter", principalSetter);
-
+  void setName() {
     var stringAssert = mock(StringAssert.class);
 
     assertThat(principalBuilder.setName(stringAssert)).isSameAs(principalBuilder);
-    verify(principalSetter).setName(stringAssert);
+    verify(setter).setName(stringAssert);
   }
 }

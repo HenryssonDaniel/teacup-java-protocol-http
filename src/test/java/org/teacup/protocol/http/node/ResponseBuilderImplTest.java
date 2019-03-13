@@ -8,27 +8,25 @@ import java.net.http.HttpClient.Version;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.teacup.core.DefaultNodeBuilder;
-import org.teacup.core.Utils;
 import org.teacup.core.assertion.ComparableAssert;
 import org.teacup.core.assertion.IntegerAssert;
 import org.teacup.core.assertion.MapAssert;
 import org.teacup.core.assertion.ObjectAssert;
 
 class ResponseBuilderImplTest {
-  private final ResponseBuilder<String> responseBuilder = new ResponseBuilderImpl<>();
+  @InjectMocks private final ResponseBuilder<String> responseBuilder = new ResponseBuilderImpl<>();
 
   @Mock private ComparableAssert<Version, ?> comparableAssert;
   @Mock private MapAssert<String, List<String>, ?> mapAssert;
   @Mock private ObjectAssert<String, ?> objectAssert;
-  @Mock private ResponseSetter<String> responseSetter;
+  @Mock private ResponseSetter<String> setter;
 
   @BeforeEach
-  void beforeEach() throws IllegalAccessException, NoSuchFieldException {
+  void beforeEach() {
     MockitoAnnotations.initMocks(this);
-    Utils.setField(DefaultNodeBuilder.class, responseBuilder, "setter", responseSetter);
   }
 
   @Test
@@ -39,19 +37,19 @@ class ResponseBuilderImplTest {
   @Test
   void setBody() {
     assertThat(responseBuilder.setBody(objectAssert)).isSameAs(responseBuilder);
-    verify(responseSetter).setBody(objectAssert);
+    verify(setter).setBody(objectAssert);
   }
 
   @Test
   void setHeaders() {
     assertThat(responseBuilder.setHeaders(mapAssert)).isSameAs(responseBuilder);
-    verify(responseSetter).setHeaders(mapAssert);
+    verify(setter).setHeaders(mapAssert);
   }
 
   @Test
   void setPreviousResponse() {
-    assertThat(responseBuilder.setPreviousResponse(responseSetter)).isSameAs(responseBuilder);
-    verify(responseSetter).setPreviousResponse(responseSetter);
+    assertThat(responseBuilder.setPreviousResponse(setter)).isSameAs(responseBuilder);
+    verify(setter).setPreviousResponse(setter);
   }
 
   @Test
@@ -59,7 +57,7 @@ class ResponseBuilderImplTest {
     var request = mock(Request.class);
 
     assertThat(responseBuilder.setRequest(request)).isSameAs(responseBuilder);
-    verify(responseSetter).setRequest(request);
+    verify(setter).setRequest(request);
   }
 
   @Test
@@ -67,7 +65,7 @@ class ResponseBuilderImplTest {
     var sslSession = mock(SslSession.class);
 
     assertThat(responseBuilder.setSslSession(sslSession)).isSameAs(responseBuilder);
-    verify(responseSetter).setSslSession(sslSession);
+    verify(setter).setSslSession(sslSession);
   }
 
   @Test
@@ -75,7 +73,7 @@ class ResponseBuilderImplTest {
     var integerAssert = mock(IntegerAssert.class);
 
     assertThat(responseBuilder.setStatusCode(integerAssert)).isSameAs(responseBuilder);
-    verify(responseSetter).setStatusCode(integerAssert);
+    verify(setter).setStatusCode(integerAssert);
   }
 
   @Test
@@ -83,12 +81,12 @@ class ResponseBuilderImplTest {
     var uri = mock(Uri.class);
 
     assertThat(responseBuilder.setUri(uri)).isSameAs(responseBuilder);
-    verify(responseSetter).setUri(uri);
+    verify(setter).setUri(uri);
   }
 
   @Test
   void setVersion() {
     assertThat(responseBuilder.setVersion(comparableAssert)).isSameAs(responseBuilder);
-    verify(responseSetter).setVersion(comparableAssert);
+    verify(setter).setVersion(comparableAssert);
   }
 }

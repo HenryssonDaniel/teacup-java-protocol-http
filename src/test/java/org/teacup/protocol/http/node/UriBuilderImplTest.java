@@ -6,8 +6,9 @@ import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.teacup.core.DefaultNodeBuilder;
-import org.teacup.core.Utils;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.teacup.core.assertion.BooleanAssert;
 import org.teacup.core.assertion.IntegerAssert;
 import org.teacup.core.assertion.StringAssert;
@@ -15,12 +16,13 @@ import org.teacup.core.assertion.StringAssert;
 class UriBuilderImplTest {
   private final BooleanAssert booleanAssert = mock(BooleanAssert.class);
   private final StringAssert stringAssert = mock(StringAssert.class);
-  private final UriBuilder uriBuilder = new UriBuilderImpl();
-  private final UriSetter uriSetter = mock(UriSetter.class);
+  @InjectMocks private final UriBuilder uriBuilder = new UriBuilderImpl();
+
+  @Mock private UriSetter setter;
 
   @BeforeEach
-  void beforeEach() throws IllegalAccessException, NoSuchFieldException {
-    Utils.setField(DefaultNodeBuilder.class, uriBuilder, "setter", uriSetter);
+  void beforeEach() {
+    MockitoAnnotations.initMocks(this);
   }
 
   @Test
@@ -31,37 +33,37 @@ class UriBuilderImplTest {
   @Test
   void setAbsolute() {
     assertThat(uriBuilder.setAbsolute(booleanAssert)).isSameAs(uriBuilder);
-    verify(uriSetter).setAbsolute(booleanAssert);
+    verify(setter).setAbsolute(booleanAssert);
   }
 
   @Test
   void setAuthority() {
     assertThat(uriBuilder.setAuthority(stringAssert)).isSameAs(uriBuilder);
-    verify(uriSetter).setAuthority(stringAssert);
+    verify(setter).setAuthority(stringAssert);
   }
 
   @Test
   void setFragment() {
     assertThat(uriBuilder.setFragment(stringAssert)).isSameAs(uriBuilder);
-    verify(uriSetter).setFragment(stringAssert);
+    verify(setter).setFragment(stringAssert);
   }
 
   @Test
   void setHost() {
     assertThat(uriBuilder.setHost(stringAssert)).isSameAs(uriBuilder);
-    verify(uriSetter).setHost(stringAssert);
+    verify(setter).setHost(stringAssert);
   }
 
   @Test
   void setOpaque() {
     assertThat(uriBuilder.setOpaque(booleanAssert)).isSameAs(uriBuilder);
-    verify(uriSetter).setOpaque(booleanAssert);
+    verify(setter).setOpaque(booleanAssert);
   }
 
   @Test
   void setPath() {
     assertThat(uriBuilder.setPath(stringAssert)).isSameAs(uriBuilder);
-    verify(uriSetter).setPath(stringAssert);
+    verify(setter).setPath(stringAssert);
   }
 
   @Test
@@ -69,66 +71,66 @@ class UriBuilderImplTest {
     var integerAssert = mock(IntegerAssert.class);
 
     assertThat(uriBuilder.setPort(integerAssert)).isSameAs(uriBuilder);
-    verify(uriSetter).setPort(integerAssert);
+    verify(setter).setPort(integerAssert);
   }
 
   @Test
   void setQuery() {
     assertThat(uriBuilder.setQuery(stringAssert)).isSameAs(uriBuilder);
-    verify(uriSetter).setQuery(stringAssert);
+    verify(setter).setQuery(stringAssert);
   }
 
   @Test
   void setRawAuthority() {
     assertThat(uriBuilder.setRawAuthority(stringAssert)).isSameAs(uriBuilder);
-    verify(uriSetter).setRawAuthority(stringAssert);
+    verify(setter).setRawAuthority(stringAssert);
   }
 
   @Test
   void setRawFragment() {
     assertThat(uriBuilder.setRawFragment(stringAssert)).isSameAs(uriBuilder);
-    verify(uriSetter).setRawFragment(stringAssert);
+    verify(setter).setRawFragment(stringAssert);
   }
 
   @Test
   void setRawPath() {
     assertThat(uriBuilder.setRawPath(stringAssert)).isSameAs(uriBuilder);
-    verify(uriSetter).setRawPath(stringAssert);
+    verify(setter).setRawPath(stringAssert);
   }
 
   @Test
   void setRawQuery() {
     assertThat(uriBuilder.setRawQuery(stringAssert)).isSameAs(uriBuilder);
-    verify(uriSetter).setRawQuery(stringAssert);
+    verify(setter).setRawQuery(stringAssert);
   }
 
   @Test
   void setRawSchemeSpecificPart() {
     assertThat(uriBuilder.setRawSchemeSpecificPart(stringAssert)).isSameAs(uriBuilder);
-    verify(uriSetter).setRawSchemeSpecificPart(stringAssert);
+    verify(setter).setRawSchemeSpecificPart(stringAssert);
   }
 
   @Test
   void setRawUserInfo() {
     assertThat(uriBuilder.setRawUserInfo(stringAssert)).isSameAs(uriBuilder);
-    verify(uriSetter).setRawUserInfo(stringAssert);
+    verify(setter).setRawUserInfo(stringAssert);
   }
 
   @Test
   void setScheme() {
     assertThat(uriBuilder.setScheme(stringAssert)).isSameAs(uriBuilder);
-    verify(uriSetter).setScheme(stringAssert);
+    verify(setter).setScheme(stringAssert);
   }
 
   @Test
   void setSchemeSpecificPart() {
     assertThat(uriBuilder.setSchemeSpecificPart(stringAssert)).isSameAs(uriBuilder);
-    verify(uriSetter).setSchemeSpecificPart(stringAssert);
+    verify(setter).setSchemeSpecificPart(stringAssert);
   }
 
   @Test
   void setUserInfo() {
     assertThat(uriBuilder.setUserInfo(stringAssert)).isSameAs(uriBuilder);
-    verify(uriSetter).setUserInfo(stringAssert);
+    verify(setter).setUserInfo(stringAssert);
   }
 }

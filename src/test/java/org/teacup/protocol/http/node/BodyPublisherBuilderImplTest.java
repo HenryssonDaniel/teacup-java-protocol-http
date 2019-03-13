@@ -4,12 +4,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.teacup.core.DefaultNodeBuilder;
-import org.teacup.core.Utils;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.teacup.core.assertion.LongAssert;
 
 class BodyPublisherBuilderImplTest {
+  @InjectMocks
+  private final BodyPublisherBuilder bodyPublisherBuilder = new BodyPublisherBuilderImpl();
+
+  @Mock private BodyPublisherSetter setter;
+
+  @BeforeEach
+  void beforeEach() {
+    MockitoAnnotations.initMocks(this);
+  }
+
   @Test
   void createSetter() {
     assertThat(new BodyPublisherBuilderImpl().createSetter())
@@ -17,15 +29,10 @@ class BodyPublisherBuilderImplTest {
   }
 
   @Test
-  void setContentLength() throws IllegalAccessException, NoSuchFieldException {
-    var bodyPublisherSetter = mock(BodyPublisherSetter.class);
-
-    BodyPublisherBuilder bodyPublisherBuilder = new BodyPublisherBuilderImpl();
-    Utils.setField(DefaultNodeBuilder.class, bodyPublisherBuilder, "setter", bodyPublisherSetter);
-
+  void setContentLength() {
     var longAssert = mock(LongAssert.class);
 
     assertThat(bodyPublisherBuilder.setContentLength(longAssert)).isSameAs(bodyPublisherBuilder);
-    verify(bodyPublisherSetter).setContentLength(longAssert);
+    verify(setter).setContentLength(longAssert);
   }
 }

@@ -8,24 +8,24 @@ import java.net.http.HttpClient.Version;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.teacup.core.DefaultNodeBuilder;
-import org.teacup.core.Utils;
+import org.mockito.MockitoAnnotations;
 import org.teacup.core.assertion.BooleanAssert;
 import org.teacup.core.assertion.ComparableAssert;
 import org.teacup.core.assertion.MapAssert;
 import org.teacup.core.assertion.StringAssert;
 
 class RequestBuilderImplTest {
-  private final RequestBuilder requestBuilder = new RequestBuilderImpl();
-  private final RequestSetter requestSetter = mock(RequestSetter.class);
+  @InjectMocks private final RequestBuilder requestBuilder = new RequestBuilderImpl();
 
   @Mock private ComparableAssert<Version, ?> comparableAssert;
   @Mock private MapAssert<String, List<String>, ?> mapAssert;
+  @Mock private RequestSetter setter;
 
   @BeforeEach
-  void beforeEach() throws IllegalAccessException, NoSuchFieldException {
-    Utils.setField(DefaultNodeBuilder.class, requestBuilder, "setter", requestSetter);
+  void beforeEach() {
+    MockitoAnnotations.initMocks(this);
   }
 
   @Test
@@ -38,7 +38,7 @@ class RequestBuilderImplTest {
     var bodyPublisher = mock(BodyPublisher.class);
 
     assertThat(requestBuilder.setBodyPublisher(bodyPublisher)).isSameAs(requestBuilder);
-    verify(requestSetter).setBodyPublisher(bodyPublisher);
+    verify(setter).setBodyPublisher(bodyPublisher);
   }
 
   @Test
@@ -46,13 +46,13 @@ class RequestBuilderImplTest {
     var booleanAssert = mock(BooleanAssert.class);
 
     assertThat(requestBuilder.setExpectContinue(booleanAssert)).isSameAs(requestBuilder);
-    verify(requestSetter).setExpectContinue(booleanAssert);
+    verify(setter).setExpectContinue(booleanAssert);
   }
 
   @Test
   void setHeaders() {
     assertThat(requestBuilder.setHeaders(mapAssert)).isSameAs(requestBuilder);
-    verify(requestSetter).setHeaders(mapAssert);
+    verify(setter).setHeaders(mapAssert);
   }
 
   @Test
@@ -60,7 +60,7 @@ class RequestBuilderImplTest {
     var stringAssert = mock(StringAssert.class);
 
     assertThat(requestBuilder.setMethod(stringAssert)).isSameAs(requestBuilder);
-    verify(requestSetter).setMethod(stringAssert);
+    verify(setter).setMethod(stringAssert);
   }
 
   @Test
@@ -68,7 +68,7 @@ class RequestBuilderImplTest {
     var duration = mock(Duration.class);
 
     assertThat(requestBuilder.setTimeout(duration)).isSameAs(requestBuilder);
-    verify(requestSetter).setTimeout(duration);
+    verify(setter).setTimeout(duration);
   }
 
   @Test
@@ -76,12 +76,12 @@ class RequestBuilderImplTest {
     var uri = mock(Uri.class);
 
     assertThat(requestBuilder.setUri(uri)).isSameAs(requestBuilder);
-    verify(requestSetter).setUri(uri);
+    verify(setter).setUri(uri);
   }
 
   @Test
   void setVersion() {
     assertThat(requestBuilder.setVersion(comparableAssert)).isSameAs(requestBuilder);
-    verify(requestSetter).setVersion(comparableAssert);
+    verify(setter).setVersion(comparableAssert);
   }
 }
