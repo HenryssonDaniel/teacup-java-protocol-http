@@ -41,8 +41,8 @@ class SslSessionContextImpl extends SetterImpl<SSLSessionContext>
 
     verifyAssertion(getAssertion(), sslSessionContext);
     verifyIds(sslSessionContext);
-    verifyInteger(sessionCacheSize, sslSessionContext.getSessionCacheSize());
-    verifyInteger(sessionTimeout, sslSessionContext.getSessionTimeout());
+    verifySessionCacheSize(sslSessionContext);
+    verifySessionTimeout(sslSessionContext);
   }
 
   private static void verifyAssertion(
@@ -55,8 +55,11 @@ class SslSessionContextImpl extends SetterImpl<SSLSessionContext>
     if (ids != null) ids.verify(sslSessionContext.getIds());
   }
 
-  private static void verifyInteger(
-      ObjectAssert<? super Integer, IntegerAssert> objectAssert, int actual) {
-    if (objectAssert != null) objectAssert.verify(actual);
+  private void verifySessionCacheSize(SSLSessionContext sslSessionContext) {
+    if (sessionCacheSize != null) sessionCacheSize.verify(sslSessionContext.getSessionCacheSize());
+  }
+
+  private void verifySessionTimeout(SSLSessionContext sslSessionContext) {
+    if (sessionTimeout != null) sessionTimeout.verify(sslSessionContext.getSessionTimeout());
   }
 }

@@ -158,25 +158,29 @@ class DurationImpl extends SetterImpl<java.time.Duration> implements DurationSet
     LOGGER.log(Level.FINE, String.format(VERIFY, "duration"));
 
     verifyAssertion(duration, getAssertion());
-    verifyDuration(abs, duration.abs());
-    verifyInteger(nano, duration.getNano());
-    verifyLong(seconds, duration.getSeconds());
+    verifyAbs(duration);
+    verifyNano(duration);
+    verifySeconds(duration);
     verifyUnits(duration);
-    verifyBoolean(negative, duration.isNegative());
-    verifyBoolean(zero, duration.isZero());
-    verifyDuration(negated, duration.negated());
-    verifyLong(toDays, duration.toDays());
-    verifyLong(toDaysPart, duration.toDaysPart());
-    verifyLong(toHours, duration.toHours());
-    verifyInteger(toHoursPart, duration.toHoursPart());
-    verifyLong(toMillis, duration.toMillis());
-    verifyInteger(toMillisPart, duration.toMillisPart());
-    verifyLong(toMinutes, duration.toMinutes());
-    verifyInteger(toMinutesPart, duration.toMinutesPart());
-    verifyLong(toNanos, duration.toNanos());
-    verifyInteger(toNanosPart, duration.toNanosPart());
-    verifyLong(toSeconds, duration.toSeconds());
-    verifyInteger(toSecondsPart, duration.toSecondsPart());
+    verifyNegative(duration);
+    verifyZero(duration);
+    verifyNegated(duration);
+    verifyToDays(duration);
+    verifyToDaysPart(duration);
+    verifyToHours(duration);
+    verifyToHoursPart(duration);
+    verifyToMillis(duration);
+    verifyToMillisPart(duration);
+    verifyToMinutes(duration);
+    verifyToMinutesPart(duration);
+    verifyToNanos(duration);
+    verifyToNanosPart(duration);
+    verifyToSeconds(duration);
+    verifyToSecondsPart(duration);
+  }
+
+  private void verifyAbs(java.time.Duration duration) {
+    if (abs != null) abs.verify(duration.abs());
   }
 
   private static void verifyAssertion(
@@ -184,26 +188,75 @@ class DurationImpl extends SetterImpl<java.time.Duration> implements DurationSet
     if (objectAssert != null) objectAssert.verify(duration);
   }
 
-  private static void verifyBoolean(
-      ObjectAssert<? super Boolean, BooleanAssert> objectAssert, boolean actual) {
-    if (objectAssert != null) objectAssert.verify(actual);
+  private void verifyNano(java.time.Duration duration) {
+    if (nano != null) nano.verify(duration.getNano());
   }
 
-  private static void verifyDuration(
-      Node<? super java.time.Duration> node, java.time.Duration duration) {
-    if (node != null) node.verify(duration);
+  private void verifyNegated(java.time.Duration duration) {
+    if (negated != null) negated.verify(duration.negated());
   }
 
-  private static void verifyInteger(
-      ObjectAssert<? super Integer, IntegerAssert> objectAssert, int actual) {
-    if (objectAssert != null) objectAssert.verify(actual);
+  private void verifyNegative(java.time.Duration duration) {
+    if (negative != null) negative.verify(duration.isNegative());
   }
 
-  private static void verifyLong(ObjectAssert<? super Long, LongAssert> objectAssert, long actual) {
-    if (objectAssert != null) objectAssert.verify(actual);
+  private void verifySeconds(java.time.Duration duration) {
+    if (seconds != null) seconds.verify(duration.getSeconds());
+  }
+
+  private void verifyToDays(java.time.Duration duration) {
+    if (toDays != null) toDays.verify(duration.toDays());
+  }
+
+  private void verifyToDaysPart(java.time.Duration duration) {
+    if (toDaysPart != null) toDaysPart.verify(duration.toDaysPart());
+  }
+
+  private void verifyToHours(java.time.Duration duration) {
+    if (toHours != null) toHours.verify(duration.toHours());
+  }
+
+  private void verifyToHoursPart(java.time.Duration duration) {
+    if (toHoursPart != null) toHoursPart.verify(duration.toHoursPart());
+  }
+
+  private void verifyToMillis(java.time.Duration duration) {
+    if (toMillis != null) toMillis.verify(duration.toMillis());
+  }
+
+  private void verifyToMillisPart(java.time.Duration duration) {
+    if (toMillisPart != null) toMillisPart.verify(duration.toMillisPart());
+  }
+
+  private void verifyToMinutes(java.time.Duration duration) {
+    if (toMinutes != null) toMinutes.verify(duration.toMinutes());
+  }
+
+  private void verifyToMinutesPart(java.time.Duration duration) {
+    if (toMinutesPart != null) toMinutesPart.verify(duration.toMinutesPart());
+  }
+
+  private void verifyToNanos(java.time.Duration duration) {
+    if (toNanos != null) toNanos.verify(duration.toNanos());
+  }
+
+  private void verifyToNanosPart(java.time.Duration duration) {
+    if (toNanosPart != null) toNanosPart.verify(duration.toNanosPart());
+  }
+
+  private void verifyToSeconds(java.time.Duration duration) {
+    if (toSeconds != null) toSeconds.verify(duration.toSeconds());
+  }
+
+  private void verifyToSecondsPart(java.time.Duration duration) {
+    if (toSecondsPart != null) toSecondsPart.verify(duration.toSecondsPart());
   }
 
   private void verifyUnits(TemporalAmount temporalAmount) {
     if (units != null) units.verify(temporalAmount.getUnits());
+  }
+
+  private void verifyZero(java.time.Duration duration) {
+    if (zero != null) zero.verify(duration.isZero());
   }
 }

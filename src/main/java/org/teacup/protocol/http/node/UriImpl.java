@@ -140,41 +140,94 @@ class UriImpl extends SetterImpl<URI> implements UriSetter {
     LOGGER.log(Level.FINE, String.format(VERIFY, "URI"));
 
     verifyAssertion(getAssertion(), uri);
-    verifyBoolean(absolute, uri.isAbsolute());
-    verifyString(authority, uri.getAuthority());
-    verifyString(fragment, uri.getFragment());
-    verifyString(host, uri.getHost());
-    verifyBoolean(opaque, uri.isOpaque());
-    verifyString(path, uri.getPath());
-    verifyInteger(port, uri.getPort());
-    verifyString(query, uri.getQuery());
-    verifyString(rawAuthority, uri.getRawAuthority());
-    verifyString(rawFragment, uri.getRawFragment());
-    verifyString(rawPath, uri.getRawPath());
-    verifyString(rawQuery, uri.getRawQuery());
-    verifyString(rawSchemeSpecificPart, uri.getRawSchemeSpecificPart());
-    verifyString(rawUserInfo, uri.getRawUserInfo());
-    verifyString(scheme, uri.getScheme());
-    verifyString(schemeSpecificPart, uri.getSchemeSpecificPart());
-    verifyString(userInfo, uri.getUserInfo());
+    verifyAbsolute(uri);
+    verifyAuthority(uri);
+    verifyFragment(uri);
+    verifyHost(uri);
+    verifyOpaque(uri);
+    verifyPath(uri);
+    verifyPort(uri);
+    verifyQuery(uri);
+    verifyRawAuthority(uri);
+    verifyRawFragment(uri);
+    verifyRawPath(uri);
+    verifyRawQuery(uri);
+    verifyRawSchemeSpecificPart(uri);
+    verifyRawUserInfo(uri);
+    verifyScheme(uri);
+    verifySchemeSpecificPart(uri);
+    verifyUserInfo(uri);
+  }
+
+  private void verifyAbsolute(URI uri) {
+    if (absolute != null) absolute.verify(uri.isAbsolute());
   }
 
   private static void verifyAssertion(ObjectAssert<? super URI, ?> objectAssert, URI uri) {
     if (objectAssert != null) objectAssert.verify(uri);
   }
 
-  private static void verifyBoolean(
-      ObjectAssert<? super Boolean, BooleanAssert> objectAssert, boolean actual) {
-    if (objectAssert != null) objectAssert.verify(actual);
+  private void verifyAuthority(URI uri) {
+    if (authority != null) authority.verify(uri.getAuthority());
   }
 
-  private static void verifyInteger(
-      ObjectAssert<? super Integer, IntegerAssert> integerAssert, int actual) {
-    if (integerAssert != null) integerAssert.verify(actual);
+  private void verifyFragment(URI uri) {
+    if (fragment != null) fragment.verify(uri.getFragment());
   }
 
-  private static void verifyString(
-      ObjectAssert<? super String, StringAssert> objectAssert, String actual) {
-    if (objectAssert != null) objectAssert.verify(actual);
+  private void verifyHost(URI uri) {
+    if (host != null) host.verify(uri.getHost());
+  }
+
+  private void verifyOpaque(URI uri) {
+    if (opaque != null) opaque.verify(uri.isOpaque());
+  }
+
+  private void verifyPath(URI uri) {
+    if (path != null) path.verify(uri.getPath());
+  }
+
+  private void verifyPort(URI uri) {
+    if (port != null) port.verify(uri.getPort());
+  }
+
+  private void verifyQuery(URI uri) {
+    if (query != null) query.verify(uri.getQuery());
+  }
+
+  private void verifyRawAuthority(URI uri) {
+    if (rawAuthority != null) rawAuthority.verify(uri.getRawAuthority());
+  }
+
+  private void verifyRawFragment(URI uri) {
+    if (rawFragment != null) rawFragment.verify(uri.getRawFragment());
+  }
+
+  private void verifyRawPath(URI uri) {
+    if (rawPath != null) rawPath.verify(uri.getRawPath());
+  }
+
+  private void verifyRawQuery(URI uri) {
+    if (rawQuery != null) rawQuery.verify(uri.getRawQuery());
+  }
+
+  private void verifyRawSchemeSpecificPart(URI uri) {
+    if (rawSchemeSpecificPart != null) rawSchemeSpecificPart.verify(uri.getRawSchemeSpecificPart());
+  }
+
+  private void verifyRawUserInfo(URI uri) {
+    if (rawUserInfo != null) rawUserInfo.verify(uri.getRawUserInfo());
+  }
+
+  private void verifyScheme(URI uri) {
+    if (scheme != null) scheme.verify(uri.getScheme());
+  }
+
+  private void verifySchemeSpecificPart(URI uri) {
+    if (schemeSpecificPart != null) schemeSpecificPart.verify(uri.getSchemeSpecificPart());
+  }
+
+  private void verifyUserInfo(URI uri) {
+    if (userInfo != null) userInfo.verify(uri.getUserInfo());
   }
 }

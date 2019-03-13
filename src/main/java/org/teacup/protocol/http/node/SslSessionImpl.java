@@ -140,22 +140,27 @@ class SslSessionImpl extends SetterImpl<SSLSession> implements SslSessionSetter 
     LOGGER.log(Level.FINE, String.format(VERIFY, "SSL session"));
 
     verifyAssertion(getAssertion(), sslSession);
-    verifyInteger(applicationBufferSize, sslSession.getApplicationBufferSize());
-    verifyString(cipherSuite, sslSession.getCipherSuite());
-    verifyLong(creationTime, sslSession.getCreationTime());
+    verifyApplicationBufferSize(sslSession);
+    verifyCipherSuite(sslSession);
+    verifyCreationTime(sslSession);
     verifyId(sslSession);
-    verifyLong(lastAccessedTime, sslSession.getLastAccessedTime());
+    verifyLastAccessedTime(sslSession);
     verifyLocalCertificates(sslSession);
     verifyLocalPrincipal(sslSession);
-    verifyInteger(packetBufferSize, sslSession.getPacketBufferSize());
+    verifyPacketBufferSize(sslSession);
     verifyPeerCertificates(sslSession);
-    verifyString(peerHost, sslSession.getPeerHost());
-    verifyInteger(peerPort, sslSession.getPeerPort());
+    verifyPeerHost(sslSession);
+    verifyPeerPort(sslSession);
     verifyPeerPrincipal(sslSession);
-    verifyString(protocol, sslSession.getProtocol());
+    verifyProtocol(sslSession);
     verifySessionContext(sslSession);
     verifyValid(sslSession);
     verifyValueNames(sslSession);
+  }
+
+  private void verifyApplicationBufferSize(SSLSession sslSession) {
+    if (applicationBufferSize != null)
+      applicationBufferSize.verify(sslSession.getApplicationBufferSize());
   }
 
   private static void verifyAssertion(
@@ -163,13 +168,20 @@ class SslSessionImpl extends SetterImpl<SSLSession> implements SslSessionSetter 
     if (objectAssert != null) objectAssert.verify(sslSession);
   }
 
+  private void verifyCipherSuite(SSLSession sslSession) {
+    if (cipherSuite != null) cipherSuite.verify(sslSession.getCipherSuite());
+  }
+
+  private void verifyCreationTime(SSLSession sslSession) {
+    if (creationTime != null) creationTime.verify(sslSession.getCreationTime());
+  }
+
   private void verifyId(SSLSession sslSession) {
     if (id != null) id.verify(sslSession.getId());
   }
 
-  private static void verifyInteger(
-      ObjectAssert<? super Integer, IntegerAssert> objectAssert, int applicationBufferSize2) {
-    if (objectAssert != null) objectAssert.verify(applicationBufferSize2);
+  private void verifyLastAccessedTime(SSLSession sslSession) {
+    if (lastAccessedTime != null) lastAccessedTime.verify(sslSession.getLastAccessedTime());
   }
 
   private void verifyLocalCertificates(SSLSession sslSession) {
@@ -180,8 +192,8 @@ class SslSessionImpl extends SetterImpl<SSLSession> implements SslSessionSetter 
     if (localPrincipal != null) localPrincipal.verify(sslSession.getLocalPrincipal());
   }
 
-  private static void verifyLong(ObjectAssert<? super Long, LongAssert> objectAssert, long actual) {
-    if (objectAssert != null) objectAssert.verify(actual);
+  private void verifyPacketBufferSize(SSLSession sslSession) {
+    if (packetBufferSize != null) packetBufferSize.verify(sslSession.getPacketBufferSize());
   }
 
   private void verifyPeerCertificates(SSLSession sslSession) {
@@ -194,6 +206,14 @@ class SslSessionImpl extends SetterImpl<SSLSession> implements SslSessionSetter 
       }
   }
 
+  private void verifyPeerHost(SSLSession sslSession) {
+    if (peerHost != null) peerHost.verify(sslSession.getPeerHost());
+  }
+
+  private void verifyPeerPort(SSLSession sslSession) {
+    if (peerPort != null) peerPort.verify(sslSession.getPeerPort());
+  }
+
   private void verifyPeerPrincipal(SSLSession sslSession) {
     if (peerPrincipal != null)
       try {
@@ -204,13 +224,12 @@ class SslSessionImpl extends SetterImpl<SSLSession> implements SslSessionSetter 
       }
   }
 
-  private void verifySessionContext(SSLSession sslSession) {
-    if (sessionContext != null) sessionContext.verify(sslSession.getSessionContext());
+  private void verifyProtocol(SSLSession sslSession) {
+    if (protocol != null) protocol.verify(sslSession.getProtocol());
   }
 
-  private static void verifyString(
-      ObjectAssert<? super String, StringAssert> objectAssert, String actual) {
-    if (objectAssert != null) objectAssert.verify(actual);
+  private void verifySessionContext(SSLSession sslSession) {
+    if (sessionContext != null) sessionContext.verify(sslSession.getSessionContext());
   }
 
   private void verifyValid(SSLSession sslSession) {
