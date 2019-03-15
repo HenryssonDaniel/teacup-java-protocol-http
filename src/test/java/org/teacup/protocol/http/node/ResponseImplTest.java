@@ -145,7 +145,7 @@ class ResponseImplTest {
 
   @Test
   void setStatusCode() {
-    var integerAssert = mock(IntegerAssert.class);
+    IntegerAssert<?> integerAssert = mock(IntegerAssert.class);
 
     responseSetter.setStatusCode(integerAssert);
     responseSetter.verify(httpResponse);

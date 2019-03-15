@@ -8,7 +8,7 @@ import org.teacup.core.assertion.ObjectAssert;
 interface SslSessionContextSetter extends Setter<SSLSessionContext>, SslSessionContext {
   void setIds(ObjectAssert<? super Enumeration<byte[]>, ?> ids);
 
-  void setSessionCacheSize(IntegerAssert sessionCacheSize);
+  void setSessionCacheSize(IntegerAssert<?> sessionCacheSize);
 
-  void setSessionTimeout(IntegerAssert sessionTimeout);
+  void setSessionTimeout(IntegerAssert<?> sessionTimeout);
 }

@@ -16,11 +16,11 @@ import org.teacup.core.assertion.LongAssert;
 import org.teacup.core.assertion.ObjectAssert;
 
 class DurationImplTest {
-  private final BooleanAssert booleanAssert = mock(BooleanAssert.class);
+  private final BooleanAssert<?> booleanAssert = mock(BooleanAssert.class);
   private final Duration duration = Duration.ofDays(1L);
   private final DurationSetter durationSetter = new DurationImpl();
-  private final IntegerAssert integerAssert = mock(IntegerAssert.class);
-  private final LongAssert longAssert = mock(LongAssert.class);
+  private final IntegerAssert<?> integerAssert = mock(IntegerAssert.class);
+  private final LongAssert<?> longAssert = mock(LongAssert.class);
   private final org.teacup.protocol.http.node.Duration newDuration =
       mock(org.teacup.protocol.http.node.Duration.class);
 

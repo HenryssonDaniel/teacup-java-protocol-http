@@ -28,7 +28,7 @@ class RequestBuilderImpl extends BuilderImpl<HttpRequest, Request, RequestSetter
   }
 
   @Override
-  public RequestBuilder setExpectContinue(BooleanAssert expectContinue) {
+  public RequestBuilder setExpectContinue(BooleanAssert<?> expectContinue) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "expect continue"));
     getSetter().setExpectContinue(expectContinue);
     return this;
@@ -42,7 +42,7 @@ class RequestBuilderImpl extends BuilderImpl<HttpRequest, Request, RequestSetter
   }
 
   @Override
-  public RequestBuilder setMethod(StringAssert method) {
+  public RequestBuilder setMethod(StringAssert<?> method) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "method"));
     getSetter().setMethod(method);
     return this;

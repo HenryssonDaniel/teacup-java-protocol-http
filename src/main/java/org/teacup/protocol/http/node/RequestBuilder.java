@@ -29,7 +29,7 @@ public interface RequestBuilder extends NodeBuilder<HttpRequest, Request, Reques
    * @param expectContinue whether expect continue or not
    * @return the request builder
    */
-  RequestBuilder setExpectContinue(BooleanAssert expectContinue);
+  RequestBuilder setExpectContinue(BooleanAssert<?> expectContinue);
 
   /**
    * Sets the headers.
@@ -45,7 +45,7 @@ public interface RequestBuilder extends NodeBuilder<HttpRequest, Request, Reques
    * @param method the method
    * @return the request builder
    */
-  RequestBuilder setMethod(StringAssert method);
+  RequestBuilder setMethod(StringAssert<?> method);
 
   /**
    * Sets the timeout.

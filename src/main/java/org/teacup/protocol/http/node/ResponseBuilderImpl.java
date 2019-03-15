@@ -57,7 +57,7 @@ class ResponseBuilderImpl<T>
   }
 
   @Override
-  public ResponseBuilder<T> setStatusCode(IntegerAssert statusCode) {
+  public ResponseBuilder<T> setStatusCode(IntegerAssert<?> statusCode) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "status code"));
     getSetter().setStatusCode(statusCode);
     return this;

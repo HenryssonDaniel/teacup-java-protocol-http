@@ -16,11 +16,11 @@ import org.teacup.core.assertion.ListAssert;
 import org.teacup.core.assertion.LongAssert;
 
 class DurationBuilderImplTest {
-  private final BooleanAssert booleanAssert = mock(BooleanAssert.class);
+  private final BooleanAssert<?> booleanAssert = mock(BooleanAssert.class);
   private final Duration duration = mock(Duration.class);
   @InjectMocks private final DurationBuilder durationBuilder = new DurationBuilderImpl();
-  private final IntegerAssert integerAssert = mock(IntegerAssert.class);
-  private final LongAssert longAssert = mock(LongAssert.class);
+  private final IntegerAssert<?> integerAssert = mock(IntegerAssert.class);
+  private final LongAssert<?> longAssert = mock(LongAssert.class);
 
   @Mock private ListAssert<? super TemporalUnit, ?> listAssert;
   @Mock private DurationSetter setter;

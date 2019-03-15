@@ -22,9 +22,9 @@ class RequestImpl extends SetterImpl<HttpRequest> implements RequestSetter {
   private static final Logger LOGGER = Logger.getLogger(RequestImpl.class.getName());
 
   private Node<HttpRequest.BodyPublisher> bodyPublisher;
-  private ObjectAssert<Boolean, BooleanAssert> expectContinue;
+  private ObjectAssert<Boolean, ?> expectContinue;
   private ObjectAssert<Map<String, List<String>>, ?> headers;
-  private ObjectAssert<String, StringAssert> method;
+  private ObjectAssert<String, ?> method;
   private Node<java.time.Duration> timeout;
   private Node<URI> uri;
   private ObjectAssert<? super Version, ?> version;
@@ -36,7 +36,7 @@ class RequestImpl extends SetterImpl<HttpRequest> implements RequestSetter {
   }
 
   @Override
-  public void setExpectContinue(BooleanAssert expectContinue) {
+  public void setExpectContinue(BooleanAssert<?> expectContinue) {
     LOGGER.log(Level.FINE, String.format(SETTING_WHETHER, "expect continue"));
     this.expectContinue = expectContinue;
   }
@@ -48,7 +48,7 @@ class RequestImpl extends SetterImpl<HttpRequest> implements RequestSetter {
   }
 
   @Override
-  public void setMethod(StringAssert method) {
+  public void setMethod(StringAssert<?> method) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "method"));
     this.method = method;
   }

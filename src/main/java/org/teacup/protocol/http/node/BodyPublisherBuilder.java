@@ -17,5 +17,5 @@ public interface BodyPublisherBuilder
    * @param contentLength the content length
    * @return the body publisher builder
    */
-  BodyPublisherBuilder setContentLength(LongAssert contentLength);
+  BodyPublisherBuilder setContentLength(LongAssert<?> contentLength);
 }

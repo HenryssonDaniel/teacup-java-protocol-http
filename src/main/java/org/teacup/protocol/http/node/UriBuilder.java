@@ -18,7 +18,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param absolute whether absolute or not
    * @return the URI builder
    */
-  UriBuilder setAbsolute(BooleanAssert absolute);
+  UriBuilder setAbsolute(BooleanAssert<?> absolute);
 
   /**
    * Sets the authority.
@@ -26,7 +26,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param authority the authority
    * @return the URI builder
    */
-  UriBuilder setAuthority(StringAssert authority);
+  UriBuilder setAuthority(StringAssert<?> authority);
 
   /**
    * Sets the fragment.
@@ -34,7 +34,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param fragment the fragment
    * @return the URI builder
    */
-  UriBuilder setFragment(StringAssert fragment);
+  UriBuilder setFragment(StringAssert<?> fragment);
 
   /**
    * Sets the host.
@@ -42,7 +42,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param host the host
    * @return the URI builder
    */
-  UriBuilder setHost(StringAssert host);
+  UriBuilder setHost(StringAssert<?> host);
 
   /**
    * Sets the opaque.
@@ -50,7 +50,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param opaque the opaque
    * @return the URI builder
    */
-  UriBuilder setOpaque(BooleanAssert opaque);
+  UriBuilder setOpaque(BooleanAssert<?> opaque);
 
   /**
    * Sets the path.
@@ -58,7 +58,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param path the path
    * @return the URI builder
    */
-  UriBuilder setPath(StringAssert path);
+  UriBuilder setPath(StringAssert<?> path);
 
   /**
    * Sets the port.
@@ -66,7 +66,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param port the port
    * @return the URI builder
    */
-  UriBuilder setPort(IntegerAssert port);
+  UriBuilder setPort(IntegerAssert<?> port);
 
   /**
    * Sets the query.
@@ -74,7 +74,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param query the query
    * @return the URI builder
    */
-  UriBuilder setQuery(StringAssert query);
+  UriBuilder setQuery(StringAssert<?> query);
 
   /**
    * Sets the raw authority.
@@ -82,7 +82,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param rawAuthority the raw authority
    * @return the URI builder
    */
-  UriBuilder setRawAuthority(StringAssert rawAuthority);
+  UriBuilder setRawAuthority(StringAssert<?> rawAuthority);
 
   /**
    * Sets the raw fragment.
@@ -90,7 +90,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param rawFragment the raw fragment
    * @return the URI builder
    */
-  UriBuilder setRawFragment(StringAssert rawFragment);
+  UriBuilder setRawFragment(StringAssert<?> rawFragment);
 
   /**
    * Sets the raw path.
@@ -98,7 +98,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param rawPath the raw path
    * @return the URI builder
    */
-  UriBuilder setRawPath(StringAssert rawPath);
+  UriBuilder setRawPath(StringAssert<?> rawPath);
 
   /**
    * Sets the raw query.
@@ -106,7 +106,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param rawQuery the raw query
    * @return the URI builder
    */
-  UriBuilder setRawQuery(StringAssert rawQuery);
+  UriBuilder setRawQuery(StringAssert<?> rawQuery);
 
   /**
    * Sets the raw scheme specific part.
@@ -114,7 +114,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param rawSchemeSpecificPart the raw scheme specific part
    * @return the URI builder
    */
-  UriBuilder setRawSchemeSpecificPart(StringAssert rawSchemeSpecificPart);
+  UriBuilder setRawSchemeSpecificPart(StringAssert<?> rawSchemeSpecificPart);
 
   /**
    * Sets the raw user info.
@@ -122,7 +122,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param rawUserInfo the raw user info
    * @return the URI builder
    */
-  UriBuilder setRawUserInfo(StringAssert rawUserInfo);
+  UriBuilder setRawUserInfo(StringAssert<?> rawUserInfo);
 
   /**
    * Sets the scheme.
@@ -130,7 +130,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param scheme the scheme
    * @return the URI builder
    */
-  UriBuilder setScheme(StringAssert scheme);
+  UriBuilder setScheme(StringAssert<?> scheme);
 
   /**
    * Sets the scheme specific part.
@@ -138,7 +138,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param schemeSpecificPart the scheme specific part
    * @return the URI builder
    */
-  UriBuilder setSchemeSpecificPart(StringAssert schemeSpecificPart);
+  UriBuilder setSchemeSpecificPart(StringAssert<?> schemeSpecificPart);
 
   /**
    * Sets the user info.
@@ -146,5 +146,5 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param userInfo the user info
    * @return the URI builder
    */
-  UriBuilder setUserInfo(StringAssert userInfo);
+  UriBuilder setUserInfo(StringAssert<?> userInfo);
 }

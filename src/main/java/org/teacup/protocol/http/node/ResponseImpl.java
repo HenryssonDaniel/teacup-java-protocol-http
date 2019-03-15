@@ -26,7 +26,7 @@ class ResponseImpl<T> extends SetterImpl<HttpResponse<T>> implements ResponseSet
   private Node<HttpResponse<T>> previousResponse;
   private Node<HttpRequest> request;
   private Node<SSLSession> sslSession;
-  private ObjectAssert<Integer, IntegerAssert> statusCode;
+  private ObjectAssert<Integer, ?> statusCode;
   private Node<URI> uri;
   private ObjectAssert<? super Version, ?> version;
 
@@ -60,7 +60,7 @@ class ResponseImpl<T> extends SetterImpl<HttpResponse<T>> implements ResponseSet
   }
 
   @Override
-  public void setStatusCode(IntegerAssert statusCode) {
+  public void setStatusCode(IntegerAssert<?> statusCode) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "status code"));
     this.statusCode = statusCode;
   }

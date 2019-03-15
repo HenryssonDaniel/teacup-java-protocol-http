@@ -15,8 +15,8 @@ class SslSessionContextImpl extends SetterImpl<SSLSessionContext>
   private static final Logger LOGGER = Logger.getLogger(SslSessionContextImpl.class.getName());
 
   private ObjectAssert<? super Enumeration<byte[]>, ?> ids;
-  private ObjectAssert<Integer, IntegerAssert> sessionCacheSize;
-  private ObjectAssert<Integer, IntegerAssert> sessionTimeout;
+  private ObjectAssert<Integer, ?> sessionCacheSize;
+  private ObjectAssert<Integer, ?> sessionTimeout;
 
   @Override
   public void setIds(ObjectAssert<? super Enumeration<byte[]>, ?> ids) {
@@ -24,13 +24,13 @@ class SslSessionContextImpl extends SetterImpl<SSLSessionContext>
   }
 
   @Override
-  public void setSessionCacheSize(IntegerAssert sessionCacheSize) {
+  public void setSessionCacheSize(IntegerAssert<?> sessionCacheSize) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "session cache size"));
     this.sessionCacheSize = sessionCacheSize;
   }
 
   @Override
-  public void setSessionTimeout(IntegerAssert sessionTimeout) {
+  public void setSessionTimeout(IntegerAssert<?> sessionTimeout) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "session timeout"));
     this.sessionTimeout = sessionTimeout;
   }

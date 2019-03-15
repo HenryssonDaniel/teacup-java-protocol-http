@@ -63,7 +63,7 @@ public interface ResponseBuilder<T>
    * @param statusCode the status code node
    * @return the response builder
    */
-  ResponseBuilder<T> setStatusCode(IntegerAssert statusCode);
+  ResponseBuilder<T> setStatusCode(IntegerAssert<?> statusCode);
 
   /**
    * Sets the URI node.

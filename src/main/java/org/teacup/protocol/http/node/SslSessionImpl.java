@@ -22,55 +22,55 @@ import org.teacup.core.assertion.StringAssert;
 class SslSessionImpl extends SetterImpl<SSLSession> implements SslSessionSetter {
   private static final Logger LOGGER = Logger.getLogger(SslSessionImpl.class.getName());
 
-  private ObjectAssert<? super Integer, IntegerAssert> applicationBufferSize;
-  private ObjectAssert<? super String, StringAssert> cipherSuite;
-  private ObjectAssert<Long, LongAssert> creationTime;
-  private ObjectAssert<byte[], ByteArrayAssert> id;
-  private ObjectAssert<Long, LongAssert> lastAccessedTime;
+  private ObjectAssert<? super Integer, ?> applicationBufferSize;
+  private ObjectAssert<? super String, ?> cipherSuite;
+  private ObjectAssert<Long, ?> creationTime;
+  private ObjectAssert<byte[], ?> id;
+  private ObjectAssert<Long, ?> lastAccessedTime;
   private ObjectAssert<? super Certificate[], ?> localCertificates;
   private Node<java.security.Principal> localPrincipal;
-  private ObjectAssert<? super Integer, IntegerAssert> packetBufferSize;
+  private ObjectAssert<? super Integer, ?> packetBufferSize;
   private ObjectAssert<? super Certificate[], ?> peerCertificates;
-  private ObjectAssert<? super String, StringAssert> peerHost;
-  private ObjectAssert<? super Integer, IntegerAssert> peerPort;
+  private ObjectAssert<? super String, ?> peerHost;
+  private ObjectAssert<? super Integer, ?> peerPort;
   private Node<java.security.Principal> peerPrincipal;
-  private ObjectAssert<? super String, StringAssert> protocol;
+  private ObjectAssert<? super String, ?> protocol;
   private Node<SSLSessionContext> sessionContext;
-  private ObjectAssert<Boolean, BooleanAssert> valid;
+  private ObjectAssert<Boolean, ?> valid;
   private ObjectAssert<? super String[], ?> valueNames;
 
   @Override
-  public void setApplicationBufferSize(IntegerAssert applicationBufferSize) {
+  public void setApplicationBufferSize(IntegerAssert<?> applicationBufferSize) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "application buffer size"));
     this.applicationBufferSize = applicationBufferSize;
   }
 
   @Override
-  public void setCipherSuite(StringAssert cipherSuite) {
+  public void setCipherSuite(StringAssert<?> cipherSuite) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "cipher suite"));
     this.cipherSuite = cipherSuite;
   }
 
   @Override
-  public void setCreationTime(LongAssert creationTime) {
+  public void setCreationTime(LongAssert<?> creationTime) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "creation time"));
     this.creationTime = creationTime;
   }
 
   @Override
-  public void setId(ByteArrayAssert id) {
+  public void setId(ByteArrayAssert<?> id) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "ID"));
     this.id = id;
   }
 
   @Override
-  public void setLastAccessedTime(LongAssert lastAccessedTime) {
+  public void setLastAccessedTime(LongAssert<?> lastAccessedTime) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "last accessed time"));
     this.lastAccessedTime = lastAccessedTime;
   }
 
   @Override
-  public void setLocalCertificates(ObjectArrayAssert<? super Certificate> localCertificates) {
+  public void setLocalCertificates(ObjectArrayAssert<? super Certificate, ?> localCertificates) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "local certificates"));
     this.localCertificates = localCertificates;
   }
@@ -82,25 +82,25 @@ class SslSessionImpl extends SetterImpl<SSLSession> implements SslSessionSetter 
   }
 
   @Override
-  public void setPacketBufferSize(IntegerAssert packetBufferSize) {
+  public void setPacketBufferSize(IntegerAssert<?> packetBufferSize) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "packet buffer size"));
     this.packetBufferSize = packetBufferSize;
   }
 
   @Override
-  public void setPeerCertificates(ObjectArrayAssert<? super Certificate> peerCertificates) {
+  public void setPeerCertificates(ObjectArrayAssert<? super Certificate, ?> peerCertificates) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "peer certificates"));
     this.peerCertificates = peerCertificates;
   }
 
   @Override
-  public void setPeerHost(StringAssert peerHost) {
+  public void setPeerHost(StringAssert<?> peerHost) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "peer host"));
     this.peerHost = peerHost;
   }
 
   @Override
-  public void setPeerPort(IntegerAssert peerPort) {
+  public void setPeerPort(IntegerAssert<?> peerPort) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "peer port"));
     this.peerPort = peerPort;
   }
@@ -112,7 +112,7 @@ class SslSessionImpl extends SetterImpl<SSLSession> implements SslSessionSetter 
   }
 
   @Override
-  public void setProtocol(StringAssert protocol) {
+  public void setProtocol(StringAssert<?> protocol) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "protocol"));
     this.protocol = protocol;
   }
@@ -124,13 +124,13 @@ class SslSessionImpl extends SetterImpl<SSLSession> implements SslSessionSetter 
   }
 
   @Override
-  public void setValid(BooleanAssert valid) {
+  public void setValid(BooleanAssert<?> valid) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "valid"));
     this.valid = valid;
   }
 
   @Override
-  public void setValueNames(ObjectArrayAssert<? super String> valueNames) {
+  public void setValueNames(ObjectArrayAssert<? super String, ?> valueNames) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "value names"));
     this.valueNames = valueNames;
   }

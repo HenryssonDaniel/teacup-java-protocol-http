@@ -16,5 +16,5 @@ public interface PrincipalBuilder
    * @param name the name
    * @return the principal builder
    */
-  PrincipalBuilder setName(StringAssert name);
+  PrincipalBuilder setName(StringAssert<?> name);
 }

@@ -18,15 +18,15 @@ import org.teacup.core.assertion.ObjectArrayAssert;
 import org.teacup.core.assertion.StringAssert;
 
 class SslSessionBuilderImplTest {
-  private final IntegerAssert integerAssert = mock(IntegerAssert.class);
-  private final LongAssert longAssert = mock(LongAssert.class);
+  private final IntegerAssert<?> integerAssert = mock(IntegerAssert.class);
+  private final LongAssert<?> longAssert = mock(LongAssert.class);
   private final Principal principal = mock(Principal.class);
   @InjectMocks private final SslSessionBuilder sslSessionBuilder = new SslSessionBuilderImpl();
-  private final StringAssert stringAssert = mock(StringAssert.class);
+  private final StringAssert<?> stringAssert = mock(StringAssert.class);
 
-  @Mock private ObjectArrayAssert<? super Certificate> certificateArrayAssert;
+  @Mock private ObjectArrayAssert<? super Certificate, ?> certificateArrayAssert;
   @Mock private SslSessionSetter setter;
-  @Mock private ObjectArrayAssert<? super String> stringArrayAssert;
+  @Mock private ObjectArrayAssert<? super String, ?> stringArrayAssert;
 
   @BeforeEach
   void beforeEach() {

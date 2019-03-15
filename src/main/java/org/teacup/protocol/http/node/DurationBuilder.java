@@ -28,7 +28,7 @@ public interface DurationBuilder
    * @param nano the nano
    * @return the duration builder
    */
-  DurationBuilder setNano(IntegerAssert nano);
+  DurationBuilder setNano(IntegerAssert<?> nano);
 
   /**
    * Sets whether negated or not.
@@ -44,7 +44,7 @@ public interface DurationBuilder
    * @param negative whether negative or not
    * @return the duration builder
    */
-  DurationBuilder setNegative(BooleanAssert negative);
+  DurationBuilder setNegative(BooleanAssert<?> negative);
 
   /**
    * Sets the seconds.
@@ -52,7 +52,7 @@ public interface DurationBuilder
    * @param seconds the seconds
    * @return the duration builder
    */
-  DurationBuilder setSeconds(LongAssert seconds);
+  DurationBuilder setSeconds(LongAssert<?> seconds);
 
   /**
    * Sets the to days.
@@ -60,7 +60,7 @@ public interface DurationBuilder
    * @param toDays the to days
    * @return the duration builder
    */
-  DurationBuilder setToDays(LongAssert toDays);
+  DurationBuilder setToDays(LongAssert<?> toDays);
 
   /**
    * Sets the to days part.
@@ -68,7 +68,7 @@ public interface DurationBuilder
    * @param toDaysPart the to days part
    * @return the duration builder
    */
-  DurationBuilder setToDaysPart(LongAssert toDaysPart);
+  DurationBuilder setToDaysPart(LongAssert<?> toDaysPart);
 
   /**
    * Sets the to hours.
@@ -76,7 +76,7 @@ public interface DurationBuilder
    * @param toHours the to hours
    * @return the duration builder
    */
-  DurationBuilder setToHours(LongAssert toHours);
+  DurationBuilder setToHours(LongAssert<?> toHours);
 
   /**
    * Sets the to hours part.
@@ -84,7 +84,7 @@ public interface DurationBuilder
    * @param toHoursPart the to hours part
    * @return the duration builder
    */
-  DurationBuilder setToHoursPart(IntegerAssert toHoursPart);
+  DurationBuilder setToHoursPart(IntegerAssert<?> toHoursPart);
 
   /**
    * Sets the to millis.
@@ -92,7 +92,7 @@ public interface DurationBuilder
    * @param toMillis the to millis
    * @return the duration builder
    */
-  DurationBuilder setToMillis(LongAssert toMillis);
+  DurationBuilder setToMillis(LongAssert<?> toMillis);
 
   /**
    * Sets the to millis part.
@@ -100,7 +100,7 @@ public interface DurationBuilder
    * @param toMillisPart the to millis part
    * @return the duration builder
    */
-  DurationBuilder setToMillisPart(IntegerAssert toMillisPart);
+  DurationBuilder setToMillisPart(IntegerAssert<?> toMillisPart);
 
   /**
    * Sets the to minutes.
@@ -108,7 +108,7 @@ public interface DurationBuilder
    * @param toMinutes the to minutes
    * @return the duration builder
    */
-  DurationBuilder setToMinutes(LongAssert toMinutes);
+  DurationBuilder setToMinutes(LongAssert<?> toMinutes);
 
   /**
    * Sets the to minutes part.
@@ -116,7 +116,7 @@ public interface DurationBuilder
    * @param toMinutesPart the to minutes part
    * @return the duration builder
    */
-  DurationBuilder setToMinutesPart(IntegerAssert toMinutesPart);
+  DurationBuilder setToMinutesPart(IntegerAssert<?> toMinutesPart);
 
   /**
    * Sets the to nanos.
@@ -124,7 +124,7 @@ public interface DurationBuilder
    * @param toNanos the to nanos
    * @return the duration builder
    */
-  DurationBuilder setToNanos(LongAssert toNanos);
+  DurationBuilder setToNanos(LongAssert<?> toNanos);
 
   /**
    * Sets the to nanos part.
@@ -132,7 +132,7 @@ public interface DurationBuilder
    * @param toNanosPart the to nanos part
    * @return the duration builder
    */
-  DurationBuilder setToNanosPart(IntegerAssert toNanosPart);
+  DurationBuilder setToNanosPart(IntegerAssert<?> toNanosPart);
 
   /**
    * Sets the to seconds.
@@ -140,7 +140,7 @@ public interface DurationBuilder
    * @param toSeconds the to seconds
    * @return the duration builder
    */
-  DurationBuilder setToSeconds(LongAssert toSeconds);
+  DurationBuilder setToSeconds(LongAssert<?> toSeconds);
 
   /**
    * Sets the to seconds part.
@@ -148,7 +148,7 @@ public interface DurationBuilder
    * @param toSecondsPart the to seconds part
    * @return the duration builder
    */
-  DurationBuilder setToSecondsPart(IntegerAssert toSecondsPart);
+  DurationBuilder setToSecondsPart(IntegerAssert<?> toSecondsPart);
 
   /**
    * Sets the units.
@@ -164,5 +164,5 @@ public interface DurationBuilder
    * @param zero whether zero or not
    * @return the duration builder
    */
-  DurationBuilder setZero(BooleanAssert zero);
+  DurationBuilder setZero(BooleanAssert<?> zero);
 }

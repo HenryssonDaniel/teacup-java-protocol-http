@@ -28,14 +28,14 @@ class SslSessionContextBuilderImpl
   }
 
   @Override
-  public SslSessionContextBuilder setSessionCacheSize(IntegerAssert sessionCacheSize) {
+  public SslSessionContextBuilder setSessionCacheSize(IntegerAssert<?> sessionCacheSize) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "session cache size"));
     getSetter().setSessionCacheSize(sessionCacheSize);
     return this;
   }
 
   @Override
-  public SslSessionContextBuilder setSessionTimeout(IntegerAssert sessionTimeout) {
+  public SslSessionContextBuilder setSessionTimeout(IntegerAssert<?> sessionTimeout) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "session timeout"));
     getSetter().setSessionTimeout(sessionTimeout);
     return this;

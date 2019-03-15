@@ -11,10 +11,10 @@ import org.teacup.core.assertion.ObjectAssert;
 
 class BodyPublisherImpl extends SetterImpl<BodyPublisher> implements BodyPublisherSetter {
   private static final Logger LOGGER = Logger.getLogger(BodyPublisherImpl.class.getName());
-  private ObjectAssert<Long, LongAssert> contentLength;
+  private ObjectAssert<Long, ?> contentLength;
 
   @Override
-  public void setContentLength(LongAssert contentLength) {
+  public void setContentLength(LongAssert<?> contentLength) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "content length"));
     this.contentLength = contentLength;
   }

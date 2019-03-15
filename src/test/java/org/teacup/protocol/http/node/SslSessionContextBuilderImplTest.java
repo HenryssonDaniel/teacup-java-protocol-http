@@ -14,7 +14,7 @@ import org.teacup.core.assertion.IntegerAssert;
 import org.teacup.core.assertion.ObjectAssert;
 
 class SslSessionContextBuilderImplTest {
-  private final IntegerAssert integerAssert = mock(IntegerAssert.class);
+  private final IntegerAssert<?> integerAssert = mock(IntegerAssert.class);
 
   @InjectMocks
   private final SslSessionContextBuilder sslSessionContextBuilder =

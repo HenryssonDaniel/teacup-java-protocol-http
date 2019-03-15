@@ -34,7 +34,7 @@ class PrincipalImplTest {
 
   @Test
   void setName() {
-    var stringAssert = mock(StringAssert.class);
+    StringAssert<?> stringAssert = mock(StringAssert.class);
 
     principalSetter.setName(stringAssert);
     principalSetter.verify(principal);

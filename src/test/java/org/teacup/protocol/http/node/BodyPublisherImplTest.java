@@ -35,7 +35,7 @@ class BodyPublisherImplTest {
 
   @Test
   void setContentLength() {
-    var longAssert = mock(LongAssert.class);
+    LongAssert<?> longAssert = mock(LongAssert.class);
     bodyPublisherSetter.setContentLength(longAssert);
 
     var contentLength = 1L;

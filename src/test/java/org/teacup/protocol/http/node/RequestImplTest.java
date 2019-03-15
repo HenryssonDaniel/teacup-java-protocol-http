@@ -56,7 +56,7 @@ class RequestImplTest {
 
   @Test
   void setExpectContinue() {
-    var booleanAssert = mock(BooleanAssert.class);
+    BooleanAssert<?> booleanAssert = mock(BooleanAssert.class);
 
     requestSetter.setExpectContinue(booleanAssert);
     requestSetter.verify(httpRequest);
@@ -66,7 +66,7 @@ class RequestImplTest {
 
   @Test
   void setMethod() {
-    var stringAssert = mock(StringAssert.class);
+    StringAssert<?> stringAssert = mock(StringAssert.class);
 
     requestSetter.setMethod(stringAssert);
     requestSetter.verify(httpRequest);

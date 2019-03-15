@@ -11,10 +11,10 @@ import org.teacup.core.assertion.StringAssert;
 
 class PrincipalImpl extends SetterImpl<Principal> implements PrincipalSetter {
   private static final Logger LOGGER = Logger.getLogger(PrincipalImpl.class.getName());
-  private ObjectAssert<String, StringAssert> name;
+  private ObjectAssert<String, ?> name;
 
   @Override
-  public void setName(StringAssert name) {
+  public void setName(StringAssert<?> name) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "name"));
     this.name = name;
   }

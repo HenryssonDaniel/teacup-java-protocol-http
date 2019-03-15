@@ -27,7 +27,7 @@ class DurationBuilderImpl
   }
 
   @Override
-  public DurationBuilder setNano(IntegerAssert nano) {
+  public DurationBuilder setNano(IntegerAssert<?> nano) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "nano"));
     getSetter().setNano(nano);
     return this;
@@ -41,98 +41,98 @@ class DurationBuilderImpl
   }
 
   @Override
-  public DurationBuilder setNegative(BooleanAssert negative) {
+  public DurationBuilder setNegative(BooleanAssert<?> negative) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "negative"));
     getSetter().setNegative(negative);
     return this;
   }
 
   @Override
-  public DurationBuilder setSeconds(LongAssert seconds) {
+  public DurationBuilder setSeconds(LongAssert<?> seconds) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "seconds"));
     getSetter().setSeconds(seconds);
     return this;
   }
 
   @Override
-  public DurationBuilder setToDays(LongAssert toDays) {
+  public DurationBuilder setToDays(LongAssert<?> toDays) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "to days"));
     getSetter().setToDays(toDays);
     return this;
   }
 
   @Override
-  public DurationBuilder setToDaysPart(LongAssert toDaysPart) {
+  public DurationBuilder setToDaysPart(LongAssert<?> toDaysPart) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "to days part"));
     getSetter().setToDaysPart(toDaysPart);
     return this;
   }
 
   @Override
-  public DurationBuilder setToHours(LongAssert toHours) {
+  public DurationBuilder setToHours(LongAssert<?> toHours) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "to hours"));
     getSetter().setToHours(toHours);
     return this;
   }
 
   @Override
-  public DurationBuilder setToHoursPart(IntegerAssert toHoursPart) {
+  public DurationBuilder setToHoursPart(IntegerAssert<?> toHoursPart) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "to hours part"));
     getSetter().setToHoursPart(toHoursPart);
     return this;
   }
 
   @Override
-  public DurationBuilder setToMillis(LongAssert toMillis) {
+  public DurationBuilder setToMillis(LongAssert<?> toMillis) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "to millis"));
     getSetter().setToMillis(toMillis);
     return this;
   }
 
   @Override
-  public DurationBuilder setToMillisPart(IntegerAssert toMillisPart) {
+  public DurationBuilder setToMillisPart(IntegerAssert<?> toMillisPart) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "to millis part"));
     getSetter().setToMillisPart(toMillisPart);
     return this;
   }
 
   @Override
-  public DurationBuilder setToMinutes(LongAssert toMinutes) {
+  public DurationBuilder setToMinutes(LongAssert<?> toMinutes) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "to minutes"));
     getSetter().setToMinutes(toMinutes);
     return this;
   }
 
   @Override
-  public DurationBuilder setToMinutesPart(IntegerAssert toMinutesPart) {
+  public DurationBuilder setToMinutesPart(IntegerAssert<?> toMinutesPart) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "to minutes part"));
     getSetter().setToMinutesPart(toMinutesPart);
     return this;
   }
 
   @Override
-  public DurationBuilder setToNanos(LongAssert toNanos) {
+  public DurationBuilder setToNanos(LongAssert<?> toNanos) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "to nanos"));
     getSetter().setToNanos(toNanos);
     return this;
   }
 
   @Override
-  public DurationBuilder setToNanosPart(IntegerAssert toNanosPart) {
+  public DurationBuilder setToNanosPart(IntegerAssert<?> toNanosPart) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "to nanos part"));
     getSetter().setToNanosPart(toNanosPart);
     return this;
   }
 
   @Override
-  public DurationBuilder setToSeconds(LongAssert toSeconds) {
+  public DurationBuilder setToSeconds(LongAssert<?> toSeconds) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "to seconds"));
     getSetter().setToSeconds(toSeconds);
     return this;
   }
 
   @Override
-  public DurationBuilder setToSecondsPart(IntegerAssert toSecondsPart) {
+  public DurationBuilder setToSecondsPart(IntegerAssert<?> toSecondsPart) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "to seconds part"));
     getSetter().setToSecondsPart(toSecondsPart);
     return this;
@@ -146,7 +146,7 @@ class DurationBuilderImpl
   }
 
   @Override
-  public DurationBuilder setZero(BooleanAssert zero) {
+  public DurationBuilder setZero(BooleanAssert<?> zero) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "zero"));
     getSetter().setZero(zero);
     return this;

@@ -10,35 +10,35 @@ import org.teacup.core.assertion.ObjectArrayAssert;
 import org.teacup.core.assertion.StringAssert;
 
 interface SslSessionSetter extends Setter<SSLSession>, SslSession {
-  void setApplicationBufferSize(IntegerAssert applicationBufferSize);
+  void setApplicationBufferSize(IntegerAssert<?> applicationBufferSize);
 
-  void setCipherSuite(StringAssert cipherSuite);
+  void setCipherSuite(StringAssert<?> cipherSuite);
 
-  void setCreationTime(LongAssert creationTime);
+  void setCreationTime(LongAssert<?> creationTime);
 
-  void setId(ByteArrayAssert id);
+  void setId(ByteArrayAssert<?> id);
 
-  void setLastAccessedTime(LongAssert lastAccessedTime);
+  void setLastAccessedTime(LongAssert<?> lastAccessedTime);
 
-  void setLocalCertificates(ObjectArrayAssert<? super Certificate> localCertificates);
+  void setLocalCertificates(ObjectArrayAssert<? super Certificate, ?> localCertificates);
 
   void setLocalPrincipal(Principal localPrincipal);
 
-  void setPacketBufferSize(IntegerAssert packetBufferSize);
+  void setPacketBufferSize(IntegerAssert<?> packetBufferSize);
 
-  void setPeerCertificates(ObjectArrayAssert<? super Certificate> peerCertificates);
+  void setPeerCertificates(ObjectArrayAssert<? super Certificate, ?> peerCertificates);
 
-  void setPeerHost(StringAssert peerHost);
+  void setPeerHost(StringAssert<?> peerHost);
 
-  void setPeerPort(IntegerAssert peerPort);
+  void setPeerPort(IntegerAssert<?> peerPort);
 
   void setPeerPrincipal(Principal peerPrincipal);
 
-  void setProtocol(StringAssert protocol);
+  void setProtocol(StringAssert<?> protocol);
 
   void setSessionContext(SslSessionContext sessionContext);
 
-  void setValid(BooleanAssert valid);
+  void setValid(BooleanAssert<?> valid);
 
-  void setValueNames(ObjectArrayAssert<? super String> valueNames);
+  void setValueNames(ObjectArrayAssert<? super String, ?> valueNames);
 }

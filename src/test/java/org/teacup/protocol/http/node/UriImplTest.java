@@ -14,8 +14,8 @@ import org.teacup.core.assertion.ObjectAssert;
 import org.teacup.core.assertion.StringAssert;
 
 class UriImplTest {
-  private final BooleanAssert booleanAssert = mock(BooleanAssert.class);
-  private final StringAssert stringAssert = mock(StringAssert.class);
+  private final BooleanAssert<?> booleanAssert = mock(BooleanAssert.class);
+  private final StringAssert<?> stringAssert = mock(StringAssert.class);
   private final URI uri = URI.create("uri");
   private final UriSetter uriSetter = new UriImpl();
 
@@ -84,7 +84,7 @@ class UriImplTest {
 
   @Test
   void setPort() {
-    var integerAssert = mock(IntegerAssert.class);
+    IntegerAssert<?> integerAssert = mock(IntegerAssert.class);
 
     uriSetter.setPort(integerAssert);
     uriSetter.verify(uri);

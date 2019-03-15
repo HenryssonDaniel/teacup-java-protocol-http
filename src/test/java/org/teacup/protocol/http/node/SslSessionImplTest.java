@@ -25,16 +25,16 @@ class SslSessionImplTest {
   private static final SSLPeerUnverifiedException SSL_PEER_UNVERIFIED_EXCEPTION =
       new SSLPeerUnverifiedException("test");
 
-  private final IntegerAssert integerAssert = mock(IntegerAssert.class);
-  private final LongAssert longAssert = mock(LongAssert.class);
+  private final IntegerAssert<?> integerAssert = mock(IntegerAssert.class);
+  private final LongAssert<?> longAssert = mock(LongAssert.class);
   private final Principal principal = mock(Principal.class);
   private final SSLSession sslSession = mock(SSLSession.class);
   private final SslSessionSetter sslSessionSetter = new SslSessionImpl();
-  private final StringAssert stringAssert = mock(StringAssert.class);
+  private final StringAssert<?> stringAssert = mock(StringAssert.class);
 
-  @Mock private ObjectArrayAssert<Certificate> objectArrayAssert;
+  @Mock private ObjectArrayAssert<Certificate, ?> objectArrayAssert;
   @Mock private ObjectAssert<? super SSLSession, ?> objectAssert;
-  @Mock private ObjectArrayAssert<String> stringObjectArrayAssert;
+  @Mock private ObjectArrayAssert<String, ?> stringObjectArrayAssert;
 
   @BeforeEach
   void beforeEach() {
@@ -143,7 +143,7 @@ class SslSessionImplTest {
 
   @Test
   void setId() throws SSLPeerUnverifiedException {
-    var byteArrayAssert = mock(ByteArrayAssert.class);
+    ByteArrayAssert<?> byteArrayAssert = mock(ByteArrayAssert.class);
 
     sslSessionSetter.setId(byteArrayAssert);
     sslSessionSetter.verify(sslSession);
@@ -476,7 +476,7 @@ class SslSessionImplTest {
 
   @Test
   void setValid() throws SSLPeerUnverifiedException {
-    var booleanAssert = mock(BooleanAssert.class);
+    BooleanAssert<?> booleanAssert = mock(BooleanAssert.class);
 
     sslSessionSetter.setValid(booleanAssert);
     sslSessionSetter.verify(sslSession);

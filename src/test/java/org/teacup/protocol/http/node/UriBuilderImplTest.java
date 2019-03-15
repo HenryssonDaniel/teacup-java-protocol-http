@@ -14,8 +14,8 @@ import org.teacup.core.assertion.IntegerAssert;
 import org.teacup.core.assertion.StringAssert;
 
 class UriBuilderImplTest {
-  private final BooleanAssert booleanAssert = mock(BooleanAssert.class);
-  private final StringAssert stringAssert = mock(StringAssert.class);
+  private final BooleanAssert<?> booleanAssert = mock(BooleanAssert.class);
+  private final StringAssert<?> stringAssert = mock(StringAssert.class);
   @InjectMocks private final UriBuilder uriBuilder = new UriBuilderImpl();
 
   @Mock private UriSetter setter;

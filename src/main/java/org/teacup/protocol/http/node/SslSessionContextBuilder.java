@@ -27,7 +27,7 @@ public interface SslSessionContextBuilder
    * @param sessionCacheSize the session cache size
    * @return the SSL session context builder
    */
-  SslSessionContextBuilder setSessionCacheSize(IntegerAssert sessionCacheSize);
+  SslSessionContextBuilder setSessionCacheSize(IntegerAssert<?> sessionCacheSize);
 
   /**
    * Sets the session timeout.
@@ -35,5 +35,5 @@ public interface SslSessionContextBuilder
    * @param sessionTimeout the session timeout
    * @return the SSL session context builder
    */
-  SslSessionContextBuilder setSessionTimeout(IntegerAssert sessionTimeout);
+  SslSessionContextBuilder setSessionTimeout(IntegerAssert<?> sessionTimeout);
 }

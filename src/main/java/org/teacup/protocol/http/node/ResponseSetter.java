@@ -19,7 +19,7 @@ interface ResponseSetter<T> extends Response<T>, Setter<HttpResponse<T>> {
 
   void setSslSession(SslSession sslSession);
 
-  void setStatusCode(IntegerAssert statusCode);
+  void setStatusCode(IntegerAssert<?> statusCode);
 
   void setUri(Uri uri);
 

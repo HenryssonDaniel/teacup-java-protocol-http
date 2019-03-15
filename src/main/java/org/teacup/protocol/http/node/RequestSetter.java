@@ -11,11 +11,11 @@ import org.teacup.core.assertion.StringAssert;
 interface RequestSetter extends Request, Setter<HttpRequest> {
   void setBodyPublisher(BodyPublisher bodyPublisher);
 
-  void setExpectContinue(BooleanAssert expectContinue);
+  void setExpectContinue(BooleanAssert<?> expectContinue);
 
   void setHeaders(MapAssert<String, List<String>, ?> headers);
 
-  void setMethod(StringAssert method);
+  void setMethod(StringAssert<?> method);
 
   void setTimeout(Duration timeout);
 
