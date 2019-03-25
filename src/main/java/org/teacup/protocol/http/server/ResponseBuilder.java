@@ -2,20 +2,14 @@ package org.teacup.protocol.http.server;
 
 import java.util.List;
 import java.util.Map;
+import org.teacup.core.Builder;
 
 /**
  * Response builder.
  *
  * @since 1.0
  */
-public interface ResponseBuilder {
-  /**
-   * Build the response.
-   *
-   * @return the response
-   */
-  Response build();
-
+public interface ResponseBuilder extends Builder<Response> {
   /**
    * Sets the attributes.
    *

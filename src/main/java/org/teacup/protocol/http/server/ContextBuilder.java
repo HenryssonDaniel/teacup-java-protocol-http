@@ -4,20 +4,14 @@ import com.sun.net.httpserver.Authenticator;
 import com.sun.net.httpserver.Filter;
 import java.util.List;
 import java.util.Map;
+import org.teacup.core.Builder;
 
 /**
  * Context builder.
  *
  * @since 1.0
  */
-public interface ContextBuilder {
-  /**
-   * Build.
-   *
-   * @return the context
-   */
-  Context build();
-
+public interface ContextBuilder extends Builder<Context> {
   /**
    * Sets the attributes.
    *

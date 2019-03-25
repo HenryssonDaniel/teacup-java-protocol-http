@@ -11,22 +11,28 @@ import org.mockito.MockitoAnnotations;
 
 class HandlerImplTest {
   @Mock private BodyHandler<String> bodyHandler;
-  private Handler<String> handler;
+  private HandlerSetter<String> handlerSetter;
   @Mock private PushPromiseHandler<String> pushPromiseHandler;
 
   @BeforeEach
   void beforeEach() {
     MockitoAnnotations.initMocks(this);
-    handler = new HandlerImpl<>(bodyHandler, pushPromiseHandler);
+    handlerSetter = new HandlerImpl<>(bodyHandler);
   }
 
   @Test
   void getBodyHandler() {
-    assertThat(handler.getBodyHandler()).isSameAs(bodyHandler);
+    assertThat(handlerSetter.getBodyHandler()).isSameAs(bodyHandler);
   }
 
   @Test
   void getPushPromiseHandler() {
-    assertThat(handler.getPushPromiseHandler()).isSameAs(pushPromiseHandler);
+    assertThat(handlerSetter.getPushPromiseHandler()).isNull();
+  }
+
+  @Test
+  void setAndGetPushPromiseHandler() {
+    handlerSetter.setPushPromiseHandler(pushPromiseHandler);
+    assertThat(handlerSetter.getPushPromiseHandler()).isSameAs(pushPromiseHandler);
   }
 }

@@ -6,36 +6,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.teacup.core.DefaultBuilder;
 
-class ContextBuilderImpl implements ContextBuilder {
+class ContextBuilderImpl extends DefaultBuilder<Context, ContextSetter> implements ContextBuilder {
   private static final Logger LOGGER = Logger.getLogger(ContextBuilderImpl.class.getName());
 
   private final String path;
   private final Response response;
 
-  private ContextSetter contextSetter;
-
   ContextBuilderImpl(String path, Response response) {
+    super(new ContextImpl(path, response));
+
     this.path = path;
     this.response = response;
-
-    contextSetter = new ContextImpl(path, response);
-  }
-
-  @Override
-  public Context build() {
-    LOGGER.log(Level.FINE, "Building the context");
-
-    Context context = contextSetter;
-    contextSetter = new ContextImpl(path, response);
-
-    return context;
   }
 
   @Override
   public ContextBuilder setAttributes(Map<String, Object> attributes) {
     LOGGER.log(Level.FINE, "Setting the attributes");
-    contextSetter.setAttributes(attributes);
+    getImplementation().setAttributes(attributes);
 
     return this;
   }
@@ -43,7 +32,7 @@ class ContextBuilderImpl implements ContextBuilder {
   @Override
   public ContextBuilder setAuthenticator(Authenticator authenticator) {
     LOGGER.log(Level.FINE, "Setting the authenticator");
-    contextSetter.setAuthenticator(authenticator);
+    getImplementation().setAuthenticator(authenticator);
 
     return this;
   }
@@ -51,8 +40,13 @@ class ContextBuilderImpl implements ContextBuilder {
   @Override
   public ContextBuilder setFilters(List<? extends Filter> filters) {
     LOGGER.log(Level.FINE, "Setting the filters");
-    contextSetter.setFilters(filters);
+    getImplementation().setFilters(filters);
 
     return this;
+  }
+
+  @Override
+  protected ContextSetter createImplementation() {
+    return new ContextImpl(path, response);
   }
 }

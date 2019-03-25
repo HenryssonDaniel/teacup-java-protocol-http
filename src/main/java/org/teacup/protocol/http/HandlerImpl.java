@@ -3,13 +3,12 @@ package org.teacup.protocol.http;
 import java.net.http.HttpResponse.BodyHandler;
 import java.net.http.HttpResponse.PushPromiseHandler;
 
-class HandlerImpl<T> implements Handler<T> {
+class HandlerImpl<T> implements HandlerSetter<T> {
   private final BodyHandler<T> bodyHandler;
-  private final PushPromiseHandler<T> pushPromiseHandler;
+  private PushPromiseHandler<T> pushPromiseHandler;
 
-  HandlerImpl(BodyHandler<T> bodyHandler, PushPromiseHandler<T> pushPromiseHandler) {
+  HandlerImpl(BodyHandler<T> bodyHandler) {
     this.bodyHandler = bodyHandler;
-    this.pushPromiseHandler = pushPromiseHandler;
   }
 
   @Override
@@ -20,5 +19,10 @@ class HandlerImpl<T> implements Handler<T> {
   @Override
   public PushPromiseHandler<T> getPushPromiseHandler() {
     return pushPromiseHandler;
+  }
+
+  @Override
+  public void setPushPromiseHandler(PushPromiseHandler<T> pushPromiseHandler) {
+    this.pushPromiseHandler = pushPromiseHandler;
   }
 }
