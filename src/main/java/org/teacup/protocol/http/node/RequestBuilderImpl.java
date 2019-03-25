@@ -23,54 +23,54 @@ class RequestBuilderImpl extends BuilderImpl<HttpRequest, Request, RequestSetter
   @Override
   public RequestBuilder setBodyPublisher(BodyPublisher bodyPublisher) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "body publisher"));
-    getSetter().setBodyPublisher(bodyPublisher);
+    getImplementation().setBodyPublisher(bodyPublisher);
     return this;
   }
 
   @Override
   public RequestBuilder setExpectContinue(BooleanAssert<?> expectContinue) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "expect continue"));
-    getSetter().setExpectContinue(expectContinue);
+    getImplementation().setExpectContinue(expectContinue);
     return this;
   }
 
   @Override
   public RequestBuilder setHeaders(MapAssert<String, List<String>, ?> headers) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "headers"));
-    getSetter().setHeaders(headers);
+    getImplementation().setHeaders(headers);
     return this;
   }
 
   @Override
   public RequestBuilder setMethod(StringAssert<?> method) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "method"));
-    getSetter().setMethod(method);
+    getImplementation().setMethod(method);
     return this;
   }
 
   @Override
   public RequestBuilder setTimeout(Duration timeout) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "timeout"));
-    getSetter().setTimeout(timeout);
+    getImplementation().setTimeout(timeout);
     return this;
   }
 
   @Override
   public RequestBuilder setUri(Uri uri) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "URI"));
-    getSetter().setUri(uri);
+    getImplementation().setUri(uri);
     return this;
   }
 
   @Override
   public RequestBuilder setVersion(ComparableAssert<? super Version, ?> version) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "version"));
-    getSetter().setVersion(version);
+    getImplementation().setVersion(version);
     return this;
   }
 
   @Override
-  protected RequestSetter createSetter() {
+  protected RequestSetter createImplementation() {
     return new RequestImpl();
   }
 }

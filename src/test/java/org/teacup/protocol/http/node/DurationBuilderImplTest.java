@@ -22,8 +22,8 @@ class DurationBuilderImplTest {
   private final IntegerAssert<?> integerAssert = mock(IntegerAssert.class);
   private final LongAssert<?> longAssert = mock(LongAssert.class);
 
+  @Mock private DurationSetter implementation;
   @Mock private ListAssert<? super TemporalUnit, ?> listAssert;
-  @Mock private DurationSetter setter;
 
   @BeforeEach
   void beforeEach() {
@@ -31,121 +31,122 @@ class DurationBuilderImplTest {
   }
 
   @Test
-  void createSetter() {
-    assertThat(new DurationBuilderImpl().createSetter()).isExactlyInstanceOf(DurationImpl.class);
+  void createImplementation() {
+    assertThat(new DurationBuilderImpl().createImplementation())
+        .isExactlyInstanceOf(DurationImpl.class);
   }
 
   @Test
   void setAbs() {
     assertThat(durationBuilder.setAbs(duration)).isSameAs(durationBuilder);
-    verify(setter).setAbs(duration);
+    verify(implementation).setAbs(duration);
   }
 
   @Test
   void setNano() {
     assertThat(durationBuilder.setNano(integerAssert)).isSameAs(durationBuilder);
-    verify(setter).setNano(integerAssert);
+    verify(implementation).setNano(integerAssert);
   }
 
   @Test
   void setNegated() {
     assertThat(durationBuilder.setNegated(duration)).isSameAs(durationBuilder);
-    verify(setter).setNegated(duration);
+    verify(implementation).setNegated(duration);
   }
 
   @Test
   void setNegative() {
     assertThat(durationBuilder.setNegative(booleanAssert)).isSameAs(durationBuilder);
-    verify(setter).setNegative(booleanAssert);
+    verify(implementation).setNegative(booleanAssert);
   }
 
   @Test
   void setSeconds() {
     assertThat(durationBuilder.setSeconds(longAssert)).isSameAs(durationBuilder);
-    verify(setter).setSeconds(longAssert);
+    verify(implementation).setSeconds(longAssert);
   }
 
   @Test
   void setToDays() {
     assertThat(durationBuilder.setToDays(longAssert)).isSameAs(durationBuilder);
-    verify(setter).setToDays(longAssert);
+    verify(implementation).setToDays(longAssert);
   }
 
   @Test
   void setToDaysPart() {
     assertThat(durationBuilder.setToDaysPart(longAssert)).isSameAs(durationBuilder);
-    verify(setter).setToDaysPart(longAssert);
+    verify(implementation).setToDaysPart(longAssert);
   }
 
   @Test
   void setToHours() {
     assertThat(durationBuilder.setToHours(longAssert)).isSameAs(durationBuilder);
-    verify(setter).setToHours(longAssert);
+    verify(implementation).setToHours(longAssert);
   }
 
   @Test
   void setToHoursPart() {
     assertThat(durationBuilder.setToHoursPart(integerAssert)).isSameAs(durationBuilder);
-    verify(setter).setToHoursPart(integerAssert);
+    verify(implementation).setToHoursPart(integerAssert);
   }
 
   @Test
   void setToMillis() {
     assertThat(durationBuilder.setToMillis(longAssert)).isSameAs(durationBuilder);
-    verify(setter).setToMillis(longAssert);
+    verify(implementation).setToMillis(longAssert);
   }
 
   @Test
   void setToMillisPart() {
     assertThat(durationBuilder.setToMillisPart(integerAssert)).isSameAs(durationBuilder);
-    verify(setter).setToMillisPart(integerAssert);
+    verify(implementation).setToMillisPart(integerAssert);
   }
 
   @Test
   void setToMinutes() {
     assertThat(durationBuilder.setToMinutes(longAssert)).isSameAs(durationBuilder);
-    verify(setter).setToMinutes(longAssert);
+    verify(implementation).setToMinutes(longAssert);
   }
 
   @Test
   void setToMinutesPart() {
     assertThat(durationBuilder.setToMinutesPart(integerAssert)).isSameAs(durationBuilder);
-    verify(setter).setToMinutesPart(integerAssert);
+    verify(implementation).setToMinutesPart(integerAssert);
   }
 
   @Test
   void setToNanos() {
     assertThat(durationBuilder.setToNanos(longAssert)).isSameAs(durationBuilder);
-    verify(setter).setToNanos(longAssert);
+    verify(implementation).setToNanos(longAssert);
   }
 
   @Test
   void setToNanosPart() {
     assertThat(durationBuilder.setToNanosPart(integerAssert)).isSameAs(durationBuilder);
-    verify(setter).setToNanosPart(integerAssert);
+    verify(implementation).setToNanosPart(integerAssert);
   }
 
   @Test
   void setToSeconds() {
     assertThat(durationBuilder.setToSeconds(longAssert)).isSameAs(durationBuilder);
-    verify(setter).setToSeconds(longAssert);
+    verify(implementation).setToSeconds(longAssert);
   }
 
   @Test
   void setToSecondsPart() {
     assertThat(durationBuilder.setToSecondsPart(integerAssert)).isSameAs(durationBuilder);
-    verify(setter).setToSecondsPart(integerAssert);
+    verify(implementation).setToSecondsPart(integerAssert);
   }
 
   @Test
   void setUnits() {
     assertThat(durationBuilder.setUnits(listAssert)).isSameAs(durationBuilder);
-    verify(setter).setUnits(listAssert);
+    verify(implementation).setUnits(listAssert);
   }
 
   @Test
   void setZero() {
     assertThat(durationBuilder.setZero(booleanAssert)).isSameAs(durationBuilder);
-    verify(setter).setZero(booleanAssert);
+    verify(implementation).setZero(booleanAssert);
   }
 }

@@ -14,6 +14,6 @@ abstract class BuilderImpl<
 
   @Override
   protected void doAssertion(ObjectAssert<T, ?> objectAssert) {
-    getSetter().setAssertion(objectAssert);
+    getImplementation().setAssertion(objectAssert);
   }
 }

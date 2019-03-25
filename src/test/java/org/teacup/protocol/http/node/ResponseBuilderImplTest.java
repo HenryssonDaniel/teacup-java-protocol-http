@@ -20,9 +20,9 @@ class ResponseBuilderImplTest {
   @InjectMocks private final ResponseBuilder<String> responseBuilder = new ResponseBuilderImpl<>();
 
   @Mock private ComparableAssert<Version, ?> comparableAssert;
+  @Mock private ResponseSetter<String> implementation;
   @Mock private MapAssert<String, List<String>, ?> mapAssert;
   @Mock private ObjectAssert<String, ?> objectAssert;
-  @Mock private ResponseSetter<String> setter;
 
   @BeforeEach
   void beforeEach() {
@@ -30,26 +30,27 @@ class ResponseBuilderImplTest {
   }
 
   @Test
-  void createSetter() {
-    assertThat(new ResponseBuilderImpl<>().createSetter()).isExactlyInstanceOf(ResponseImpl.class);
+  void createImplementation() {
+    assertThat(new ResponseBuilderImpl<>().createImplementation())
+        .isExactlyInstanceOf(ResponseImpl.class);
   }
 
   @Test
   void setBody() {
     assertThat(responseBuilder.setBody(objectAssert)).isSameAs(responseBuilder);
-    verify(setter).setBody(objectAssert);
+    verify(implementation).setBody(objectAssert);
   }
 
   @Test
   void setHeaders() {
     assertThat(responseBuilder.setHeaders(mapAssert)).isSameAs(responseBuilder);
-    verify(setter).setHeaders(mapAssert);
+    verify(implementation).setHeaders(mapAssert);
   }
 
   @Test
   void setPreviousResponse() {
-    assertThat(responseBuilder.setPreviousResponse(setter)).isSameAs(responseBuilder);
-    verify(setter).setPreviousResponse(setter);
+    assertThat(responseBuilder.setPreviousResponse(implementation)).isSameAs(responseBuilder);
+    verify(implementation).setPreviousResponse(implementation);
   }
 
   @Test
@@ -57,7 +58,7 @@ class ResponseBuilderImplTest {
     var request = mock(Request.class);
 
     assertThat(responseBuilder.setRequest(request)).isSameAs(responseBuilder);
-    verify(setter).setRequest(request);
+    verify(implementation).setRequest(request);
   }
 
   @Test
@@ -65,7 +66,7 @@ class ResponseBuilderImplTest {
     var sslSession = mock(SslSession.class);
 
     assertThat(responseBuilder.setSslSession(sslSession)).isSameAs(responseBuilder);
-    verify(setter).setSslSession(sslSession);
+    verify(implementation).setSslSession(sslSession);
   }
 
   @Test
@@ -73,7 +74,7 @@ class ResponseBuilderImplTest {
     var integerAssert = mock(IntegerAssert.class);
 
     assertThat(responseBuilder.setStatusCode(integerAssert)).isSameAs(responseBuilder);
-    verify(setter).setStatusCode(integerAssert);
+    verify(implementation).setStatusCode(integerAssert);
   }
 
   @Test
@@ -81,12 +82,12 @@ class ResponseBuilderImplTest {
     var uri = mock(Uri.class);
 
     assertThat(responseBuilder.setUri(uri)).isSameAs(responseBuilder);
-    verify(setter).setUri(uri);
+    verify(implementation).setUri(uri);
   }
 
   @Test
   void setVersion() {
     assertThat(responseBuilder.setVersion(comparableAssert)).isSameAs(responseBuilder);
-    verify(setter).setVersion(comparableAssert);
+    verify(implementation).setVersion(comparableAssert);
   }
 }

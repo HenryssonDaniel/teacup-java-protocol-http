@@ -14,7 +14,7 @@ import org.teacup.core.assertion.StringAssert;
 class PrincipalBuilderImplTest {
   @InjectMocks private final PrincipalBuilder principalBuilder = new PrincipalBuilderImpl();
 
-  @Mock private PrincipalSetter setter;
+  @Mock private PrincipalSetter implementation;
 
   @BeforeEach
   void beforeEach() {
@@ -22,8 +22,9 @@ class PrincipalBuilderImplTest {
   }
 
   @Test
-  void createSetter() {
-    assertThat(new PrincipalBuilderImpl().createSetter()).isExactlyInstanceOf(PrincipalImpl.class);
+  void createImplementation() {
+    assertThat(new PrincipalBuilderImpl().createImplementation())
+        .isExactlyInstanceOf(PrincipalImpl.class);
   }
 
   @Test
@@ -31,6 +32,6 @@ class PrincipalBuilderImplTest {
     var stringAssert = mock(StringAssert.class);
 
     assertThat(principalBuilder.setName(stringAssert)).isSameAs(principalBuilder);
-    verify(setter).setName(stringAssert);
+    verify(implementation).setName(stringAssert);
   }
 }

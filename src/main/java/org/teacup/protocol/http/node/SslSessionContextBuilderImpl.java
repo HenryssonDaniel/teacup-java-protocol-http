@@ -23,26 +23,26 @@ class SslSessionContextBuilderImpl
   @Override
   public SslSessionContextBuilder setIds(ObjectAssert<? super Enumeration<byte[]>, ?> ids) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "ID's"));
-    getSetter().setIds(ids);
+    getImplementation().setIds(ids);
     return this;
   }
 
   @Override
   public SslSessionContextBuilder setSessionCacheSize(IntegerAssert<?> sessionCacheSize) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "session cache size"));
-    getSetter().setSessionCacheSize(sessionCacheSize);
+    getImplementation().setSessionCacheSize(sessionCacheSize);
     return this;
   }
 
   @Override
   public SslSessionContextBuilder setSessionTimeout(IntegerAssert<?> sessionTimeout) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "session timeout"));
-    getSetter().setSessionTimeout(sessionTimeout);
+    getImplementation().setSessionTimeout(sessionTimeout);
     return this;
   }
 
   @Override
-  protected SslSessionContextSetter createSetter() {
+  protected SslSessionContextSetter createImplementation() {
     return new SslSessionContextImpl();
   }
 }

@@ -20,8 +20,8 @@ class SslSessionContextBuilderImplTest {
   private final SslSessionContextBuilder sslSessionContextBuilder =
       new SslSessionContextBuilderImpl();
 
+  @Mock private SslSessionContextSetter implementation;
   @Mock private ObjectAssert<? super Enumeration<byte[]>, ?> objectAssert;
-  @Mock private SslSessionContextSetter setter;
 
   @BeforeEach
   void beforeEach() {
@@ -29,28 +29,28 @@ class SslSessionContextBuilderImplTest {
   }
 
   @Test
-  void createSetter() {
-    assertThat(new SslSessionContextBuilderImpl().createSetter())
+  void createImplementation() {
+    assertThat(new SslSessionContextBuilderImpl().createImplementation())
         .isExactlyInstanceOf(SslSessionContextImpl.class);
   }
 
   @Test
   void setIds() {
     assertThat(sslSessionContextBuilder.setIds(objectAssert)).isSameAs(sslSessionContextBuilder);
-    verify(setter).setIds(objectAssert);
+    verify(implementation).setIds(objectAssert);
   }
 
   @Test
   void setSessionCacheSize() {
     assertThat(sslSessionContextBuilder.setSessionCacheSize(integerAssert))
         .isSameAs(sslSessionContextBuilder);
-    verify(setter).setSessionCacheSize(integerAssert);
+    verify(implementation).setSessionCacheSize(integerAssert);
   }
 
   @Test
   void setSessionTimeout() {
     assertThat(sslSessionContextBuilder.setSessionTimeout(integerAssert))
         .isSameAs(sslSessionContextBuilder);
-    verify(setter).setSessionTimeout(integerAssert);
+    verify(implementation).setSessionTimeout(integerAssert);
   }
 }

@@ -10,8 +10,8 @@ import org.teacup.core.Node;
 import org.teacup.core.assertion.ObjectAssert;
 
 class BuilderImplTest {
+  @Mock private Setter<String> implementation;
   @Mock private ObjectAssert<String, ?> objectAssert;
-  @Mock private Setter<String> setter;
 
   @BeforeEach
   void beforeEach() {
@@ -20,8 +20,8 @@ class BuilderImplTest {
 
   @Test
   void doAssertion() {
-    new TestBuilderImpl(setter).doAssertion(objectAssert);
-    verify(setter).setAssertion(objectAssert);
+    new TestBuilderImpl(implementation).doAssertion(objectAssert);
+    verify(implementation).setAssertion(objectAssert);
   }
 
   private static final class TestBuilderImpl
@@ -31,7 +31,7 @@ class BuilderImplTest {
     }
 
     @Override
-    protected Setter<String> createSetter() {
+    protected Setter<String> createImplementation() {
       return null;
     }
   }

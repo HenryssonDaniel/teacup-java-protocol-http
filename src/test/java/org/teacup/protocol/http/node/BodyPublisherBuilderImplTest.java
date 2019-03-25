@@ -15,7 +15,7 @@ class BodyPublisherBuilderImplTest {
   @InjectMocks
   private final BodyPublisherBuilder bodyPublisherBuilder = new BodyPublisherBuilderImpl();
 
-  @Mock private BodyPublisherSetter setter;
+  @Mock private BodyPublisherSetter implementation;
 
   @BeforeEach
   void beforeEach() {
@@ -23,8 +23,8 @@ class BodyPublisherBuilderImplTest {
   }
 
   @Test
-  void createSetter() {
-    assertThat(new BodyPublisherBuilderImpl().createSetter())
+  void createImplementation() {
+    assertThat(new BodyPublisherBuilderImpl().createImplementation())
         .isExactlyInstanceOf(BodyPublisherImpl.class);
   }
 
@@ -33,6 +33,6 @@ class BodyPublisherBuilderImplTest {
     var longAssert = mock(LongAssert.class);
 
     assertThat(bodyPublisherBuilder.setContentLength(longAssert)).isSameAs(bodyPublisherBuilder);
-    verify(setter).setContentLength(longAssert);
+    verify(implementation).setContentLength(longAssert);
   }
 }

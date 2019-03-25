@@ -25,7 +25,7 @@ class SslSessionBuilderImplTest {
   private final StringAssert<?> stringAssert = mock(StringAssert.class);
 
   @Mock private ObjectArrayAssert<? super Certificate, ?> certificateArrayAssert;
-  @Mock private SslSessionSetter setter;
+  @Mock private SslSessionSetter implementation;
   @Mock private ObjectArrayAssert<? super String, ?> stringArrayAssert;
 
   @BeforeEach
@@ -34,8 +34,8 @@ class SslSessionBuilderImplTest {
   }
 
   @Test
-  void createSetter() {
-    assertThat(new SslSessionBuilderImpl().createSetter())
+  void createImplementation() {
+    assertThat(new SslSessionBuilderImpl().createImplementation())
         .isExactlyInstanceOf(SslSessionImpl.class);
   }
 
@@ -43,19 +43,19 @@ class SslSessionBuilderImplTest {
   void setApplicationBufferSize() {
     assertThat(sslSessionBuilder.setApplicationBufferSize(integerAssert))
         .isSameAs(sslSessionBuilder);
-    verify(setter).setApplicationBufferSize(integerAssert);
+    verify(implementation).setApplicationBufferSize(integerAssert);
   }
 
   @Test
   void setCipherSuite() {
     assertThat(sslSessionBuilder.setCipherSuite(stringAssert)).isSameAs(sslSessionBuilder);
-    verify(setter).setCipherSuite(stringAssert);
+    verify(implementation).setCipherSuite(stringAssert);
   }
 
   @Test
   void setCreationTime() {
     assertThat(sslSessionBuilder.setCreationTime(longAssert)).isSameAs(sslSessionBuilder);
-    verify(setter).setCreationTime(longAssert);
+    verify(implementation).setCreationTime(longAssert);
   }
 
   @Test
@@ -63,63 +63,63 @@ class SslSessionBuilderImplTest {
     var byteArrayAssert = mock(ByteArrayAssert.class);
 
     assertThat(sslSessionBuilder.setId(byteArrayAssert)).isSameAs(sslSessionBuilder);
-    verify(setter).setId(byteArrayAssert);
+    verify(implementation).setId(byteArrayAssert);
   }
 
   @Test
   void setLastAccessedTime() {
     assertThat(sslSessionBuilder.setLastAccessedTime(longAssert)).isSameAs(sslSessionBuilder);
-    verify(setter).setLastAccessedTime(longAssert);
+    verify(implementation).setLastAccessedTime(longAssert);
   }
 
   @Test
   void setLocalCertificates() {
     assertThat(sslSessionBuilder.setLocalCertificates(certificateArrayAssert))
         .isSameAs(sslSessionBuilder);
-    verify(setter).setLocalCertificates(certificateArrayAssert);
+    verify(implementation).setLocalCertificates(certificateArrayAssert);
   }
 
   @Test
   void setLocalPrincipal() {
     assertThat(sslSessionBuilder.setLocalPrincipal(principal)).isSameAs(sslSessionBuilder);
-    verify(setter).setLocalPrincipal(principal);
+    verify(implementation).setLocalPrincipal(principal);
   }
 
   @Test
   void setPacketBufferSize() {
     assertThat(sslSessionBuilder.setPacketBufferSize(integerAssert)).isSameAs(sslSessionBuilder);
-    verify(setter).setPacketBufferSize(integerAssert);
+    verify(implementation).setPacketBufferSize(integerAssert);
   }
 
   @Test
   void setPeerCertificates() {
     assertThat(sslSessionBuilder.setPeerCertificates(certificateArrayAssert))
         .isSameAs(sslSessionBuilder);
-    verify(setter).setPeerCertificates(certificateArrayAssert);
+    verify(implementation).setPeerCertificates(certificateArrayAssert);
   }
 
   @Test
   void setPeerHost() {
     assertThat(sslSessionBuilder.setPeerHost(stringAssert)).isSameAs(sslSessionBuilder);
-    verify(setter).setPeerHost(stringAssert);
+    verify(implementation).setPeerHost(stringAssert);
   }
 
   @Test
   void setPeerPort() {
     assertThat(sslSessionBuilder.setPeerPort(integerAssert)).isSameAs(sslSessionBuilder);
-    verify(setter).setPeerPort(integerAssert);
+    verify(implementation).setPeerPort(integerAssert);
   }
 
   @Test
   void setPeerPrincipal() {
     assertThat(sslSessionBuilder.setPeerPrincipal(principal)).isSameAs(sslSessionBuilder);
-    verify(setter).setPeerPrincipal(principal);
+    verify(implementation).setPeerPrincipal(principal);
   }
 
   @Test
   void setProtocol() {
     assertThat(sslSessionBuilder.setProtocol(stringAssert)).isSameAs(sslSessionBuilder);
-    verify(setter).setProtocol(stringAssert);
+    verify(implementation).setProtocol(stringAssert);
   }
 
   @Test
@@ -127,7 +127,7 @@ class SslSessionBuilderImplTest {
     var sslSessionContext = mock(SslSessionContext.class);
 
     assertThat(sslSessionBuilder.setSessionContext(sslSessionContext)).isSameAs(sslSessionBuilder);
-    verify(setter).setSessionContext(sslSessionContext);
+    verify(implementation).setSessionContext(sslSessionContext);
   }
 
   @Test
@@ -135,12 +135,12 @@ class SslSessionBuilderImplTest {
     var booleanAssert = mock(BooleanAssert.class);
 
     assertThat(sslSessionBuilder.setValid(booleanAssert)).isSameAs(sslSessionBuilder);
-    verify(setter).setValid(booleanAssert);
+    verify(implementation).setValid(booleanAssert);
   }
 
   @Test
   void setValueNames() {
     assertThat(sslSessionBuilder.setValueNames(stringArrayAssert)).isSameAs(sslSessionBuilder);
-    verify(setter).setValueNames(stringArrayAssert);
+    verify(implementation).setValueNames(stringArrayAssert);
   }
 }

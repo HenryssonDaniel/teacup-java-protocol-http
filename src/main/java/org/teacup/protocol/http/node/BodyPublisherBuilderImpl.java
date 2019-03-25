@@ -20,12 +20,12 @@ class BodyPublisherBuilderImpl
   @Override
   public BodyPublisherBuilder setContentLength(LongAssert<?> contentLength) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "content length"));
-    getSetter().setContentLength(contentLength);
+    getImplementation().setContentLength(contentLength);
     return this;
   }
 
   @Override
-  protected BodyPublisherSetter createSetter() {
+  protected BodyPublisherSetter createImplementation() {
     return new BodyPublisherImpl();
   }
 }

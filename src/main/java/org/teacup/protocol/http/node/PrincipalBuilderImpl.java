@@ -18,12 +18,12 @@ class PrincipalBuilderImpl
   @Override
   public PrincipalBuilder setName(StringAssert<?> name) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "name"));
-    getSetter().setName(name);
+    getImplementation().setName(name);
     return this;
   }
 
   @Override
-  protected PrincipalSetter createSetter() {
+  protected PrincipalSetter createImplementation() {
     return new PrincipalImpl();
   }
 }

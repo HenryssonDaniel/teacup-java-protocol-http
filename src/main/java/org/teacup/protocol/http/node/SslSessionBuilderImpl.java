@@ -26,35 +26,35 @@ class SslSessionBuilderImpl
   @Override
   public SslSessionBuilder setApplicationBufferSize(IntegerAssert<?> applicationBufferSize) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "application buffer size"));
-    getSetter().setApplicationBufferSize(applicationBufferSize);
+    getImplementation().setApplicationBufferSize(applicationBufferSize);
     return this;
   }
 
   @Override
   public SslSessionBuilder setCipherSuite(StringAssert<?> cipherSuite) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "cipher suite"));
-    getSetter().setCipherSuite(cipherSuite);
+    getImplementation().setCipherSuite(cipherSuite);
     return this;
   }
 
   @Override
   public SslSessionBuilder setCreationTime(LongAssert<?> creationTime) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "creation time"));
-    getSetter().setCreationTime(creationTime);
+    getImplementation().setCreationTime(creationTime);
     return this;
   }
 
   @Override
   public SslSessionBuilder setId(ByteArrayAssert<?> id) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "ID"));
-    getSetter().setId(id);
+    getImplementation().setId(id);
     return this;
   }
 
   @Override
   public SslSessionBuilder setLastAccessedTime(LongAssert<?> lastAccessedTime) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "last accessed time"));
-    getSetter().setLastAccessedTime(lastAccessedTime);
+    getImplementation().setLastAccessedTime(lastAccessedTime);
     return this;
   }
 
@@ -62,21 +62,21 @@ class SslSessionBuilderImpl
   public SslSessionBuilder setLocalCertificates(
       ObjectArrayAssert<? super Certificate, ?> localCertificates) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "local certificates"));
-    getSetter().setLocalCertificates(localCertificates);
+    getImplementation().setLocalCertificates(localCertificates);
     return this;
   }
 
   @Override
   public SslSessionBuilder setLocalPrincipal(Principal localPrincipal) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "local principal"));
-    getSetter().setLocalPrincipal(localPrincipal);
+    getImplementation().setLocalPrincipal(localPrincipal);
     return this;
   }
 
   @Override
   public SslSessionBuilder setPacketBufferSize(IntegerAssert<?> packetBufferSize) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "packet buffer size"));
-    getSetter().setPacketBufferSize(packetBufferSize);
+    getImplementation().setPacketBufferSize(packetBufferSize);
     return this;
   }
 
@@ -84,61 +84,61 @@ class SslSessionBuilderImpl
   public SslSessionBuilder setPeerCertificates(
       ObjectArrayAssert<? super Certificate, ?> peerCertificates) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "peer certificates"));
-    getSetter().setPeerCertificates(peerCertificates);
+    getImplementation().setPeerCertificates(peerCertificates);
     return this;
   }
 
   @Override
   public SslSessionBuilder setPeerHost(StringAssert<?> peerHost) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "peer host"));
-    getSetter().setPeerHost(peerHost);
+    getImplementation().setPeerHost(peerHost);
     return this;
   }
 
   @Override
   public SslSessionBuilder setPeerPort(IntegerAssert<?> peerPort) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "peer port"));
-    getSetter().setPeerPort(peerPort);
+    getImplementation().setPeerPort(peerPort);
     return this;
   }
 
   @Override
   public SslSessionBuilder setPeerPrincipal(Principal peerPrincipal) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "peer principal"));
-    getSetter().setPeerPrincipal(peerPrincipal);
+    getImplementation().setPeerPrincipal(peerPrincipal);
     return this;
   }
 
   @Override
   public SslSessionBuilder setProtocol(StringAssert<?> protocol) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "protocol"));
-    getSetter().setProtocol(protocol);
+    getImplementation().setProtocol(protocol);
     return this;
   }
 
   @Override
   public SslSessionBuilder setSessionContext(SslSessionContext sessionContext) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "session context"));
-    getSetter().setSessionContext(sessionContext);
+    getImplementation().setSessionContext(sessionContext);
     return this;
   }
 
   @Override
   public SslSessionBuilder setValid(BooleanAssert<?> valid) {
     LOGGER.log(Level.FINE, String.format(SETTING_WHETHER, "valid"));
-    getSetter().setValid(valid);
+    getImplementation().setValid(valid);
     return this;
   }
 
   @Override
   public SslSessionBuilder setValueNames(ObjectArrayAssert<? super String, ?> valueNames) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "value names"));
-    getSetter().setValueNames(valueNames);
+    getImplementation().setValueNames(valueNames);
     return this;
   }
 
   @Override
-  protected SslSessionSetter createSetter() {
+  protected SslSessionSetter createImplementation() {
     return new SslSessionImpl();
   }
 }

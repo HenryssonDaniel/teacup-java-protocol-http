@@ -20,8 +20,8 @@ class RequestBuilderImplTest {
   @InjectMocks private final RequestBuilder requestBuilder = new RequestBuilderImpl();
 
   @Mock private ComparableAssert<Version, ?> comparableAssert;
+  @Mock private RequestSetter implementation;
   @Mock private MapAssert<String, List<String>, ?> mapAssert;
-  @Mock private RequestSetter setter;
 
   @BeforeEach
   void beforeEach() {
@@ -29,8 +29,9 @@ class RequestBuilderImplTest {
   }
 
   @Test
-  void createSetter() {
-    assertThat(new RequestBuilderImpl().createSetter()).isExactlyInstanceOf(RequestImpl.class);
+  void createImplementation() {
+    assertThat(new RequestBuilderImpl().createImplementation())
+        .isExactlyInstanceOf(RequestImpl.class);
   }
 
   @Test
@@ -38,7 +39,7 @@ class RequestBuilderImplTest {
     var bodyPublisher = mock(BodyPublisher.class);
 
     assertThat(requestBuilder.setBodyPublisher(bodyPublisher)).isSameAs(requestBuilder);
-    verify(setter).setBodyPublisher(bodyPublisher);
+    verify(implementation).setBodyPublisher(bodyPublisher);
   }
 
   @Test
@@ -46,13 +47,13 @@ class RequestBuilderImplTest {
     var booleanAssert = mock(BooleanAssert.class);
 
     assertThat(requestBuilder.setExpectContinue(booleanAssert)).isSameAs(requestBuilder);
-    verify(setter).setExpectContinue(booleanAssert);
+    verify(implementation).setExpectContinue(booleanAssert);
   }
 
   @Test
   void setHeaders() {
     assertThat(requestBuilder.setHeaders(mapAssert)).isSameAs(requestBuilder);
-    verify(setter).setHeaders(mapAssert);
+    verify(implementation).setHeaders(mapAssert);
   }
 
   @Test
@@ -60,7 +61,7 @@ class RequestBuilderImplTest {
     var stringAssert = mock(StringAssert.class);
 
     assertThat(requestBuilder.setMethod(stringAssert)).isSameAs(requestBuilder);
-    verify(setter).setMethod(stringAssert);
+    verify(implementation).setMethod(stringAssert);
   }
 
   @Test
@@ -68,7 +69,7 @@ class RequestBuilderImplTest {
     var duration = mock(Duration.class);
 
     assertThat(requestBuilder.setTimeout(duration)).isSameAs(requestBuilder);
-    verify(setter).setTimeout(duration);
+    verify(implementation).setTimeout(duration);
   }
 
   @Test
@@ -76,12 +77,12 @@ class RequestBuilderImplTest {
     var uri = mock(Uri.class);
 
     assertThat(requestBuilder.setUri(uri)).isSameAs(requestBuilder);
-    verify(setter).setUri(uri);
+    verify(implementation).setUri(uri);
   }
 
   @Test
   void setVersion() {
     assertThat(requestBuilder.setVersion(comparableAssert)).isSameAs(requestBuilder);
-    verify(setter).setVersion(comparableAssert);
+    verify(implementation).setVersion(comparableAssert);
   }
 }

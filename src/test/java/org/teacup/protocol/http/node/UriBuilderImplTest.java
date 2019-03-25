@@ -18,7 +18,7 @@ class UriBuilderImplTest {
   private final StringAssert<?> stringAssert = mock(StringAssert.class);
   @InjectMocks private final UriBuilder uriBuilder = new UriBuilderImpl();
 
-  @Mock private UriSetter setter;
+  @Mock private UriSetter implementation;
 
   @BeforeEach
   void beforeEach() {
@@ -26,44 +26,44 @@ class UriBuilderImplTest {
   }
 
   @Test
-  void createSetter() {
-    assertThat(new UriBuilderImpl().createSetter()).isExactlyInstanceOf(UriImpl.class);
+  void createImplementation() {
+    assertThat(new UriBuilderImpl().createImplementation()).isExactlyInstanceOf(UriImpl.class);
   }
 
   @Test
   void setAbsolute() {
     assertThat(uriBuilder.setAbsolute(booleanAssert)).isSameAs(uriBuilder);
-    verify(setter).setAbsolute(booleanAssert);
+    verify(implementation).setAbsolute(booleanAssert);
   }
 
   @Test
   void setAuthority() {
     assertThat(uriBuilder.setAuthority(stringAssert)).isSameAs(uriBuilder);
-    verify(setter).setAuthority(stringAssert);
+    verify(implementation).setAuthority(stringAssert);
   }
 
   @Test
   void setFragment() {
     assertThat(uriBuilder.setFragment(stringAssert)).isSameAs(uriBuilder);
-    verify(setter).setFragment(stringAssert);
+    verify(implementation).setFragment(stringAssert);
   }
 
   @Test
   void setHost() {
     assertThat(uriBuilder.setHost(stringAssert)).isSameAs(uriBuilder);
-    verify(setter).setHost(stringAssert);
+    verify(implementation).setHost(stringAssert);
   }
 
   @Test
   void setOpaque() {
     assertThat(uriBuilder.setOpaque(booleanAssert)).isSameAs(uriBuilder);
-    verify(setter).setOpaque(booleanAssert);
+    verify(implementation).setOpaque(booleanAssert);
   }
 
   @Test
   void setPath() {
     assertThat(uriBuilder.setPath(stringAssert)).isSameAs(uriBuilder);
-    verify(setter).setPath(stringAssert);
+    verify(implementation).setPath(stringAssert);
   }
 
   @Test
@@ -71,66 +71,66 @@ class UriBuilderImplTest {
     var integerAssert = mock(IntegerAssert.class);
 
     assertThat(uriBuilder.setPort(integerAssert)).isSameAs(uriBuilder);
-    verify(setter).setPort(integerAssert);
+    verify(implementation).setPort(integerAssert);
   }
 
   @Test
   void setQuery() {
     assertThat(uriBuilder.setQuery(stringAssert)).isSameAs(uriBuilder);
-    verify(setter).setQuery(stringAssert);
+    verify(implementation).setQuery(stringAssert);
   }
 
   @Test
   void setRawAuthority() {
     assertThat(uriBuilder.setRawAuthority(stringAssert)).isSameAs(uriBuilder);
-    verify(setter).setRawAuthority(stringAssert);
+    verify(implementation).setRawAuthority(stringAssert);
   }
 
   @Test
   void setRawFragment() {
     assertThat(uriBuilder.setRawFragment(stringAssert)).isSameAs(uriBuilder);
-    verify(setter).setRawFragment(stringAssert);
+    verify(implementation).setRawFragment(stringAssert);
   }
 
   @Test
   void setRawPath() {
     assertThat(uriBuilder.setRawPath(stringAssert)).isSameAs(uriBuilder);
-    verify(setter).setRawPath(stringAssert);
+    verify(implementation).setRawPath(stringAssert);
   }
 
   @Test
   void setRawQuery() {
     assertThat(uriBuilder.setRawQuery(stringAssert)).isSameAs(uriBuilder);
-    verify(setter).setRawQuery(stringAssert);
+    verify(implementation).setRawQuery(stringAssert);
   }
 
   @Test
   void setRawSchemeSpecificPart() {
     assertThat(uriBuilder.setRawSchemeSpecificPart(stringAssert)).isSameAs(uriBuilder);
-    verify(setter).setRawSchemeSpecificPart(stringAssert);
+    verify(implementation).setRawSchemeSpecificPart(stringAssert);
   }
 
   @Test
   void setRawUserInfo() {
     assertThat(uriBuilder.setRawUserInfo(stringAssert)).isSameAs(uriBuilder);
-    verify(setter).setRawUserInfo(stringAssert);
+    verify(implementation).setRawUserInfo(stringAssert);
   }
 
   @Test
   void setScheme() {
     assertThat(uriBuilder.setScheme(stringAssert)).isSameAs(uriBuilder);
-    verify(setter).setScheme(stringAssert);
+    verify(implementation).setScheme(stringAssert);
   }
 
   @Test
   void setSchemeSpecificPart() {
     assertThat(uriBuilder.setSchemeSpecificPart(stringAssert)).isSameAs(uriBuilder);
-    verify(setter).setSchemeSpecificPart(stringAssert);
+    verify(implementation).setSchemeSpecificPart(stringAssert);
   }
 
   @Test
   void setUserInfo() {
     assertThat(uriBuilder.setUserInfo(stringAssert)).isSameAs(uriBuilder);
-    verify(setter).setUserInfo(stringAssert);
+    verify(implementation).setUserInfo(stringAssert);
   }
 }
