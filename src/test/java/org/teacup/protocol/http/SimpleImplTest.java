@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-class ClientImplTest {
+class SimpleImplTest {
   private static final String MESSAGE = "test";
   private static final String NAME = "name";
 
@@ -32,11 +32,11 @@ class ClientImplTest {
   private final SSLSession sslSession = mock(SSLSession.class);
 
   @Mock private BodyHandler<String> bodyHandler;
-  private Client client;
   private CompletableFuture<HttpResponse<String>> completableFuture;
   @Mock private Handler<String> handler;
   @Mock private HttpResponse<String> httpResponse;
   @Mock private PushPromiseHandler<String> pushPromiseHandler;
+  private Simple simple;
 
   @BeforeEach
   void beforeEach() {
@@ -48,20 +48,20 @@ class ClientImplTest {
     setupSslSession();
 
     completableFuture = CompletableFuture.supplyAsync(() -> httpResponse);
-    client = new ClientImpl(httpClient);
+    simple = new SimpleImpl(httpClient);
   }
 
   @Test
   void send() throws IOException, InterruptedException {
     when(httpClient.send(httpRequest, bodyHandler)).thenReturn(httpResponse);
-    assertThat(client.send(handler, httpRequest)).isSameAs(httpResponse);
+    assertThat(simple.send(handler, httpRequest)).isSameAs(httpResponse);
   }
 
   @Test
   void sendAsynchronously() throws ExecutionException, InterruptedException {
     when(httpClient.sendAsync(httpRequest, bodyHandler)).thenReturn(completableFuture);
 
-    var future = client.sendAsynchronously(handler, httpRequest);
+    var future = simple.sendAsynchronously(handler, httpRequest);
     future.get();
 
     assertThat(future).isCompletedWithValue(httpResponse);
@@ -76,7 +76,7 @@ class ClientImplTest {
             });
     when(httpClient.sendAsync(httpRequest, bodyHandler)).thenReturn(completableFuture);
 
-    var future = client.sendAsynchronously(handler, httpRequest);
+    var future = simple.sendAsynchronously(handler, httpRequest);
 
     try {
       future.get();
@@ -92,7 +92,7 @@ class ClientImplTest {
     when(httpClient.sendAsync(httpRequest, bodyHandler, pushPromiseHandler))
         .thenReturn(completableFuture);
 
-    var future = client.sendAsynchronously(handler, httpRequest);
+    var future = simple.sendAsynchronously(handler, httpRequest);
     future.get();
 
     assertThat(future).isCompletedWithValue(httpResponse);
@@ -103,7 +103,7 @@ class ClientImplTest {
     when(httpClient.sendAsync(httpRequest, bodyHandler)).thenReturn(completableFuture);
     when(httpResponse.sslSession()).thenReturn(Optional.of(sslSession));
 
-    var future = client.sendAsynchronously(handler, httpRequest);
+    var future = simple.sendAsynchronously(handler, httpRequest);
     future.get();
 
     assertThat(future).isCompletedWithValue(httpResponse);
@@ -116,7 +116,7 @@ class ClientImplTest {
     when(httpResponse.sslSession()).thenReturn(Optional.of(sslSession));
     when(sslSession.getPeerPrincipal()).thenThrow(new SSLPeerUnverifiedException(MESSAGE));
 
-    var future = client.sendAsynchronously(handler, httpRequest);
+    var future = simple.sendAsynchronously(handler, httpRequest);
     future.get();
 
     assertThat(future).isCompletedWithValue(httpResponse);
@@ -126,7 +126,7 @@ class ClientImplTest {
   void sendWhenIOException() throws IOException, InterruptedException {
     when(httpClient.send(httpRequest, bodyHandler)).thenThrow(new IOException(MESSAGE));
     assertThatIOException()
-        .isThrownBy(() -> client.send(handler, httpRequest))
+        .isThrownBy(() -> simple.send(handler, httpRequest))
         .withMessage(MESSAGE);
   }
 

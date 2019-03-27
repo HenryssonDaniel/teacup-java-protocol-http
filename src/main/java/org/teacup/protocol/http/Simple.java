@@ -6,11 +6,11 @@ import java.net.http.HttpResponse;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * An HTTP Client.
+ * An HTTP client.
  *
  * @since 1.0
  */
-public interface Client {
+public interface Simple {
   /**
    * Send an HTTP request.
    *

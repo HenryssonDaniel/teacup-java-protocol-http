@@ -14,13 +14,13 @@ import javax.net.ssl.SSLPeerUnverifiedException;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSessionContext;
 
-class ClientImpl implements Client {
-  private static final Logger LOGGER = Logger.getLogger(ClientImpl.class.getName());
+class SimpleImpl implements Simple {
+  private static final Logger LOGGER = Logger.getLogger(SimpleImpl.class.getName());
   private static final String SEND = "Sending request%s";
 
   private final HttpClient httpClient;
 
-  ClientImpl(HttpClient httpClient) {
+  SimpleImpl(HttpClient httpClient) {
     this.httpClient = httpClient;
   }
 
@@ -52,7 +52,7 @@ class ClientImpl implements Client {
     return (pushPromiseHandler == null
             ? httpClient.sendAsync(httpRequest, bodyHandler)
             : httpClient.sendAsync(httpRequest, bodyHandler, pushPromiseHandler))
-        .whenComplete(ClientImpl::logResponse);
+        .whenComplete(SimpleImpl::logResponse);
   }
 
   private static String getHttpRequest(HttpRequest httpRequest) {
