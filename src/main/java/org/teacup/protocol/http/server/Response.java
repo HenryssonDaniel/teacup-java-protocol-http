@@ -35,7 +35,7 @@ public interface Response {
    *
    * @return the headers
    */
-  Map<String, ? extends List<String>> getHeaders();
+  Map<String, List<String>> getHeaders();
 
   /**
    * Returns the length.

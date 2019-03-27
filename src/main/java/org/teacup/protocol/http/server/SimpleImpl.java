@@ -16,9 +16,8 @@ class SimpleImpl implements Simple {
 
   private final Object lock = new Object();
   private final Map<String, HttpContext> map = new HashMap<>(0);
-
   private HttpServer httpServer;
-  private boolean waiting;
+  private boolean waiting = true;
 
   SimpleImpl(int backlog, String host, int port) {
     try {
@@ -85,13 +84,14 @@ class SimpleImpl implements Simple {
     var handler = (Handler) httpContext.getHandler();
     handler.removeTimeoutSupplier(timeoutSupplier);
 
-    if (handler.getTimeoutSuppliers().isEmpty())
-      synchronized (lock) {
+    synchronized (lock) {
+      if (handler.getTimeoutSuppliers().isEmpty()) {
         httpServer.removeContext(httpContext);
         map.remove(httpContext.getPath());
         waiting = false;
         lock.notifyAll();
       }
+    }
   }
 
   private HttpContext createHttpContext(Context context, TimeoutSupplier timeoutSupplier) {
@@ -124,8 +124,8 @@ class SimpleImpl implements Simple {
     synchronized (lock) {
       while (waiting) lock.wait(1L);
 
-      httpContext = addSupplier(context, timeoutSupplier);
       waiting = true;
+      httpContext = addSupplier(context, timeoutSupplier);
     }
 
     return httpContext;

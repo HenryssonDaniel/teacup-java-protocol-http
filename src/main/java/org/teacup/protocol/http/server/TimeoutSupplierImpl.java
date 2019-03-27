@@ -37,6 +37,7 @@ class TimeoutSupplierImpl implements TimeoutSupplier {
         synchronized (lock) {
           while (empty) lock.wait(1L);
 
+          temporaryList.clear();
           temporaryList.addAll(requests);
 
           requests.clear();
@@ -47,7 +48,7 @@ class TimeoutSupplierImpl implements TimeoutSupplier {
       }
     else requests.clear();
 
-    return new ArrayList<>(temporaryList);
+    return temporaryList;
   }
 
   @Override

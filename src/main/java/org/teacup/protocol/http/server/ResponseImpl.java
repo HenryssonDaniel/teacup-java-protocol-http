@@ -42,7 +42,7 @@ class ResponseImpl implements ResponseSetter {
   }
 
   @Override
-  public Map<String, ? extends List<String>> getHeaders() {
+  public Map<String, List<String>> getHeaders() {
     LOGGER.log(Level.FINE, String.format(MESSAGE, "G", "headers"));
 
     Map<String, List<String>> map = new Headers();
