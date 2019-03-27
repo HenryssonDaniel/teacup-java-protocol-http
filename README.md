@@ -6,7 +6,7 @@ HTTP version 1.1 and 2 support.
 
 The framework supports asynchronously and synchronously requests.  
 
-There is also support for HTTP server, currently not supporting HTTPS.
+There is also support for an HTTP/HTTPS server.
 
 ## Why ##
 This makes it possible to test HTTP with the framework, both the client and the server.
@@ -14,8 +14,8 @@ This makes it possible to test HTTP with the framework, both the client and the 
 ## How ##
 Add this repository as a dependency.  
 
-The Client interface holds all the functionality that the HTTP client can do.  
-New clients can be created with the ClientFactory class.
+The Simple interface holds all the functionality that the HTTP client can do.  
+New clients can be created with the Factory class in the client package.
 
 The Simple interface holds all the functionality that the HTTP server can do.  
 New servers can be created with the Factory class in the server package.
