@@ -23,10 +23,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -35,26 +33,19 @@ class SimpleImplTest {
   private final Context context = mock(Context.class);
   private final Handler handler = mock(Handler.class);
   private final HttpContext httpContext = mock(HttpContext.class);
+  private final HttpServer httpServer = mock(HttpServer.class);
   private final Object lock = new Object();
-  @InjectMocks private final Simple simple = new SimpleImpl(0, "", 0);
+  private final Simple simple = new SimpleImpl(httpServer);
   private final TimeoutSupplier timeoutSupplier = mock(TimeoutSupplier.class);
   private final Object verifyLock = new Object();
 
-  @Mock private HttpServer httpServer;
   @Mock private Supplier<List<Request>> supplierNonExisting;
-
   private boolean waitVerify = true;
   private boolean waiting = true;
 
   @BeforeEach
   void beforeEach() {
     MockitoAnnotations.initMocks(this);
-  }
-
-  @Test
-  void createInvalidServer() {
-    Assertions.assertThatNullPointerException()
-        .isThrownBy(() -> new SimpleImpl(-1, "http:", 0).tearDown());
   }
 
   @Test

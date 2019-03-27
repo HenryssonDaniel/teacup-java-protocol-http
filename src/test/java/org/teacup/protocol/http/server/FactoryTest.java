@@ -1,7 +1,9 @@
 package org.teacup.protocol.http.server;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
+import com.sun.net.httpserver.HttpServer;
 import org.junit.jupiter.api.Test;
 
 class FactoryTest {
@@ -18,7 +20,8 @@ class FactoryTest {
 
   @Test
   void createServer() {
-    assertThat(Factory.createServer(0, "", 0)).isExactlyInstanceOf(SimpleImpl.class);
+    var httpServer = mock(HttpServer.class);
+    assertThat(Factory.createServer(httpServer)).isExactlyInstanceOf(SimpleImpl.class);
   }
 
   @Test

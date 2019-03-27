@@ -2,8 +2,6 @@ package org.teacup.protocol.http.server;
 
 import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpServer;
-import java.io.IOException;
-import java.net.InetSocketAddress;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,17 +12,14 @@ import java.util.logging.Logger;
 class SimpleImpl implements Simple {
   private static final Logger LOGGER = Logger.getLogger(SimpleImpl.class.getName());
 
+  private final HttpServer httpServer;
   private final Object lock = new Object();
   private final Map<String, HttpContext> map = new HashMap<>(0);
-  private HttpServer httpServer;
+
   private boolean waiting = true;
 
-  SimpleImpl(int backlog, String host, int port) {
-    try {
-      httpServer = HttpServer.create(new InetSocketAddress(host, port), backlog);
-    } catch (IOException e) {
-      LOGGER.log(Level.SEVERE, "Could not create the server", e);
-    }
+  SimpleImpl(HttpServer httpServer) {
+    this.httpServer = httpServer;
   }
 
   @Override

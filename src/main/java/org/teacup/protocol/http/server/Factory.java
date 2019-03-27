@@ -1,5 +1,6 @@
 package org.teacup.protocol.http.server;
 
+import com.sun.net.httpserver.HttpServer;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.logging.Level;
@@ -44,21 +45,12 @@ public enum Factory {
   /**
    * Creates a new server.
    *
-   * @param backlog the backlog
-   * @param host the host
-   * @param port the port
+   * @param httpServer the HTTP server
    * @return the server
    */
-  public static Server createServer(int backlog, String host, int port) {
-    LOGGER.log(
-        Level.FINE,
-        "Creating a new server with backlog: "
-            + backlog
-            + ", host: "
-            + host
-            + " and port: "
-            + port);
-    return new SimpleImpl(backlog, host, port);
+  public static Server createServer(HttpServer httpServer) {
+    LOGGER.log(Level.FINE, "Creating a new server");
+    return new SimpleImpl(httpServer);
   }
 
   /**
