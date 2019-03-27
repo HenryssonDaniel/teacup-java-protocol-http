@@ -1,4 +1,4 @@
-package org.teacup.protocol.http;
+package org.teacup.protocol.http.client;
 
 import static org.teacup.protocol.http.Constants.ERROR_FETCH;
 

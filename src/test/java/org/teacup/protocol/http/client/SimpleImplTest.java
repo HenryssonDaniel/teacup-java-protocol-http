@@ -1,4 +1,4 @@
-package org.teacup.protocol.http;
+package org.teacup.protocol.http.client;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIOException;

@@ -1,4 +1,4 @@
-package org.teacup.protocol.http;
+package org.teacup.protocol.http.client;
 
 import java.net.http.HttpClient;
 import java.util.logging.Level;
