@@ -1,1 +1,0 @@
-package org.teacup.protocol.http.server;
