@@ -4,6 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ComparableAssert;
+import io.github.henryssondaniel.teacup.core.assertion.MapAssert;
+import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
 import java.net.http.HttpClient.Version;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,10 +15,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.teacup.core.assertion.BooleanAssert;
-import org.teacup.core.assertion.ComparableAssert;
-import org.teacup.core.assertion.MapAssert;
-import org.teacup.core.assertion.StringAssert;
 
 class RequestBuilderImplTest {
   @InjectMocks private final RequestBuilder requestBuilder = new RequestBuilderImpl();

@@ -1,13 +1,13 @@
 package org.teacup.protocol.http.node;
 
+import io.github.henryssondaniel.teacup.core.NodeBuilder;
+import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ComparableAssert;
+import io.github.henryssondaniel.teacup.core.assertion.MapAssert;
+import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpRequest;
 import java.util.List;
-import org.teacup.core.NodeBuilder;
-import org.teacup.core.assertion.BooleanAssert;
-import org.teacup.core.assertion.ComparableAssert;
-import org.teacup.core.assertion.MapAssert;
-import org.teacup.core.assertion.StringAssert;
 
 /**
  * Request builder.

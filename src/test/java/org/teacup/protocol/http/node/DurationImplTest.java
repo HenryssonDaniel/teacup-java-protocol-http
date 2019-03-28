@@ -3,17 +3,17 @@ package org.teacup.protocol.http.node;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ListAssert;
+import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
 import java.time.Duration;
 import java.time.temporal.TemporalUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.teacup.core.assertion.BooleanAssert;
-import org.teacup.core.assertion.IntegerAssert;
-import org.teacup.core.assertion.ListAssert;
-import org.teacup.core.assertion.LongAssert;
-import org.teacup.core.assertion.ObjectAssert;
 
 class DurationImplTest {
   private final BooleanAssert<?> booleanAssert = mock(BooleanAssert.class);

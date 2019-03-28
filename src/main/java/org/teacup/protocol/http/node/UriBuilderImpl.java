@@ -3,12 +3,12 @@ package org.teacup.protocol.http.node;
 import static org.teacup.protocol.http.node.Constants.SETTING_THE;
 import static org.teacup.protocol.http.node.Constants.SETTING_WHETHER;
 
+import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
 import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.teacup.core.assertion.BooleanAssert;
-import org.teacup.core.assertion.IntegerAssert;
-import org.teacup.core.assertion.StringAssert;
 
 class UriBuilderImpl extends BuilderImpl<URI, Uri, UriSetter, UriBuilder> implements UriBuilder {
   private static final Logger LOGGER = Logger.getLogger(UriBuilderImpl.class.getName());

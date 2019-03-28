@@ -1,13 +1,13 @@
 package org.teacup.protocol.http.node;
 
+import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ByteArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ObjectArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
 import java.security.cert.Certificate;
 import javax.net.ssl.SSLSession;
-import org.teacup.core.assertion.BooleanAssert;
-import org.teacup.core.assertion.ByteArrayAssert;
-import org.teacup.core.assertion.IntegerAssert;
-import org.teacup.core.assertion.LongAssert;
-import org.teacup.core.assertion.ObjectArrayAssert;
-import org.teacup.core.assertion.StringAssert;
 
 interface SslSessionSetter extends Setter<SSLSession>, SslSession {
   void setApplicationBufferSize(IntegerAssert<?> applicationBufferSize);

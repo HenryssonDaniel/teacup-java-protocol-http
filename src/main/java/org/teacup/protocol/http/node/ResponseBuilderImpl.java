@@ -2,15 +2,15 @@ package org.teacup.protocol.http.node;
 
 import static org.teacup.protocol.http.node.Constants.SETTING_THE;
 
+import io.github.henryssondaniel.teacup.core.assertion.ComparableAssert;
+import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.MapAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.teacup.core.assertion.ComparableAssert;
-import org.teacup.core.assertion.IntegerAssert;
-import org.teacup.core.assertion.MapAssert;
-import org.teacup.core.assertion.ObjectAssert;
 
 class ResponseBuilderImpl<T>
     extends BuilderImpl<HttpResponse<T>, Response<T>, ResponseSetter<T>, ResponseBuilder<T>>

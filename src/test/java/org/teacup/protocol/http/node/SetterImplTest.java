@@ -3,11 +3,11 @@ package org.teacup.protocol.http.node;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.teacup.protocol.http.node.Constants.VERIFY;
 
+import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.teacup.core.assertion.ObjectAssert;
 
 class SetterImplTest {
   private static final Logger LOGGER = Logger.getLogger(SetterImplTest.class.getName());

@@ -1,10 +1,10 @@
 package org.teacup.protocol.http.client;
 
+import io.github.henryssondaniel.teacup.core.DefaultBuilder;
 import java.net.http.HttpResponse.BodyHandler;
 import java.net.http.HttpResponse.PushPromiseHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.teacup.core.DefaultBuilder;
 
 class HandlerBuilderImpl<T> extends DefaultBuilder<Handler<T>, HandlerSetter<T>>
     implements HandlerBuilder<T> {

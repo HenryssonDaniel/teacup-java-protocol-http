@@ -2,12 +2,12 @@ package org.teacup.protocol.http.node;
 
 import static org.teacup.protocol.http.node.Constants.SETTING_THE;
 
+import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
 import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ssl.SSLSessionContext;
-import org.teacup.core.assertion.IntegerAssert;
-import org.teacup.core.assertion.ObjectAssert;
 
 class SslSessionContextBuilderImpl
     extends BuilderImpl<

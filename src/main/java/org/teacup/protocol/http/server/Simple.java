@@ -1,8 +1,8 @@
 package org.teacup.protocol.http.server;
 
+import io.github.henryssondaniel.teacup.core.Server;
 import java.util.List;
 import java.util.function.Supplier;
-import org.teacup.core.Server;
 
 /**
  * A simple HTTP server.

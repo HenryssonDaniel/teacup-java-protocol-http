@@ -3,11 +3,11 @@ package org.teacup.protocol.http.node;
 import static org.teacup.protocol.http.node.Constants.SETTING_THE;
 import static org.teacup.protocol.http.node.Constants.VERIFY;
 
+import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
 import java.security.Principal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.teacup.core.assertion.ObjectAssert;
-import org.teacup.core.assertion.StringAssert;
 
 class PrincipalImpl extends SetterImpl<Principal> implements PrincipalSetter {
   private static final Logger LOGGER = Logger.getLogger(PrincipalImpl.class.getName());

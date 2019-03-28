@@ -4,20 +4,20 @@ import static org.teacup.protocol.http.Constants.ERROR_FETCH;
 import static org.teacup.protocol.http.node.Constants.SETTING_THE;
 import static org.teacup.protocol.http.node.Constants.VERIFY;
 
+import io.github.henryssondaniel.teacup.core.Node;
+import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ByteArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ObjectArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
 import java.security.cert.Certificate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ssl.SSLPeerUnverifiedException;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSessionContext;
-import org.teacup.core.Node;
-import org.teacup.core.assertion.BooleanAssert;
-import org.teacup.core.assertion.ByteArrayAssert;
-import org.teacup.core.assertion.IntegerAssert;
-import org.teacup.core.assertion.LongAssert;
-import org.teacup.core.assertion.ObjectArrayAssert;
-import org.teacup.core.assertion.ObjectAssert;
-import org.teacup.core.assertion.StringAssert;
 
 class SslSessionImpl extends SetterImpl<SSLSession> implements SslSessionSetter {
   private static final Logger LOGGER = Logger.getLogger(SslSessionImpl.class.getName());

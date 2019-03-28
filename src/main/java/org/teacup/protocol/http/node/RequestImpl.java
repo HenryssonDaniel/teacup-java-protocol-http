@@ -4,6 +4,12 @@ import static org.teacup.protocol.http.node.Constants.SETTING_THE;
 import static org.teacup.protocol.http.node.Constants.SETTING_WHETHER;
 import static org.teacup.protocol.http.node.Constants.VERIFY;
 
+import io.github.henryssondaniel.teacup.core.Node;
+import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ComparableAssert;
+import io.github.henryssondaniel.teacup.core.assertion.MapAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
 import java.net.URI;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpRequest;
@@ -11,12 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.teacup.core.Node;
-import org.teacup.core.assertion.BooleanAssert;
-import org.teacup.core.assertion.ComparableAssert;
-import org.teacup.core.assertion.MapAssert;
-import org.teacup.core.assertion.ObjectAssert;
-import org.teacup.core.assertion.StringAssert;
 
 class RequestImpl extends SetterImpl<HttpRequest> implements RequestSetter {
   private static final Logger LOGGER = Logger.getLogger(RequestImpl.class.getName());

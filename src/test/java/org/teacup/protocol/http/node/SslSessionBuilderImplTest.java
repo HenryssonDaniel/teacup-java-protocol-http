@@ -4,18 +4,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ByteArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ObjectArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
 import java.security.cert.Certificate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.teacup.core.assertion.BooleanAssert;
-import org.teacup.core.assertion.ByteArrayAssert;
-import org.teacup.core.assertion.IntegerAssert;
-import org.teacup.core.assertion.LongAssert;
-import org.teacup.core.assertion.ObjectArrayAssert;
-import org.teacup.core.assertion.StringAssert;
 
 class SslSessionBuilderImplTest {
   private final IntegerAssert<?> integerAssert = mock(IntegerAssert.class);

@@ -2,15 +2,15 @@ package org.teacup.protocol.http.node;
 
 import static org.teacup.protocol.http.node.Constants.SETTING_THE;
 
+import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ComparableAssert;
+import io.github.henryssondaniel.teacup.core.assertion.MapAssert;
+import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpRequest;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.teacup.core.assertion.BooleanAssert;
-import org.teacup.core.assertion.ComparableAssert;
-import org.teacup.core.assertion.MapAssert;
-import org.teacup.core.assertion.StringAssert;
 
 class RequestBuilderImpl extends BuilderImpl<HttpRequest, Request, RequestSetter, RequestBuilder>
     implements RequestBuilder {

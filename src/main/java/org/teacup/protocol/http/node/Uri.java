@@ -1,7 +1,7 @@
 package org.teacup.protocol.http.node;
 
+import io.github.henryssondaniel.teacup.core.Node;
 import java.net.URI;
-import org.teacup.core.Node;
 
 /**
  * URI.

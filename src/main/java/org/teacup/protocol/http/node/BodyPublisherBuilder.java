@@ -1,8 +1,8 @@
 package org.teacup.protocol.http.node;
 
+import io.github.henryssondaniel.teacup.core.NodeBuilder;
+import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
 import java.net.http.HttpRequest;
-import org.teacup.core.NodeBuilder;
-import org.teacup.core.assertion.LongAssert;
 
 /**
  * Body publisher builder.

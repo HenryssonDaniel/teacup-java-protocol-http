@@ -2,10 +2,10 @@ package org.teacup.protocol.http.node;
 
 import static org.teacup.protocol.http.node.Constants.SETTING_THE;
 
+import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
 import java.net.http.HttpRequest;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.teacup.core.assertion.LongAssert;
 
 class BodyPublisherBuilderImpl
     extends BuilderImpl<

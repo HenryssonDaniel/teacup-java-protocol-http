@@ -1,8 +1,8 @@
 package org.teacup.protocol.http.server;
 
+import io.github.henryssondaniel.teacup.core.Builder;
 import java.util.List;
 import java.util.Map;
-import org.teacup.core.Builder;
 
 /**
  * Response builder.

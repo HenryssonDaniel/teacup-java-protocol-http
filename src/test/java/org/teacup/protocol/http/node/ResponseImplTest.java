@@ -5,6 +5,10 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import io.github.henryssondaniel.teacup.core.assertion.ComparableAssert;
+import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.MapAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpResponse;
@@ -14,10 +18,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.teacup.core.assertion.ComparableAssert;
-import org.teacup.core.assertion.IntegerAssert;
-import org.teacup.core.assertion.MapAssert;
-import org.teacup.core.assertion.ObjectAssert;
 
 class ResponseImplTest {
   private final ResponseSetter<String> responseSetter = new ResponseImpl<>();

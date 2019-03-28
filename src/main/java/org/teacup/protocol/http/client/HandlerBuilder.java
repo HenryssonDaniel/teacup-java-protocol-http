@@ -1,7 +1,7 @@
 package org.teacup.protocol.http.client;
 
+import io.github.henryssondaniel.teacup.core.Builder;
 import java.net.http.HttpResponse.PushPromiseHandler;
-import org.teacup.core.Builder;
 
 /**
  * Handler builder interface.

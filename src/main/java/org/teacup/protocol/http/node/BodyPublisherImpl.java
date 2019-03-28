@@ -3,11 +3,11 @@ package org.teacup.protocol.http.node;
 import static org.teacup.protocol.http.node.Constants.SETTING_THE;
 import static org.teacup.protocol.http.node.Constants.VERIFY;
 
+import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
 import java.net.http.HttpRequest.BodyPublisher;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.teacup.core.assertion.LongAssert;
-import org.teacup.core.assertion.ObjectAssert;
 
 class BodyPublisherImpl extends SetterImpl<BodyPublisher> implements BodyPublisherSetter {
   private static final Logger LOGGER = Logger.getLogger(BodyPublisherImpl.class.getName());

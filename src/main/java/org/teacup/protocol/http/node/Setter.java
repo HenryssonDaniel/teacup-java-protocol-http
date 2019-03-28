@@ -1,7 +1,7 @@
 package org.teacup.protocol.http.node;
 
-import org.teacup.core.Node;
-import org.teacup.core.assertion.ObjectAssert;
+import io.github.henryssondaniel.teacup.core.Node;
+import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
 
 interface Setter<T> extends Node<T> {
   ObjectAssert<? super T, ?> getAssertion();

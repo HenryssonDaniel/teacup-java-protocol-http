@@ -2,13 +2,13 @@ package org.teacup.protocol.http.node;
 
 import static org.teacup.protocol.http.node.Constants.SETTING_THE;
 
+import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ListAssert;
+import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
 import java.time.temporal.TemporalUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.teacup.core.assertion.BooleanAssert;
-import org.teacup.core.assertion.IntegerAssert;
-import org.teacup.core.assertion.ListAssert;
-import org.teacup.core.assertion.LongAssert;
 
 class DurationBuilderImpl
     extends BuilderImpl<java.time.Duration, Duration, DurationSetter, DurationBuilder>

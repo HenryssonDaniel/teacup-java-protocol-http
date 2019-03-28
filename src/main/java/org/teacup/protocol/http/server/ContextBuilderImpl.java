@@ -2,11 +2,11 @@ package org.teacup.protocol.http.server;
 
 import com.sun.net.httpserver.Authenticator;
 import com.sun.net.httpserver.Filter;
+import io.github.henryssondaniel.teacup.core.DefaultBuilder;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.teacup.core.DefaultBuilder;
 
 class ContextBuilderImpl extends DefaultBuilder<Context, ContextSetter> implements ContextBuilder {
   private static final Logger LOGGER = Logger.getLogger(ContextBuilderImpl.class.getName());

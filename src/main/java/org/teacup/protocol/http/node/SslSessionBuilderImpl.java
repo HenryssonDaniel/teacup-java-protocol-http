@@ -3,16 +3,16 @@ package org.teacup.protocol.http.node;
 import static org.teacup.protocol.http.node.Constants.SETTING_THE;
 import static org.teacup.protocol.http.node.Constants.SETTING_WHETHER;
 
+import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ByteArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ObjectArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
 import java.security.cert.Certificate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ssl.SSLSession;
-import org.teacup.core.assertion.BooleanAssert;
-import org.teacup.core.assertion.ByteArrayAssert;
-import org.teacup.core.assertion.IntegerAssert;
-import org.teacup.core.assertion.LongAssert;
-import org.teacup.core.assertion.ObjectArrayAssert;
-import org.teacup.core.assertion.StringAssert;
 
 class SslSessionBuilderImpl
     extends BuilderImpl<SSLSession, SslSession, SslSessionSetter, SslSessionBuilder>

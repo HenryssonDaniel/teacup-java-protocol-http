@@ -1,10 +1,10 @@
 package org.teacup.protocol.http.server;
 
+import io.github.henryssondaniel.teacup.core.DefaultBuilder;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.teacup.core.DefaultBuilder;
 
 class ResponseBuilderImpl extends DefaultBuilder<Response, ResponseSetter>
     implements ResponseBuilder {

@@ -3,6 +3,11 @@ package org.teacup.protocol.http.node;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ComparableAssert;
+import io.github.henryssondaniel.teacup.core.assertion.MapAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
 import java.net.URI;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpHeaders;
@@ -17,11 +22,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.teacup.core.assertion.BooleanAssert;
-import org.teacup.core.assertion.ComparableAssert;
-import org.teacup.core.assertion.MapAssert;
-import org.teacup.core.assertion.ObjectAssert;
-import org.teacup.core.assertion.StringAssert;
 
 class RequestImplTest {
   private final HttpRequest httpRequest = new TestHttpRequest();

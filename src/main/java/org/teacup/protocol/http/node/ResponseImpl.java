@@ -3,6 +3,11 @@ package org.teacup.protocol.http.node;
 import static org.teacup.protocol.http.node.Constants.SETTING_THE;
 import static org.teacup.protocol.http.node.Constants.VERIFY;
 
+import io.github.henryssondaniel.teacup.core.Node;
+import io.github.henryssondaniel.teacup.core.assertion.ComparableAssert;
+import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.MapAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
 import java.net.URI;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpRequest;
@@ -12,11 +17,6 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ssl.SSLSession;
-import org.teacup.core.Node;
-import org.teacup.core.assertion.ComparableAssert;
-import org.teacup.core.assertion.IntegerAssert;
-import org.teacup.core.assertion.MapAssert;
-import org.teacup.core.assertion.ObjectAssert;
 
 class ResponseImpl<T> extends SetterImpl<HttpResponse<T>> implements ResponseSetter<T> {
   private static final Logger LOGGER = Logger.getLogger(ResponseImpl.class.getName());

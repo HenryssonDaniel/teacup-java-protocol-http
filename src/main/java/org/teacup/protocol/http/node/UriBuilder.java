@@ -1,10 +1,10 @@
 package org.teacup.protocol.http.node;
 
+import io.github.henryssondaniel.teacup.core.NodeBuilder;
+import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
 import java.net.URI;
-import org.teacup.core.NodeBuilder;
-import org.teacup.core.assertion.BooleanAssert;
-import org.teacup.core.assertion.IntegerAssert;
-import org.teacup.core.assertion.StringAssert;
 
 /**
  * URI builder.

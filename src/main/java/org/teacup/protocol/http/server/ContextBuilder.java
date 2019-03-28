@@ -2,9 +2,9 @@ package org.teacup.protocol.http.server;
 
 import com.sun.net.httpserver.Authenticator;
 import com.sun.net.httpserver.Filter;
+import io.github.henryssondaniel.teacup.core.Builder;
 import java.util.List;
 import java.util.Map;
-import org.teacup.core.Builder;
 
 /**
  * Context builder.

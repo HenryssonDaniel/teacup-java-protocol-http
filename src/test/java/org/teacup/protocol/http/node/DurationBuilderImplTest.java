@@ -4,16 +4,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ListAssert;
+import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
 import java.time.temporal.TemporalUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.teacup.core.assertion.BooleanAssert;
-import org.teacup.core.assertion.IntegerAssert;
-import org.teacup.core.assertion.ListAssert;
-import org.teacup.core.assertion.LongAssert;
 
 class DurationBuilderImplTest {
   private final BooleanAssert<?> booleanAssert = mock(BooleanAssert.class);

@@ -4,17 +4,17 @@ import static org.teacup.protocol.http.node.Constants.SETTING_THE;
 import static org.teacup.protocol.http.node.Constants.SETTING_WHETHER;
 import static org.teacup.protocol.http.node.Constants.VERIFY;
 
+import io.github.henryssondaniel.teacup.core.Node;
+import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ListAssert;
+import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
 import java.time.temporal.TemporalAmount;
 import java.time.temporal.TemporalUnit;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.teacup.core.Node;
-import org.teacup.core.assertion.BooleanAssert;
-import org.teacup.core.assertion.IntegerAssert;
-import org.teacup.core.assertion.ListAssert;
-import org.teacup.core.assertion.LongAssert;
-import org.teacup.core.assertion.ObjectAssert;
 
 class DurationImpl extends SetterImpl<java.time.Duration> implements DurationSetter {
   private static final Logger LOGGER = Logger.getLogger(DurationImpl.class.getName());

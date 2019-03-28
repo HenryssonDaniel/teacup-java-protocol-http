@@ -1,6 +1,6 @@
 package org.teacup.protocol.http.node;
 
-import org.teacup.core.Node;
+import io.github.henryssondaniel.teacup.core.Node;
 
 /**
  * Principal.

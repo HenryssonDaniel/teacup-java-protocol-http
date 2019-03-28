@@ -1,7 +1,7 @@
 package org.teacup.protocol.http.node;
 
+import io.github.henryssondaniel.teacup.core.Node;
 import javax.net.ssl.SSLSessionContext;
-import org.teacup.core.Node;
 
 /**
  * SSL session context.

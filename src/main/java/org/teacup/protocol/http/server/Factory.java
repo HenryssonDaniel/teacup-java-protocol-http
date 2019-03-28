@@ -1,11 +1,11 @@
 package org.teacup.protocol.http.server;
 
 import com.sun.net.httpserver.HttpServer;
+import io.github.henryssondaniel.teacup.core.Server;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.teacup.core.Server;
 
 /**
  * Factory.
