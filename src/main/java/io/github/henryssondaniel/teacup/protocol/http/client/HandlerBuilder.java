@@ -14,6 +14,7 @@ public interface HandlerBuilder<T> extends Builder<Handler<T>> {
    * Sets the push promise handler.
    *
    * @param pushPromiseHandler the push promise handler
+   * @return the handler builder
    */
   HandlerBuilder<T> setPushPromiseHandler(PushPromiseHandler<T> pushPromiseHandler);
 }
