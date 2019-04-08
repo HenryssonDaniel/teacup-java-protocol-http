@@ -29,7 +29,7 @@ class ResponseImplTest {
   private GenericMapAssert<String, List<String>, ? super Map<String, List<String>>, ?>
       genericMapAssert;
 
-  @Mock private GenericObjectAssert<? super HttpResponse<String>, ?> genericObjectAssert;
+  @Mock private GenericObjectAssert<HttpResponse<String>, ?> genericObjectAssert;
   @Mock private GenericObjectAssert<? super String, ?> genericStringObjectAssert;
   @Mock private HttpResponse<String> httpResponse;
   @Mock private Response<String> response;

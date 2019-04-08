@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public enum Factory {
   ;
 
-  private static final String CREATE_BUILDER = "Creating a new {} builder";
+  private static final String CREATE_BUILDER = "Creating a new {0} builder";
   private static final Logger LOGGER = Logger.getLogger(Factory.class.getName());
 
   /**

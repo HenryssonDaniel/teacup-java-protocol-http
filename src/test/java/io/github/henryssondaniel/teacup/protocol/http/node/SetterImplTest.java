@@ -11,7 +11,7 @@ import org.mockito.Mock;
 class SetterImplTest {
   private static final Logger LOGGER = Logger.getLogger(SetterImplTest.class.getName());
   private final Setter<String> setter = new TestSetterImpl();
-  @Mock private GenericObjectAssert<? super String, ?> genericObjectAssert;
+  @Mock private GenericObjectAssert<String, ?> genericObjectAssert;
 
   @Test
   void getAndSetAssertion() {
@@ -27,7 +27,7 @@ class SetterImplTest {
   private static final class TestSetterImpl extends SetterImpl<String> {
     @Override
     public void verify(String actual) {
-      LOGGER.log(Level.FINE, String.format(Constants.VERIFY, "test"));
+      LOGGER.log(Level.FINE, Constants.VERIFY, "test");
     }
   }
 }

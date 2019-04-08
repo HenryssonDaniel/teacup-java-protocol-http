@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 class ResponseImpl implements ResponseSetter {
   private static final Logger LOGGER = Logger.getLogger(ResponseImpl.class.getName());
-  private static final String MESSAGE = "%setting the %s";
+  private static final String MESSAGE = "{0}etting the {1}";
 
   private final Map<String, Object> attributes = new HashMap<>(0);
   private final int code;
@@ -26,13 +26,13 @@ class ResponseImpl implements ResponseSetter {
 
   @Override
   public Map<String, Object> getAttributes() {
-    LOGGER.log(Level.FINE, String.format(MESSAGE, "G", "attributes"));
+    LOGGER.log(Level.FINE, MESSAGE, new Object[] {"G", "attributes"});
     return new HashMap<>(attributes);
   }
 
   @Override
   public byte[] getBody() {
-    LOGGER.log(Level.FINE, String.format(MESSAGE, "G", "body"));
+    LOGGER.log(Level.FINE, MESSAGE, new Object[] {"G", "body"});
     return body == null ? null : body.clone();
   }
 
@@ -43,7 +43,7 @@ class ResponseImpl implements ResponseSetter {
 
   @Override
   public Map<String, List<String>> getHeaders() {
-    LOGGER.log(Level.FINE, String.format(MESSAGE, "G", "headers"));
+    LOGGER.log(Level.FINE, MESSAGE, new Object[] {"G", "headers"});
 
     Map<String, List<String>> map = new Headers();
     map.putAll(headers);
@@ -63,7 +63,7 @@ class ResponseImpl implements ResponseSetter {
 
   @Override
   public void setAttributes(Map<String, Object> attributes) {
-    LOGGER.log(Level.FINE, String.format(MESSAGE, "S", "attributes"));
+    LOGGER.log(Level.FINE, MESSAGE, new Object[] {"S", "attributes"});
 
     this.attributes.clear();
     this.attributes.putAll(attributes);
@@ -71,13 +71,13 @@ class ResponseImpl implements ResponseSetter {
 
   @Override
   public void setBody(byte... body) {
-    LOGGER.log(Level.FINE, String.format(MESSAGE, "S", "body"));
+    LOGGER.log(Level.FINE, MESSAGE, new Object[] {"S", "body"});
     this.body = body.clone();
   }
 
   @Override
   public void setHeaders(Map<String, ? extends List<String>> headers) {
-    LOGGER.log(Level.FINE, String.format(MESSAGE, "S", "headers"));
+    LOGGER.log(Level.FINE, MESSAGE, new Object[] {"S", "headers"});
 
     this.headers.clear();
     this.headers.putAll(headers);

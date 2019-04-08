@@ -17,7 +17,7 @@ class BodyPublisherImplTest {
   private final HttpRequest.BodyPublisher bodyPublisher = mock(HttpRequest.BodyPublisher.class);
   private final BodyPublisherSetter bodyPublisherSetter = new BodyPublisherImpl();
 
-  @Mock private GenericObjectAssert<? super HttpRequest.BodyPublisher, ?> objectAssert;
+  @Mock private GenericObjectAssert<HttpRequest.BodyPublisher, ?> objectAssert;
 
   @BeforeEach
   void beforeEach() {

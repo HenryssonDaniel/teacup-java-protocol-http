@@ -19,8 +19,8 @@ class SslSessionContextImplTest {
   private final SSLSessionContext sslSessionContext = mock(SSLSessionContext.class);
   private final SslSessionContextSetter sslSessionContextSetter = new SslSessionContextImpl();
 
-  @Mock private GenericObjectAssert<? super Enumeration<byte[]>, ?> genericEnumObjectAssert;
-  @Mock private GenericObjectAssert<? super SSLSessionContext, ?> genericObjectAssert;
+  @Mock private GenericObjectAssert<Enumeration<byte[]>, ?> genericEnumObjectAssert;
+  @Mock private GenericObjectAssert<SSLSessionContext, ?> genericObjectAssert;
 
   @BeforeEach
   void beforeEach() {

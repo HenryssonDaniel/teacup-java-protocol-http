@@ -36,7 +36,7 @@ class SslSessionImplTest {
   private final SslSessionSetter sslSessionSetter = new SslSessionImpl();
 
   @Mock private GenericObjectArrayAssert<Certificate, ?> genericObjectArrayAssert;
-  @Mock private GenericObjectAssert<? super SSLSession, ?> genericObjectAssert;
+  @Mock private GenericObjectAssert<SSLSession, ?> genericObjectAssert;
   @Mock private GenericObjectArrayAssert<String, ?> genericStringObjectArrayAssert;
 
   @BeforeEach

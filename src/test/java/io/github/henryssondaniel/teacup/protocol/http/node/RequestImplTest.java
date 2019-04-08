@@ -34,7 +34,7 @@ class RequestImplTest {
   private GenericMapAssert<String, List<String>, ? super Map<String, List<String>>, ?>
       genericMapAssert;
 
-  @Mock private GenericObjectAssert<? super HttpRequest, ?> genericObjectAssert;
+  @Mock private GenericObjectAssert<HttpRequest, ?> genericObjectAssert;
 
   @BeforeEach
   void beforeEach() {

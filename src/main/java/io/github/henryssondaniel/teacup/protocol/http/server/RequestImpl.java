@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 class RequestImpl implements RequestSetter {
   private static final Logger LOGGER = Logger.getLogger(RequestImpl.class.getName());
-  private static final String MESSAGE = "%setting the headers";
+  private static final String MESSAGE = "{0}etting the headers";
 
   private final Map<String, List<String>> headers = new Headers();
 
@@ -32,7 +32,7 @@ class RequestImpl implements RequestSetter {
 
   @Override
   public Headers getHeaders() {
-    LOGGER.log(Level.FINE, String.format(MESSAGE, "G"));
+    LOGGER.log(Level.FINE, MESSAGE, "G");
 
     var newHeaders = new Headers();
     newHeaders.putAll(headers);
@@ -82,7 +82,7 @@ class RequestImpl implements RequestSetter {
 
   @Override
   public void setHeaders(Headers headers) {
-    LOGGER.log(Level.FINE, String.format(MESSAGE, "S"));
+    LOGGER.log(Level.FINE, MESSAGE, "S");
 
     this.headers.clear();
     this.headers.putAll(headers);

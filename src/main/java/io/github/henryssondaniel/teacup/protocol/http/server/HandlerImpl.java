@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 class HandlerImpl implements Handler {
   private static final Logger LOGGER = Logger.getLogger(HandlerImpl.class.getName());
-  private static final String MESSAGE = "%sing the timeout supplier%s";
+  private static final String MESSAGE = "{0}ing the timeout supplier{1}";
   private static final Pattern PATTERN = Pattern.compile("\\A");
 
   private final Response response;
@@ -34,7 +34,7 @@ class HandlerImpl implements Handler {
 
   @Override
   public void addTimeoutSupplier(TimeoutSupplier timeoutSupplier) {
-    LOGGER.log(Level.FINE, String.format(MESSAGE, "Add", ""));
+    LOGGER.log(Level.FINE, MESSAGE, new Object[] {"Add", ""});
     timeoutSuppliers.add(timeoutSupplier);
   }
 
@@ -45,7 +45,7 @@ class HandlerImpl implements Handler {
 
   @Override
   public List<TimeoutSupplier> getTimeoutSuppliers() {
-    LOGGER.log(Level.FINE, String.format(MESSAGE, "Sett", "s"));
+    LOGGER.log(Level.FINE, MESSAGE, new Object[] {"Sett", "s"});
     return new ArrayList<>(timeoutSuppliers);
   }
 
@@ -69,7 +69,7 @@ class HandlerImpl implements Handler {
 
   @Override
   public void removeTimeoutSupplier(TimeoutSupplier timeoutSupplier) {
-    LOGGER.log(Level.FINE, String.format(MESSAGE, "Remov", ""));
+    LOGGER.log(Level.FINE, MESSAGE, new Object[] {"Remov", ""});
     timeoutSuppliers.remove(timeoutSupplier);
   }
 

@@ -4,7 +4,7 @@ import io.github.henryssondaniel.teacup.core.Node;
 import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 
 interface Setter<T> extends Node<T> {
-  GenericObjectAssert<? super T, ?> getAssertion();
+  GenericObjectAssert<T, ?> getAssertion();
 
-  void setAssertion(GenericObjectAssert<? super T, ?> assertion);
+  void setAssertion(GenericObjectAssert<T, ?> assertion);
 }

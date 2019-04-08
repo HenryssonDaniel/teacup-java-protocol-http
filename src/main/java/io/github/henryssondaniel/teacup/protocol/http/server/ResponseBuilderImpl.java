@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 class ResponseBuilderImpl extends DefaultBuilder<Response, ResponseSetter>
     implements ResponseBuilder {
   private static final Logger LOGGER = Logger.getLogger(ResponseBuilderImpl.class.getName());
-  private static final String MESSAGE = "Setting the %s";
+  private static final String MESSAGE = "Setting the {0}";
 
   private final int code;
   private final long length;
@@ -23,28 +23,28 @@ class ResponseBuilderImpl extends DefaultBuilder<Response, ResponseSetter>
 
   @Override
   public ResponseBuilder setAttributes(Map<String, Object> attributes) {
-    LOGGER.log(Level.FINE, String.format(MESSAGE, "attributes"));
+    LOGGER.log(Level.FINE, MESSAGE, "attributes");
     getImplementation().setAttributes(attributes);
     return this;
   }
 
   @Override
   public ResponseBuilder setBody(byte... body) {
-    LOGGER.log(Level.FINE, String.format(MESSAGE, "body"));
+    LOGGER.log(Level.FINE, MESSAGE, "body");
     getImplementation().setBody(body);
     return this;
   }
 
   @Override
   public ResponseBuilder setHeaders(Map<String, ? extends List<String>> headers) {
-    LOGGER.log(Level.FINE, String.format(MESSAGE, "headers"));
+    LOGGER.log(Level.FINE, MESSAGE, "headers");
     getImplementation().setHeaders(headers);
     return this;
   }
 
   @Override
   public ResponseBuilder setStreams(Streams streams) {
-    LOGGER.log(Level.FINE, String.format(MESSAGE, "streams"));
+    LOGGER.log(Level.FINE, MESSAGE, "streams");
     getImplementation().setStreams(streams);
     return this;
   }

@@ -29,7 +29,7 @@ class DurationImplTest {
   private GenericListAssert<? super TemporalUnit, ? super List<? extends TemporalUnit>, ?>
       genericListAssert;
 
-  @Mock private GenericObjectAssert<? super Duration, ?> genericObjectAssert;
+  @Mock private GenericObjectAssert<Duration, ?> genericObjectAssert;
 
   @BeforeEach
   void beforeEach() {

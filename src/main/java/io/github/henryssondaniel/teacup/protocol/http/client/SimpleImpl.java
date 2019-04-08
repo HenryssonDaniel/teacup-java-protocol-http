@@ -15,7 +15,7 @@ import javax.net.ssl.SSLSessionContext;
 
 class SimpleImpl implements Simple {
   private static final Logger LOGGER = Logger.getLogger(SimpleImpl.class.getName());
-  private static final String SEND = "Sending request{}";
+  private static final String SEND = "Sending request{0}";
 
   private final HttpClient httpClient;
 
@@ -112,7 +112,7 @@ class SimpleImpl implements Simple {
     try {
       peerPrincipal.append(sslSession.getPeerPrincipal());
     } catch (SSLPeerUnverifiedException e) {
-      LOGGER.log(Level.SEVERE, String.format(Constants.ERROR_FETCH, "principal"), e);
+      LOGGER.log(Level.SEVERE, e, () -> String.format(Constants.ERROR_FETCH, "principal"));
     }
 
     return peerPrincipal.toString();

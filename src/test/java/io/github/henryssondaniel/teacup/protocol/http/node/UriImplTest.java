@@ -19,7 +19,7 @@ class UriImplTest {
   private final URI uri = URI.create("uri");
   private final UriSetter uriSetter = new UriImpl();
 
-  @Mock private GenericObjectAssert<? super URI, ?> genericObjectAssert;
+  @Mock private GenericObjectAssert<URI, ?> genericObjectAssert;
 
   @BeforeEach
   void beforeEach() {

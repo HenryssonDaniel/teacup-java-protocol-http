@@ -45,6 +45,7 @@ class TimeoutSupplierImpl implements TimeoutSupplier {
         }
       } catch (InterruptedException e) {
         LOGGER.log(Level.SEVERE, "The supplier got interrupted", e);
+        Thread.currentThread().interrupt();
       }
     else requests.clear();
 

@@ -25,7 +25,7 @@ public enum Factory {
    * @return the context builder
    */
   public static ContextBuilder createContextBuilder(String path, Response response) {
-    LOGGER.log(Level.FINE, "Creating a new context builder with path: " + path);
+    LOGGER.log(Level.FINE, "Creating a new context builder with path: {0}", path);
     return new ContextBuilderImpl(path, response);
   }
 
@@ -38,7 +38,9 @@ public enum Factory {
    */
   public static ResponseBuilder createResponseBuilder(int code, long length) {
     LOGGER.log(
-        Level.FINE, "Creating a new context builder with code: " + code + " and length: " + length);
+        Level.FINE,
+        "Creating a new context builder with code: {0} and length: {1}",
+        new Object[] {code, length});
     return new ResponseBuilderImpl(code, length);
   }
 

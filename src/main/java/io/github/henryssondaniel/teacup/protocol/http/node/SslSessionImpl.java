@@ -202,7 +202,9 @@ class SslSessionImpl extends SetterImpl<SSLSession> implements SslSessionSetter 
         peerCertificates.verify(sslSession.getPeerCertificates());
       } catch (SSLPeerUnverifiedException sslPeerUnverifiedException) {
         LOGGER.log(
-            Level.SEVERE, String.format(ERROR_FETCH, "certificates"), sslPeerUnverifiedException);
+            Level.SEVERE,
+            sslPeerUnverifiedException,
+            () -> String.format(ERROR_FETCH, "certificates"));
       }
   }
 
@@ -220,7 +222,9 @@ class SslSessionImpl extends SetterImpl<SSLSession> implements SslSessionSetter 
         peerPrincipal.verify(sslSession.getPeerPrincipal());
       } catch (SSLPeerUnverifiedException sslPeerUnverifiedException) {
         LOGGER.log(
-            Level.SEVERE, String.format(ERROR_FETCH, "principal"), sslPeerUnverifiedException);
+            Level.SEVERE,
+            sslPeerUnverifiedException,
+            () -> String.format(ERROR_FETCH, "principal"));
       }
   }
 

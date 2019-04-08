@@ -16,7 +16,7 @@ class PrincipalImplTest {
   private final Principal principal = mock(Principal.class);
   private final PrincipalSetter principalSetter = new PrincipalImpl();
 
-  @Mock private GenericObjectAssert<? super Principal, ?> genericObjectAssert;
+  @Mock private GenericObjectAssert<Principal, ?> genericObjectAssert;
 
   @BeforeEach
   void beforeEach() {
