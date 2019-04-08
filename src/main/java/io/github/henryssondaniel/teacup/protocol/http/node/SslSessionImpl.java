@@ -39,105 +39,105 @@ class SslSessionImpl extends SetterImpl<SSLSession> implements SslSessionSetter 
 
   @Override
   public void setApplicationBufferSize(GenericIntegerAssert<?> applicationBufferSize) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "application buffer size"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "application buffer size");
     this.applicationBufferSize = applicationBufferSize;
   }
 
   @Override
   public void setCipherSuite(GenericStringAssert<?> cipherSuite) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "cipher suite"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "cipher suite");
     this.cipherSuite = cipherSuite;
   }
 
   @Override
   public void setCreationTime(GenericLongAssert<?> creationTime) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "creation time"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "creation time");
     this.creationTime = creationTime;
   }
 
   @Override
   public void setId(GenericByteArrayAssert<?> id) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "ID"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "ID");
     this.id = id;
   }
 
   @Override
   public void setLastAccessedTime(GenericLongAssert<?> lastAccessedTime) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "last accessed time"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "last accessed time");
     this.lastAccessedTime = lastAccessedTime;
   }
 
   @Override
   public void setLocalCertificates(
       GenericObjectArrayAssert<? super Certificate, ?> localCertificates) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "local certificates"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "local certificates");
     this.localCertificates = localCertificates;
   }
 
   @Override
   public void setLocalPrincipal(Principal localPrincipal) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "local principal"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "local principal");
     this.localPrincipal = localPrincipal;
   }
 
   @Override
   public void setPacketBufferSize(GenericIntegerAssert<?> packetBufferSize) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "packet buffer size"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "packet buffer size");
     this.packetBufferSize = packetBufferSize;
   }
 
   @Override
   public void setPeerCertificates(
       GenericObjectArrayAssert<? super Certificate, ?> peerCertificates) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "peer certificates"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "peer certificates");
     this.peerCertificates = peerCertificates;
   }
 
   @Override
   public void setPeerHost(GenericStringAssert<?> peerHost) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "peer host"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "peer host");
     this.peerHost = peerHost;
   }
 
   @Override
   public void setPeerPort(GenericIntegerAssert<?> peerPort) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "peer port"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "peer port");
     this.peerPort = peerPort;
   }
 
   @Override
   public void setPeerPrincipal(Principal peerPrincipal) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "peer principal"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "peer principal");
     this.peerPrincipal = peerPrincipal;
   }
 
   @Override
   public void setProtocol(GenericStringAssert<?> protocol) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "protocol"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "protocol");
     this.protocol = protocol;
   }
 
   @Override
   public void setSessionContext(SslSessionContext sessionContext) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "session context"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "session context");
     this.sessionContext = sessionContext;
   }
 
   @Override
   public void setValid(GenericBooleanAssert<?> valid) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "valid"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "valid");
     this.valid = valid;
   }
 
   @Override
   public void setValueNames(GenericObjectArrayAssert<? super String, ?> valueNames) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "value names"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "value names");
     this.valueNames = valueNames;
   }
 
   @Override
   public void verify(SSLSession sslSession) {
-    LOGGER.log(Level.FINE, String.format(Constants.VERIFY, "SSL session"));
+    LOGGER.log(Level.FINE, Constants.VERIFY, "SSL session");
 
     verifyAssertion(getAssertion(), sslSession);
     verifyApplicationBufferSize(sslSession);

@@ -22,21 +22,21 @@ class SslSessionContextBuilderImpl
 
   @Override
   public SslSessionContextBuilder setIds(GenericObjectAssert<? super Enumeration<byte[]>, ?> ids) {
-    LOGGER.log(Level.FINE, String.format(SETTING_THE, "ID's"));
+    LOGGER.log(Level.FINE, SETTING_THE, "ID's");
     getImplementation().setIds(ids);
     return this;
   }
 
   @Override
   public SslSessionContextBuilder setSessionCacheSize(GenericIntegerAssert<?> sessionCacheSize) {
-    LOGGER.log(Level.FINE, String.format(SETTING_THE, "session cache size"));
+    LOGGER.log(Level.FINE, SETTING_THE, "session cache size");
     getImplementation().setSessionCacheSize(sessionCacheSize);
     return this;
   }
 
   @Override
   public SslSessionContextBuilder setSessionTimeout(GenericIntegerAssert<?> sessionTimeout) {
-    LOGGER.log(Level.FINE, String.format(SETTING_THE, "session timeout"));
+    LOGGER.log(Level.FINE, SETTING_THE, "session timeout");
     getImplementation().setSessionTimeout(sessionTimeout);
     return this;
   }

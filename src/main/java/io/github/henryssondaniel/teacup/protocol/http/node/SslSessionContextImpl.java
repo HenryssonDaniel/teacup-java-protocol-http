@@ -22,19 +22,19 @@ class SslSessionContextImpl extends SetterImpl<SSLSessionContext>
 
   @Override
   public void setSessionCacheSize(GenericIntegerAssert<?> sessionCacheSize) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "session cache size"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "session cache size");
     this.sessionCacheSize = sessionCacheSize;
   }
 
   @Override
   public void setSessionTimeout(GenericIntegerAssert<?> sessionTimeout) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "session timeout"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "session timeout");
     this.sessionTimeout = sessionTimeout;
   }
 
   @Override
   public void verify(SSLSessionContext sslSessionContext) {
-    LOGGER.log(Level.FINE, String.format(Constants.VERIFY, "SSL session context"));
+    LOGGER.log(Level.FINE, Constants.VERIFY, "SSL session context");
 
     verifyAssertion(getAssertion(), sslSessionContext);
     verifyIds(sslSessionContext);

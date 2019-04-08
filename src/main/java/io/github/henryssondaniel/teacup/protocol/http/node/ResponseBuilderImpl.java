@@ -22,7 +22,7 @@ class ResponseBuilderImpl<T>
 
   @Override
   public ResponseBuilder<T> setBody(GenericObjectAssert<? super T, ?> body) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "body"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "body");
     getImplementation().setBody(body);
     return this;
   }
@@ -30,49 +30,49 @@ class ResponseBuilderImpl<T>
   @Override
   public ResponseBuilder<T> setHeaders(
       GenericMapAssert<String, List<String>, ? super Map<String, List<String>>, ?> headers) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "headers"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "headers");
     getImplementation().setHeaders(headers);
     return this;
   }
 
   @Override
   public ResponseBuilder<T> setPreviousResponse(Response<T> previousResponse) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "previous response"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "previous response");
     getImplementation().setPreviousResponse(previousResponse);
     return this;
   }
 
   @Override
   public ResponseBuilder<T> setRequest(Request request) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "request"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "request");
     getImplementation().setRequest(request);
     return this;
   }
 
   @Override
   public ResponseBuilder<T> setSslSession(SslSession sslSession) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "SSL session"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "SSL session");
     getImplementation().setSslSession(sslSession);
     return this;
   }
 
   @Override
   public ResponseBuilder<T> setStatusCode(GenericIntegerAssert<?> statusCode) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "status code"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "status code");
     getImplementation().setStatusCode(statusCode);
     return this;
   }
 
   @Override
   public ResponseBuilder<T> setUri(Uri uri) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "URI"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "URI");
     getImplementation().setUri(uri);
     return this;
   }
 
   @Override
   public ResponseBuilder<T> setVersion(GenericComparableAssert<? super Version, ?> version) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "version"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "version");
     getImplementation().setVersion(version);
     return this;
   }

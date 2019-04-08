@@ -21,14 +21,14 @@ class RequestBuilderImpl extends BuilderImpl<HttpRequest, Request, RequestSetter
 
   @Override
   public RequestBuilder setBodyPublisher(BodyPublisher bodyPublisher) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "body publisher"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "body publisher");
     getImplementation().setBodyPublisher(bodyPublisher);
     return this;
   }
 
   @Override
   public RequestBuilder setExpectContinue(GenericBooleanAssert<?> expectContinue) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "expect continue"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "expect continue");
     getImplementation().setExpectContinue(expectContinue);
     return this;
   }
@@ -36,35 +36,35 @@ class RequestBuilderImpl extends BuilderImpl<HttpRequest, Request, RequestSetter
   @Override
   public RequestBuilder setHeaders(
       GenericMapAssert<String, List<String>, ? super Map<String, List<String>>, ?> headers) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "headers"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "headers");
     getImplementation().setHeaders(headers);
     return this;
   }
 
   @Override
   public RequestBuilder setMethod(GenericStringAssert<?> method) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "method"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "method");
     getImplementation().setMethod(method);
     return this;
   }
 
   @Override
   public RequestBuilder setTimeout(Duration timeout) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "timeout"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "timeout");
     getImplementation().setTimeout(timeout);
     return this;
   }
 
   @Override
   public RequestBuilder setUri(Uri uri) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "URI"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "URI");
     getImplementation().setUri(uri);
     return this;
   }
 
   @Override
   public RequestBuilder setVersion(GenericComparableAssert<? super Version, ?> version) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "version"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "version");
     getImplementation().setVersion(version);
     return this;
   }

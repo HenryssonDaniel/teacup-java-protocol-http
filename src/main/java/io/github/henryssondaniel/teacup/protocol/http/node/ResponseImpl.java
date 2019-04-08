@@ -35,49 +35,49 @@ class ResponseImpl<T> extends SetterImpl<HttpResponse<T>> implements ResponseSet
   @Override
   public void setHeaders(
       GenericMapAssert<String, List<String>, ? super Map<String, List<String>>, ?> headers) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "headers"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "headers");
     this.headers = headers;
   }
 
   @Override
   public void setPreviousResponse(Response<T> previousResponse) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "previous response"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "previous response");
     this.previousResponse = previousResponse;
   }
 
   @Override
   public void setRequest(Request request) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "request"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "request");
     this.request = request;
   }
 
   @Override
   public void setSslSession(SslSession sslSession) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "SSL session"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "SSL session");
     this.sslSession = sslSession;
   }
 
   @Override
   public void setStatusCode(GenericIntegerAssert<?> statusCode) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "status code"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "status code");
     this.statusCode = statusCode;
   }
 
   @Override
   public void setUri(Uri uri) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "URI"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "URI");
     this.uri = uri;
   }
 
   @Override
   public void setVersion(GenericComparableAssert<? super Version, ?> version) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "version"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "version");
     this.version = version;
   }
 
   @Override
   public void verify(HttpResponse<T> httpResponse) {
-    LOGGER.log(Level.FINE, String.format(Constants.VERIFY, "HTTP response"));
+    LOGGER.log(Level.FINE, Constants.VERIFY, "HTTP response");
 
     verifyAssertion(httpResponse, getAssertion());
     verifyBody(httpResponse);

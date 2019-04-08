@@ -15,7 +15,7 @@ import javax.net.ssl.SSLSessionContext;
 
 class SimpleImpl implements Simple {
   private static final Logger LOGGER = Logger.getLogger(SimpleImpl.class.getName());
-  private static final String SEND = "Sending request%s";
+  private static final String SEND = "Sending request{}";
 
   private final HttpClient httpClient;
 
@@ -26,23 +26,18 @@ class SimpleImpl implements Simple {
   @Override
   public <T> HttpResponse<T> send(Handler<T> handler, HttpRequest httpRequest)
       throws IOException, InterruptedException {
-    LOGGER.log(Level.FINE, String.format(SEND, ""));
+    LOGGER.log(Level.FINE, SEND, "");
     logRequest(httpRequest);
 
-    try {
-      var httpResponse = httpClient.send(httpRequest, handler.getBodyHandler());
-      logResponse(httpResponse, null);
-      return httpResponse;
-    } catch (IOException | InterruptedException e) {
-      LOGGER.log(Level.SEVERE, "Failed to send the request", e);
-      throw e;
-    }
+    var httpResponse = httpClient.send(httpRequest, handler.getBodyHandler());
+    logResponse(httpResponse, null);
+    return httpResponse;
   }
 
   @Override
   public <T> CompletableFuture<HttpResponse<T>> sendAsynchronously(
       Handler<T> handler, HttpRequest httpRequest) {
-    LOGGER.log(Level.FINE, String.format(SEND, " asynchronously"));
+    LOGGER.log(Level.FINE, SEND, " asynchronously");
     logRequest(httpRequest);
 
     var bodyHandler = handler.getBodyHandler();

@@ -27,50 +27,50 @@ class RequestImpl extends SetterImpl<HttpRequest> implements RequestSetter {
 
   @Override
   public void setBodyPublisher(BodyPublisher bodyPublisher) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "body publisher"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "body publisher");
     this.bodyPublisher = bodyPublisher;
   }
 
   @Override
   public void setExpectContinue(GenericBooleanAssert<?> expectContinue) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_WHETHER, "expect continue"));
+    LOGGER.log(Level.FINE, Constants.SETTING_WHETHER, "expect continue");
     this.expectContinue = expectContinue;
   }
 
   @Override
   public void setHeaders(
       GenericMapAssert<String, List<String>, ? super Map<String, List<String>>, ?> headers) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "headers"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "headers");
     this.headers = headers;
   }
 
   @Override
   public void setMethod(GenericStringAssert<?> method) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "method"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "method");
     this.method = method;
   }
 
   @Override
   public void setTimeout(Duration timeout) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "timeout"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "timeout");
     this.timeout = timeout;
   }
 
   @Override
   public void setUri(Uri uri) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "URI"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "URI");
     this.uri = uri;
   }
 
   @Override
   public void setVersion(GenericComparableAssert<? super Version, ?> version) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "version"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "version");
     this.version = version;
   }
 
   @Override
   public void verify(HttpRequest httpRequest) {
-    LOGGER.log(Level.FINE, String.format(Constants.VERIFY, "HTTP request"));
+    LOGGER.log(Level.FINE, Constants.VERIFY, "HTTP request");
 
     verifyAssertion(httpRequest, getAssertion());
     verifyBodyPublisher(httpRequest);

@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public enum Factory {
   ;
 
-  private static final String CREATE_BUILDER = "Creating a new %s builder";
+  private static final String CREATE_BUILDER = "Creating a new {} builder";
   private static final Logger LOGGER = Logger.getLogger(Factory.class.getName());
 
   /**
@@ -20,7 +20,7 @@ public enum Factory {
    * @return the body publisher builder
    */
   public static BodyPublisherBuilder createBodyPublisherBuilder() {
-    LOGGER.log(Level.FINE, String.format(CREATE_BUILDER, "body publisher"));
+    LOGGER.log(Level.FINE, CREATE_BUILDER, "body publisher");
     return new BodyPublisherBuilderImpl();
   }
 
@@ -30,7 +30,7 @@ public enum Factory {
    * @return the duration builder
    */
   public static DurationBuilder createDurationBuilder() {
-    LOGGER.log(Level.FINE, String.format(CREATE_BUILDER, "duration"));
+    LOGGER.log(Level.FINE, CREATE_BUILDER, "duration");
     return new DurationBuilderImpl();
   }
   /**
@@ -39,7 +39,7 @@ public enum Factory {
    * @return the principal builder
    */
   public static PrincipalBuilder createPrincipalBuilder() {
-    LOGGER.log(Level.FINE, String.format(CREATE_BUILDER, "principal"));
+    LOGGER.log(Level.FINE, CREATE_BUILDER, "principal");
     return new PrincipalBuilderImpl();
   }
 
@@ -49,7 +49,7 @@ public enum Factory {
    * @return the request builder
    */
   public static RequestBuilder createRequestBuilder() {
-    LOGGER.log(Level.FINE, String.format(CREATE_BUILDER, "request"));
+    LOGGER.log(Level.FINE, CREATE_BUILDER, "request");
     return new RequestBuilderImpl();
   }
 
@@ -60,7 +60,7 @@ public enum Factory {
    * @return the response builder
    */
   public static <T> ResponseBuilder<T> createResponseBuilder() {
-    LOGGER.log(Level.FINE, String.format(CREATE_BUILDER, "response"));
+    LOGGER.log(Level.FINE, CREATE_BUILDER, "response");
     return new ResponseBuilderImpl<>();
   }
 
@@ -70,7 +70,7 @@ public enum Factory {
    * @return the SSL session builder
    */
   public static SslSessionBuilder createSslSessionBuilder() {
-    LOGGER.log(Level.FINE, String.format(CREATE_BUILDER, "SSL session"));
+    LOGGER.log(Level.FINE, CREATE_BUILDER, "SSL session");
     return new SslSessionBuilderImpl();
   }
 
@@ -80,7 +80,7 @@ public enum Factory {
    * @return the SSL session context builder
    */
   public static SslSessionContextBuilder createSslSessionContextBuilder() {
-    LOGGER.log(Level.FINE, String.format(CREATE_BUILDER, "SSL session context"));
+    LOGGER.log(Level.FINE, CREATE_BUILDER, "SSL session context");
     return new SslSessionContextBuilderImpl();
   }
 
@@ -90,7 +90,7 @@ public enum Factory {
    * @return the URI builder
    */
   public static UriBuilder createUriBuilder() {
-    LOGGER.log(Level.FINE, String.format(CREATE_BUILDER, "URI"));
+    LOGGER.log(Level.FINE, CREATE_BUILDER, "URI");
     return new UriBuilderImpl();
   }
 }

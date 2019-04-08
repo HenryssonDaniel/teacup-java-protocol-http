@@ -37,6 +37,7 @@ class SimpleImpl implements Simple {
       timeoutSupplier.whenStopped(consumer -> cleanup(httpContext, timeoutSupplier));
     } catch (InterruptedException e) {
       LOGGER.log(Level.SEVERE, "The server got interrupted", e);
+      Thread.currentThread().interrupt();
     }
 
     return timeoutSupplier;

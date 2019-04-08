@@ -31,109 +31,109 @@ class UriImpl extends SetterImpl<URI> implements UriSetter {
 
   @Override
   public void setAbsolute(GenericBooleanAssert<?> absolute) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_WHETHER, "absolute"));
+    LOGGER.log(Level.FINE, Constants.SETTING_WHETHER, "absolute");
     this.absolute = absolute;
   }
 
   @Override
   public void setAuthority(GenericStringAssert<?> authority) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "authority"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "authority");
     this.authority = authority;
   }
 
   @Override
   public void setFragment(GenericStringAssert<?> fragment) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "fragment"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "fragment");
     this.fragment = fragment;
   }
 
   @Override
   public void setHost(GenericStringAssert<?> host) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "host"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "host");
     this.host = host;
   }
 
   @Override
   public void setOpaque(GenericBooleanAssert<?> opaque) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_WHETHER, "opaque"));
+    LOGGER.log(Level.FINE, Constants.SETTING_WHETHER, "opaque");
     this.opaque = opaque;
   }
 
   @Override
   public void setPath(GenericStringAssert<?> path) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "path"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "path");
     this.path = path;
   }
 
   @Override
   public void setPort(GenericIntegerAssert<?> port) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "path"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "path");
     this.port = port;
   }
 
   @Override
   public void setQuery(GenericStringAssert<?> query) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "query"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "query");
     this.query = query;
   }
 
   @Override
   public void setRawAuthority(GenericStringAssert<?> rawAuthority) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "raw authority"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "raw authority");
     this.rawAuthority = rawAuthority;
   }
 
   @Override
   public void setRawFragment(GenericStringAssert<?> rawFragment) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "raw fragment"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "raw fragment");
     this.rawFragment = rawFragment;
   }
 
   @Override
   public void setRawPath(GenericStringAssert<?> rawPath) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "raw path"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "raw path");
     this.rawPath = rawPath;
   }
 
   @Override
   public void setRawQuery(GenericStringAssert<?> rawQuery) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "raw query"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "raw query");
     this.rawQuery = rawQuery;
   }
 
   @Override
   public void setRawSchemeSpecificPart(GenericStringAssert<?> rawSchemeSpecificPart) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "raw scheme specific part"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "raw scheme specific part");
     this.rawSchemeSpecificPart = rawSchemeSpecificPart;
   }
 
   @Override
   public void setRawUserInfo(GenericStringAssert<?> rawUserInfo) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "raw user info"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "raw user info");
     this.rawUserInfo = rawUserInfo;
   }
 
   @Override
   public void setScheme(GenericStringAssert<?> scheme) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "scheme"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "scheme");
     this.scheme = scheme;
   }
 
   @Override
   public void setSchemeSpecificPart(GenericStringAssert<?> schemeSpecificPart) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "scheme specific part"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "scheme specific part");
     this.schemeSpecificPart = schemeSpecificPart;
   }
 
   @Override
   public void setUserInfo(GenericStringAssert<?> userInfo) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "user info"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "user info");
     this.userInfo = userInfo;
   }
 
   @Override
   public void verify(URI uri) {
-    LOGGER.log(Level.FINE, String.format(Constants.VERIFY, "URI"));
+    LOGGER.log(Level.FINE, Constants.VERIFY, "URI");
 
     verifyAssertion(getAssertion(), uri);
     verifyAbsolute(uri);

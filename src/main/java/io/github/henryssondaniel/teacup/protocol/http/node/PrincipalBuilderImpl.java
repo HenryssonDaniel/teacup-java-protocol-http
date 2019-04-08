@@ -17,7 +17,7 @@ class PrincipalBuilderImpl
 
   @Override
   public PrincipalBuilder setName(GenericStringAssert<?> name) {
-    LOGGER.log(Level.FINE, String.format(SETTING_THE, "name"));
+    LOGGER.log(Level.FINE, SETTING_THE, "name");
     getImplementation().setName(name);
     return this;
   }

@@ -12,13 +12,13 @@ class BodyPublisherImpl extends SetterImpl<BodyPublisher> implements BodyPublish
 
   @Override
   public void setContentLength(GenericLongAssert<?> contentLength) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "content length"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "content length");
     this.contentLength = contentLength;
   }
 
   @Override
   public void verify(BodyPublisher bodyPublisher) {
-    LOGGER.log(Level.FINE, String.format(Constants.VERIFY, "body publisher"));
+    LOGGER.log(Level.FINE, Constants.VERIFY, "body publisher");
     verifyAssertion(bodyPublisher, getAssertion());
 
     if (contentLength != null) contentLength.verify(bodyPublisher.contentLength());

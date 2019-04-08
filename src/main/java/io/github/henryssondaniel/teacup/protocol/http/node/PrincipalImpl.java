@@ -12,13 +12,13 @@ class PrincipalImpl extends SetterImpl<Principal> implements PrincipalSetter {
 
   @Override
   public void setName(GenericStringAssert<?> name) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "name"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "name");
     this.name = name;
   }
 
   @Override
   public void verify(Principal principal) {
-    LOGGER.log(Level.FINE, String.format(Constants.VERIFY, "principal"));
+    LOGGER.log(Level.FINE, Constants.VERIFY, "principal");
     verifyAssertion(getAssertion(), principal);
 
     if (name != null) name.verify(principal.getName());

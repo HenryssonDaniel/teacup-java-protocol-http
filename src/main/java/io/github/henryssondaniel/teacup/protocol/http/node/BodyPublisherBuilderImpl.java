@@ -17,7 +17,7 @@ class BodyPublisherBuilderImpl
 
   @Override
   public BodyPublisherBuilder setContentLength(GenericLongAssert<?> contentLength) {
-    LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "content length"));
+    LOGGER.log(Level.FINE, Constants.SETTING_THE, "content length");
     getImplementation().setContentLength(contentLength);
     return this;
   }
