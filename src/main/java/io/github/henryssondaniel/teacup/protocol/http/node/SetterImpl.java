@@ -1,17 +1,17 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 
 abstract class SetterImpl<T> implements Setter<T> {
-  private ObjectAssert<? super T, ?> assertion;
+  private GenericObjectAssert<? super T, ?> assertion;
 
   @Override
-  public ObjectAssert<? super T, ?> getAssertion() {
+  public GenericObjectAssert<? super T, ?> getAssertion() {
     return assertion;
   }
 
   @Override
-  public void setAssertion(ObjectAssert<? super T, ?> assertion) {
+  public void setAssertion(GenericObjectAssert<? super T, ?> assertion) {
     this.assertion = assertion;
   }
 }

@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -30,9 +30,10 @@ class BodyPublisherBuilderImplTest {
 
   @Test
   void setContentLength() {
-    var longAssert = mock(LongAssert.class);
+    var genericLongAssert = mock(GenericLongAssert.class);
 
-    assertThat(bodyPublisherBuilder.setContentLength(longAssert)).isSameAs(bodyPublisherBuilder);
-    verify(implementation).setContentLength(longAssert);
+    assertThat(bodyPublisherBuilder.setContentLength(genericLongAssert))
+        .isSameAs(bodyPublisherBuilder);
+    verify(implementation).setContentLength(genericLongAssert);
   }
 }

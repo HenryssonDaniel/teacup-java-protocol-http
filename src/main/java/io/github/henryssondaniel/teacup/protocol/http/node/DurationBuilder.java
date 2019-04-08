@@ -1,11 +1,12 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
 import io.github.henryssondaniel.teacup.core.NodeBuilder;
-import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
-import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ListAssert;
-import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericListAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
 import java.time.temporal.TemporalUnit;
+import java.util.List;
 
 /**
  * Duration builder.
@@ -28,7 +29,7 @@ public interface DurationBuilder
    * @param nano the nano
    * @return the duration builder
    */
-  DurationBuilder setNano(IntegerAssert<?> nano);
+  DurationBuilder setNano(GenericIntegerAssert<?> nano);
 
   /**
    * Sets whether negated or not.
@@ -44,7 +45,7 @@ public interface DurationBuilder
    * @param negative whether negative or not
    * @return the duration builder
    */
-  DurationBuilder setNegative(BooleanAssert<?> negative);
+  DurationBuilder setNegative(GenericBooleanAssert<?> negative);
 
   /**
    * Sets the seconds.
@@ -52,7 +53,7 @@ public interface DurationBuilder
    * @param seconds the seconds
    * @return the duration builder
    */
-  DurationBuilder setSeconds(LongAssert<?> seconds);
+  DurationBuilder setSeconds(GenericLongAssert<?> seconds);
 
   /**
    * Sets the to days.
@@ -60,7 +61,7 @@ public interface DurationBuilder
    * @param toDays the to days
    * @return the duration builder
    */
-  DurationBuilder setToDays(LongAssert<?> toDays);
+  DurationBuilder setToDays(GenericLongAssert<?> toDays);
 
   /**
    * Sets the to days part.
@@ -68,7 +69,7 @@ public interface DurationBuilder
    * @param toDaysPart the to days part
    * @return the duration builder
    */
-  DurationBuilder setToDaysPart(LongAssert<?> toDaysPart);
+  DurationBuilder setToDaysPart(GenericLongAssert<?> toDaysPart);
 
   /**
    * Sets the to hours.
@@ -76,7 +77,7 @@ public interface DurationBuilder
    * @param toHours the to hours
    * @return the duration builder
    */
-  DurationBuilder setToHours(LongAssert<?> toHours);
+  DurationBuilder setToHours(GenericLongAssert<?> toHours);
 
   /**
    * Sets the to hours part.
@@ -84,7 +85,7 @@ public interface DurationBuilder
    * @param toHoursPart the to hours part
    * @return the duration builder
    */
-  DurationBuilder setToHoursPart(IntegerAssert<?> toHoursPart);
+  DurationBuilder setToHoursPart(GenericIntegerAssert<?> toHoursPart);
 
   /**
    * Sets the to millis.
@@ -92,7 +93,7 @@ public interface DurationBuilder
    * @param toMillis the to millis
    * @return the duration builder
    */
-  DurationBuilder setToMillis(LongAssert<?> toMillis);
+  DurationBuilder setToMillis(GenericLongAssert<?> toMillis);
 
   /**
    * Sets the to millis part.
@@ -100,7 +101,7 @@ public interface DurationBuilder
    * @param toMillisPart the to millis part
    * @return the duration builder
    */
-  DurationBuilder setToMillisPart(IntegerAssert<?> toMillisPart);
+  DurationBuilder setToMillisPart(GenericIntegerAssert<?> toMillisPart);
 
   /**
    * Sets the to minutes.
@@ -108,7 +109,7 @@ public interface DurationBuilder
    * @param toMinutes the to minutes
    * @return the duration builder
    */
-  DurationBuilder setToMinutes(LongAssert<?> toMinutes);
+  DurationBuilder setToMinutes(GenericLongAssert<?> toMinutes);
 
   /**
    * Sets the to minutes part.
@@ -116,7 +117,7 @@ public interface DurationBuilder
    * @param toMinutesPart the to minutes part
    * @return the duration builder
    */
-  DurationBuilder setToMinutesPart(IntegerAssert<?> toMinutesPart);
+  DurationBuilder setToMinutesPart(GenericIntegerAssert<?> toMinutesPart);
 
   /**
    * Sets the to nanos.
@@ -124,7 +125,7 @@ public interface DurationBuilder
    * @param toNanos the to nanos
    * @return the duration builder
    */
-  DurationBuilder setToNanos(LongAssert<?> toNanos);
+  DurationBuilder setToNanos(GenericLongAssert<?> toNanos);
 
   /**
    * Sets the to nanos part.
@@ -132,7 +133,7 @@ public interface DurationBuilder
    * @param toNanosPart the to nanos part
    * @return the duration builder
    */
-  DurationBuilder setToNanosPart(IntegerAssert<?> toNanosPart);
+  DurationBuilder setToNanosPart(GenericIntegerAssert<?> toNanosPart);
 
   /**
    * Sets the to seconds.
@@ -140,7 +141,7 @@ public interface DurationBuilder
    * @param toSeconds the to seconds
    * @return the duration builder
    */
-  DurationBuilder setToSeconds(LongAssert<?> toSeconds);
+  DurationBuilder setToSeconds(GenericLongAssert<?> toSeconds);
 
   /**
    * Sets the to seconds part.
@@ -148,7 +149,7 @@ public interface DurationBuilder
    * @param toSecondsPart the to seconds part
    * @return the duration builder
    */
-  DurationBuilder setToSecondsPart(IntegerAssert<?> toSecondsPart);
+  DurationBuilder setToSecondsPart(GenericIntegerAssert<?> toSecondsPart);
 
   /**
    * Sets the units.
@@ -156,7 +157,8 @@ public interface DurationBuilder
    * @param units the units
    * @return the duration builder
    */
-  DurationBuilder setUnits(ListAssert<? super TemporalUnit, ?> units);
+  DurationBuilder setUnits(
+      GenericListAssert<? super TemporalUnit, ? super List<? extends TemporalUnit>, ?> units);
 
   /**
    * Sets whether zero or not.
@@ -164,5 +166,5 @@ public interface DurationBuilder
    * @param zero whether zero or not
    * @return the duration builder
    */
-  DurationBuilder setZero(BooleanAssert<?> zero);
+  DurationBuilder setZero(GenericBooleanAssert<?> zero);
 }

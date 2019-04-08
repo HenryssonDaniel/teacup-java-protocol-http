@@ -1,47 +1,49 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
-import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
-import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ListAssert;
-import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericListAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
 import java.time.temporal.TemporalUnit;
+import java.util.List;
 
 interface DurationSetter extends Duration, Setter<java.time.Duration> {
   void setAbs(Duration abs);
 
-  void setNano(IntegerAssert<?> nano);
+  void setNano(GenericIntegerAssert<?> nano);
 
   void setNegated(Duration negated);
 
-  void setNegative(BooleanAssert<?> negative);
+  void setNegative(GenericBooleanAssert<?> negative);
 
-  void setSeconds(LongAssert<?> seconds);
+  void setSeconds(GenericLongAssert<?> seconds);
 
-  void setToDays(LongAssert<?> toDays);
+  void setToDays(GenericLongAssert<?> toDays);
 
-  void setToDaysPart(LongAssert<?> toDaysPart);
+  void setToDaysPart(GenericLongAssert<?> toDaysPart);
 
-  void setToHours(LongAssert<?> toHours);
+  void setToHours(GenericLongAssert<?> toHours);
 
-  void setToHoursPart(IntegerAssert<?> toHoursPart);
+  void setToHoursPart(GenericIntegerAssert<?> toHoursPart);
 
-  void setToMillis(LongAssert<?> toMillis);
+  void setToMillis(GenericLongAssert<?> toMillis);
 
-  void setToMillisPart(IntegerAssert<?> toMillisPart);
+  void setToMillisPart(GenericIntegerAssert<?> toMillisPart);
 
-  void setToMinutes(LongAssert<?> toMinutes);
+  void setToMinutes(GenericLongAssert<?> toMinutes);
 
-  void setToMinutesPart(IntegerAssert<?> toMinutesPart);
+  void setToMinutesPart(GenericIntegerAssert<?> toMinutesPart);
 
-  void setToNanos(LongAssert<?> toNanos);
+  void setToNanos(GenericLongAssert<?> toNanos);
 
-  void setToNanosPart(IntegerAssert<?> toNanosPart);
+  void setToNanosPart(GenericIntegerAssert<?> toNanosPart);
 
-  void setToSeconds(LongAssert<?> toSeconds);
+  void setToSeconds(GenericLongAssert<?> toSeconds);
 
-  void setToSecondsPart(IntegerAssert<?> toSecondsPart);
+  void setToSecondsPart(GenericIntegerAssert<?> toSecondsPart);
 
-  void setUnits(ListAssert<? super TemporalUnit, ?> units);
+  void setUnits(
+      GenericListAssert<? super TemporalUnit, ? super List<? extends TemporalUnit>, ?> units);
 
-  void setZero(BooleanAssert<?> zero);
+  void setZero(GenericBooleanAssert<?> zero);
 }

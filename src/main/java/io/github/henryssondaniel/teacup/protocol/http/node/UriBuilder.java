@@ -1,9 +1,9 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
 import io.github.henryssondaniel.teacup.core.NodeBuilder;
-import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
-import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
-import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 import java.net.URI;
 
 /**
@@ -18,7 +18,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param absolute whether absolute or not
    * @return the URI builder
    */
-  UriBuilder setAbsolute(BooleanAssert<?> absolute);
+  UriBuilder setAbsolute(GenericBooleanAssert<?> absolute);
 
   /**
    * Sets the authority.
@@ -26,7 +26,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param authority the authority
    * @return the URI builder
    */
-  UriBuilder setAuthority(StringAssert<?> authority);
+  UriBuilder setAuthority(GenericStringAssert<?> authority);
 
   /**
    * Sets the fragment.
@@ -34,7 +34,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param fragment the fragment
    * @return the URI builder
    */
-  UriBuilder setFragment(StringAssert<?> fragment);
+  UriBuilder setFragment(GenericStringAssert<?> fragment);
 
   /**
    * Sets the host.
@@ -42,7 +42,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param host the host
    * @return the URI builder
    */
-  UriBuilder setHost(StringAssert<?> host);
+  UriBuilder setHost(GenericStringAssert<?> host);
 
   /**
    * Sets the opaque.
@@ -50,7 +50,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param opaque the opaque
    * @return the URI builder
    */
-  UriBuilder setOpaque(BooleanAssert<?> opaque);
+  UriBuilder setOpaque(GenericBooleanAssert<?> opaque);
 
   /**
    * Sets the path.
@@ -58,7 +58,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param path the path
    * @return the URI builder
    */
-  UriBuilder setPath(StringAssert<?> path);
+  UriBuilder setPath(GenericStringAssert<?> path);
 
   /**
    * Sets the port.
@@ -66,7 +66,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param port the port
    * @return the URI builder
    */
-  UriBuilder setPort(IntegerAssert<?> port);
+  UriBuilder setPort(GenericIntegerAssert<?> port);
 
   /**
    * Sets the query.
@@ -74,7 +74,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param query the query
    * @return the URI builder
    */
-  UriBuilder setQuery(StringAssert<?> query);
+  UriBuilder setQuery(GenericStringAssert<?> query);
 
   /**
    * Sets the raw authority.
@@ -82,7 +82,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param rawAuthority the raw authority
    * @return the URI builder
    */
-  UriBuilder setRawAuthority(StringAssert<?> rawAuthority);
+  UriBuilder setRawAuthority(GenericStringAssert<?> rawAuthority);
 
   /**
    * Sets the raw fragment.
@@ -90,7 +90,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param rawFragment the raw fragment
    * @return the URI builder
    */
-  UriBuilder setRawFragment(StringAssert<?> rawFragment);
+  UriBuilder setRawFragment(GenericStringAssert<?> rawFragment);
 
   /**
    * Sets the raw path.
@@ -98,7 +98,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param rawPath the raw path
    * @return the URI builder
    */
-  UriBuilder setRawPath(StringAssert<?> rawPath);
+  UriBuilder setRawPath(GenericStringAssert<?> rawPath);
 
   /**
    * Sets the raw query.
@@ -106,7 +106,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param rawQuery the raw query
    * @return the URI builder
    */
-  UriBuilder setRawQuery(StringAssert<?> rawQuery);
+  UriBuilder setRawQuery(GenericStringAssert<?> rawQuery);
 
   /**
    * Sets the raw scheme specific part.
@@ -114,7 +114,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param rawSchemeSpecificPart the raw scheme specific part
    * @return the URI builder
    */
-  UriBuilder setRawSchemeSpecificPart(StringAssert<?> rawSchemeSpecificPart);
+  UriBuilder setRawSchemeSpecificPart(GenericStringAssert<?> rawSchemeSpecificPart);
 
   /**
    * Sets the raw user info.
@@ -122,7 +122,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param rawUserInfo the raw user info
    * @return the URI builder
    */
-  UriBuilder setRawUserInfo(StringAssert<?> rawUserInfo);
+  UriBuilder setRawUserInfo(GenericStringAssert<?> rawUserInfo);
 
   /**
    * Sets the scheme.
@@ -130,7 +130,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param scheme the scheme
    * @return the URI builder
    */
-  UriBuilder setScheme(StringAssert<?> scheme);
+  UriBuilder setScheme(GenericStringAssert<?> scheme);
 
   /**
    * Sets the scheme specific part.
@@ -138,7 +138,7 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param schemeSpecificPart the scheme specific part
    * @return the URI builder
    */
-  UriBuilder setSchemeSpecificPart(StringAssert<?> schemeSpecificPart);
+  UriBuilder setSchemeSpecificPart(GenericStringAssert<?> schemeSpecificPart);
 
   /**
    * Sets the user info.
@@ -146,5 +146,5 @@ public interface UriBuilder extends NodeBuilder<URI, Uri, UriBuilder> {
    * @param userInfo the user info
    * @return the URI builder
    */
-  UriBuilder setUserInfo(StringAssert<?> userInfo);
+  UriBuilder setUserInfo(GenericStringAssert<?> userInfo);
 }

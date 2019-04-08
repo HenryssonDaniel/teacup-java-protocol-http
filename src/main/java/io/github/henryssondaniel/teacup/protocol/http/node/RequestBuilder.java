@@ -1,13 +1,14 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
 import io.github.henryssondaniel.teacup.core.NodeBuilder;
-import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ComparableAssert;
-import io.github.henryssondaniel.teacup.core.assertion.MapAssert;
-import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericComparableAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericMapAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpRequest;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Request builder.
@@ -29,7 +30,7 @@ public interface RequestBuilder extends NodeBuilder<HttpRequest, Request, Reques
    * @param expectContinue whether expect continue or not
    * @return the request builder
    */
-  RequestBuilder setExpectContinue(BooleanAssert<?> expectContinue);
+  RequestBuilder setExpectContinue(GenericBooleanAssert<?> expectContinue);
 
   /**
    * Sets the headers.
@@ -37,7 +38,8 @@ public interface RequestBuilder extends NodeBuilder<HttpRequest, Request, Reques
    * @param headers the headers
    * @return the request builder
    */
-  RequestBuilder setHeaders(MapAssert<String, List<String>, ?> headers);
+  RequestBuilder setHeaders(
+      GenericMapAssert<String, List<String>, ? super Map<String, List<String>>, ?> headers);
 
   /**
    * Sets the method.
@@ -45,7 +47,7 @@ public interface RequestBuilder extends NodeBuilder<HttpRequest, Request, Reques
    * @param method the method
    * @return the request builder
    */
-  RequestBuilder setMethod(StringAssert<?> method);
+  RequestBuilder setMethod(GenericStringAssert<?> method);
 
   /**
    * Sets the timeout.
@@ -69,5 +71,5 @@ public interface RequestBuilder extends NodeBuilder<HttpRequest, Request, Reques
    * @param version the version
    * @return the request builder
    */
-  RequestBuilder setVersion(ComparableAssert<? super Version, ?> version);
+  RequestBuilder setVersion(GenericComparableAssert<? super Version, ?> version);
 }

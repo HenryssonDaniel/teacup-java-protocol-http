@@ -1,7 +1,7 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
 import io.github.henryssondaniel.teacup.core.NodeBuilder;
-import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 
 /**
  * Principal builder.
@@ -16,5 +16,5 @@ public interface PrincipalBuilder
    * @param name the name
    * @return the principal builder
    */
-  PrincipalBuilder setName(StringAssert<?> name);
+  PrincipalBuilder setName(GenericStringAssert<?> name);
 }

@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -29,9 +29,9 @@ class PrincipalBuilderImplTest {
 
   @Test
   void setName() {
-    var stringAssert = mock(StringAssert.class);
+    var genericStringAssert = mock(GenericStringAssert.class);
 
-    assertThat(principalBuilder.setName(stringAssert)).isSameAs(principalBuilder);
-    verify(implementation).setName(stringAssert);
+    assertThat(principalBuilder.setName(genericStringAssert)).isSameAs(principalBuilder);
+    verify(implementation).setName(genericStringAssert);
   }
 }

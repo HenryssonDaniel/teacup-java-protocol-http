@@ -1,17 +1,17 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
-import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import java.net.http.HttpRequest.BodyPublisher;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 class BodyPublisherImpl extends SetterImpl<BodyPublisher> implements BodyPublisherSetter {
   private static final Logger LOGGER = Logger.getLogger(BodyPublisherImpl.class.getName());
-  private ObjectAssert<Long, ?> contentLength;
+  private GenericObjectAssert<Long, ?> contentLength;
 
   @Override
-  public void setContentLength(LongAssert<?> contentLength) {
+  public void setContentLength(GenericLongAssert<?> contentLength) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "content length"));
     this.contentLength = contentLength;
   }
@@ -25,7 +25,7 @@ class BodyPublisherImpl extends SetterImpl<BodyPublisher> implements BodyPublish
   }
 
   private static void verifyAssertion(
-      BodyPublisher bodyPublisher, ObjectAssert<? super BodyPublisher, ?> objectAssert) {
+      BodyPublisher bodyPublisher, GenericObjectAssert<? super BodyPublisher, ?> objectAssert) {
     if (objectAssert != null) objectAssert.verify(bodyPublisher);
   }
 }

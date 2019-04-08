@@ -3,11 +3,11 @@ package io.github.henryssondaniel.teacup.protocol.http.node;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ComparableAssert;
-import io.github.henryssondaniel.teacup.core.assertion.MapAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
-import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericComparableAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericMapAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 import java.net.URI;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpHeaders;
@@ -15,6 +15,7 @@ import java.net.http.HttpRequest;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,9 +28,13 @@ class RequestImplTest {
   private final HttpRequest httpRequest = new TestHttpRequest();
   private final RequestSetter requestSetter = new RequestImpl();
 
-  @Mock private ComparableAssert<? super Version, ?> comparableAssert;
-  @Mock private MapAssert<String, List<String>, ?> mapAssert;
-  @Mock private ObjectAssert<? super HttpRequest, ?> objectAssert;
+  @Mock private GenericComparableAssert<? super Version, ?> genericComparableAssert;
+
+  @Mock
+  private GenericMapAssert<String, List<String>, ? super Map<String, List<String>>, ?>
+      genericMapAssert;
+
+  @Mock private GenericObjectAssert<? super HttpRequest, ?> genericObjectAssert;
 
   @BeforeEach
   void beforeEach() {
@@ -38,10 +43,10 @@ class RequestImplTest {
 
   @Test
   void setAssertion() {
-    requestSetter.setAssertion(objectAssert);
+    requestSetter.setAssertion(genericObjectAssert);
     requestSetter.verify(httpRequest);
 
-    verify(objectAssert).verify(httpRequest);
+    verify(genericObjectAssert).verify(httpRequest);
   }
 
   @Test
@@ -56,30 +61,30 @@ class RequestImplTest {
 
   @Test
   void setExpectContinue() {
-    BooleanAssert<?> booleanAssert = mock(BooleanAssert.class);
+    GenericBooleanAssert<?> genericBooleanAssert = mock(GenericBooleanAssert.class);
 
-    requestSetter.setExpectContinue(booleanAssert);
+    requestSetter.setExpectContinue(genericBooleanAssert);
     requestSetter.verify(httpRequest);
 
-    verify(booleanAssert).verify(httpRequest.expectContinue());
+    verify(genericBooleanAssert).verify(httpRequest.expectContinue());
   }
 
   @Test
   void setMethod() {
-    StringAssert<?> stringAssert = mock(StringAssert.class);
+    GenericStringAssert<?> genericStringAssert = mock(GenericStringAssert.class);
 
-    requestSetter.setMethod(stringAssert);
+    requestSetter.setMethod(genericStringAssert);
     requestSetter.verify(httpRequest);
 
-    verify(stringAssert).verify(httpRequest.method());
+    verify(genericStringAssert).verify(httpRequest.method());
   }
 
   @Test
   void setName() {
-    requestSetter.setHeaders(mapAssert);
+    requestSetter.setHeaders(genericMapAssert);
     requestSetter.verify(httpRequest);
 
-    verify(mapAssert).verify(httpRequest.headers().map());
+    verify(genericMapAssert).verify(httpRequest.headers().map());
   }
 
   @Test
@@ -104,10 +109,10 @@ class RequestImplTest {
 
   @Test
   void setVersion() {
-    requestSetter.setVersion(comparableAssert);
+    requestSetter.setVersion(genericComparableAssert);
     requestSetter.verify(httpRequest);
 
-    verify(comparableAssert).verify(httpRequest.version().orElse(null));
+    verify(genericComparableAssert).verify(httpRequest.version().orElse(null));
   }
 
   private static final class TestHttpRequest extends HttpRequest {

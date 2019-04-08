@@ -1,9 +1,9 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
-import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
-import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
-import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,122 +11,122 @@ import java.util.logging.Logger;
 class UriImpl extends SetterImpl<URI> implements UriSetter {
   private static final Logger LOGGER = Logger.getLogger(UriImpl.class.getName());
 
-  private ObjectAssert<Boolean, ?> absolute;
-  private ObjectAssert<String, ?> authority;
-  private ObjectAssert<String, ?> fragment;
-  private ObjectAssert<String, ?> host;
-  private ObjectAssert<Boolean, ?> opaque;
-  private ObjectAssert<String, ?> path;
-  private ObjectAssert<Integer, ?> port;
-  private ObjectAssert<String, ?> query;
-  private ObjectAssert<String, ?> rawAuthority;
-  private ObjectAssert<String, ?> rawFragment;
-  private ObjectAssert<String, ?> rawPath;
-  private ObjectAssert<String, ?> rawQuery;
-  private ObjectAssert<String, ?> rawSchemeSpecificPart;
-  private ObjectAssert<String, ?> rawUserInfo;
-  private ObjectAssert<String, ?> scheme;
-  private ObjectAssert<String, ?> schemeSpecificPart;
-  private ObjectAssert<String, ?> userInfo;
+  private GenericObjectAssert<Boolean, ?> absolute;
+  private GenericObjectAssert<String, ?> authority;
+  private GenericObjectAssert<String, ?> fragment;
+  private GenericObjectAssert<String, ?> host;
+  private GenericObjectAssert<Boolean, ?> opaque;
+  private GenericObjectAssert<String, ?> path;
+  private GenericObjectAssert<Integer, ?> port;
+  private GenericObjectAssert<String, ?> query;
+  private GenericObjectAssert<String, ?> rawAuthority;
+  private GenericObjectAssert<String, ?> rawFragment;
+  private GenericObjectAssert<String, ?> rawPath;
+  private GenericObjectAssert<String, ?> rawQuery;
+  private GenericObjectAssert<String, ?> rawSchemeSpecificPart;
+  private GenericObjectAssert<String, ?> rawUserInfo;
+  private GenericObjectAssert<String, ?> scheme;
+  private GenericObjectAssert<String, ?> schemeSpecificPart;
+  private GenericObjectAssert<String, ?> userInfo;
 
   @Override
-  public void setAbsolute(BooleanAssert<?> absolute) {
+  public void setAbsolute(GenericBooleanAssert<?> absolute) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_WHETHER, "absolute"));
     this.absolute = absolute;
   }
 
   @Override
-  public void setAuthority(StringAssert<?> authority) {
+  public void setAuthority(GenericStringAssert<?> authority) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "authority"));
     this.authority = authority;
   }
 
   @Override
-  public void setFragment(StringAssert<?> fragment) {
+  public void setFragment(GenericStringAssert<?> fragment) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "fragment"));
     this.fragment = fragment;
   }
 
   @Override
-  public void setHost(StringAssert<?> host) {
+  public void setHost(GenericStringAssert<?> host) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "host"));
     this.host = host;
   }
 
   @Override
-  public void setOpaque(BooleanAssert<?> opaque) {
+  public void setOpaque(GenericBooleanAssert<?> opaque) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_WHETHER, "opaque"));
     this.opaque = opaque;
   }
 
   @Override
-  public void setPath(StringAssert<?> path) {
+  public void setPath(GenericStringAssert<?> path) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "path"));
     this.path = path;
   }
 
   @Override
-  public void setPort(IntegerAssert<?> port) {
+  public void setPort(GenericIntegerAssert<?> port) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "path"));
     this.port = port;
   }
 
   @Override
-  public void setQuery(StringAssert<?> query) {
+  public void setQuery(GenericStringAssert<?> query) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "query"));
     this.query = query;
   }
 
   @Override
-  public void setRawAuthority(StringAssert<?> rawAuthority) {
+  public void setRawAuthority(GenericStringAssert<?> rawAuthority) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "raw authority"));
     this.rawAuthority = rawAuthority;
   }
 
   @Override
-  public void setRawFragment(StringAssert<?> rawFragment) {
+  public void setRawFragment(GenericStringAssert<?> rawFragment) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "raw fragment"));
     this.rawFragment = rawFragment;
   }
 
   @Override
-  public void setRawPath(StringAssert<?> rawPath) {
+  public void setRawPath(GenericStringAssert<?> rawPath) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "raw path"));
     this.rawPath = rawPath;
   }
 
   @Override
-  public void setRawQuery(StringAssert<?> rawQuery) {
+  public void setRawQuery(GenericStringAssert<?> rawQuery) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "raw query"));
     this.rawQuery = rawQuery;
   }
 
   @Override
-  public void setRawSchemeSpecificPart(StringAssert<?> rawSchemeSpecificPart) {
+  public void setRawSchemeSpecificPart(GenericStringAssert<?> rawSchemeSpecificPart) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "raw scheme specific part"));
     this.rawSchemeSpecificPart = rawSchemeSpecificPart;
   }
 
   @Override
-  public void setRawUserInfo(StringAssert<?> rawUserInfo) {
+  public void setRawUserInfo(GenericStringAssert<?> rawUserInfo) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "raw user info"));
     this.rawUserInfo = rawUserInfo;
   }
 
   @Override
-  public void setScheme(StringAssert<?> scheme) {
+  public void setScheme(GenericStringAssert<?> scheme) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "scheme"));
     this.scheme = scheme;
   }
 
   @Override
-  public void setSchemeSpecificPart(StringAssert<?> schemeSpecificPart) {
+  public void setSchemeSpecificPart(GenericStringAssert<?> schemeSpecificPart) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "scheme specific part"));
     this.schemeSpecificPart = schemeSpecificPart;
   }
 
   @Override
-  public void setUserInfo(StringAssert<?> userInfo) {
+  public void setUserInfo(GenericStringAssert<?> userInfo) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "user info"));
     this.userInfo = userInfo;
   }
@@ -159,7 +159,7 @@ class UriImpl extends SetterImpl<URI> implements UriSetter {
     if (absolute != null) absolute.verify(uri.isAbsolute());
   }
 
-  private static void verifyAssertion(ObjectAssert<? super URI, ?> objectAssert, URI uri) {
+  private static void verifyAssertion(GenericObjectAssert<? super URI, ?> objectAssert, URI uri) {
     if (objectAssert != null) objectAssert.verify(uri);
   }
 

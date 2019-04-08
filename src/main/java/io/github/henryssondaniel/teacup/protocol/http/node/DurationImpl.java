@@ -1,11 +1,11 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
 import io.github.henryssondaniel.teacup.core.Node;
-import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
-import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ListAssert;
-import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericListAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import java.time.temporal.TemporalAmount;
 import java.time.temporal.TemporalUnit;
 import java.util.List;
@@ -16,24 +16,24 @@ class DurationImpl extends SetterImpl<java.time.Duration> implements DurationSet
   private static final Logger LOGGER = Logger.getLogger(DurationImpl.class.getName());
 
   private Node<java.time.Duration> abs;
-  private ObjectAssert<Integer, ?> nano;
+  private GenericObjectAssert<Integer, ?> nano;
   private Node<java.time.Duration> negated;
-  private ObjectAssert<Boolean, ?> negative;
-  private ObjectAssert<Long, ?> seconds;
-  private ObjectAssert<Long, ?> toDays;
-  private ObjectAssert<Long, ?> toDaysPart;
-  private ObjectAssert<Long, ?> toHours;
-  private ObjectAssert<Integer, ?> toHoursPart;
-  private ObjectAssert<Long, ?> toMillis;
-  private ObjectAssert<Integer, ?> toMillisPart;
-  private ObjectAssert<Long, ?> toMinutes;
-  private ObjectAssert<Integer, ?> toMinutesPart;
-  private ObjectAssert<Long, ?> toNanos;
-  private ObjectAssert<Integer, ?> toNanosPart;
-  private ObjectAssert<Long, ?> toSeconds;
-  private ObjectAssert<Integer, ?> toSecondsPart;
-  private ObjectAssert<? super List<TemporalUnit>, ?> units;
-  private ObjectAssert<Boolean, ?> zero;
+  private GenericObjectAssert<Boolean, ?> negative;
+  private GenericObjectAssert<Long, ?> seconds;
+  private GenericObjectAssert<Long, ?> toDays;
+  private GenericObjectAssert<Long, ?> toDaysPart;
+  private GenericObjectAssert<Long, ?> toHours;
+  private GenericObjectAssert<Integer, ?> toHoursPart;
+  private GenericObjectAssert<Long, ?> toMillis;
+  private GenericObjectAssert<Integer, ?> toMillisPart;
+  private GenericObjectAssert<Long, ?> toMinutes;
+  private GenericObjectAssert<Integer, ?> toMinutesPart;
+  private GenericObjectAssert<Long, ?> toNanos;
+  private GenericObjectAssert<Integer, ?> toNanosPart;
+  private GenericObjectAssert<Long, ?> toSeconds;
+  private GenericObjectAssert<Integer, ?> toSecondsPart;
+  private GenericObjectAssert<? super List<? extends TemporalUnit>, ?> units;
+  private GenericObjectAssert<Boolean, ?> zero;
 
   @Override
   public void setAbs(Duration abs) {
@@ -42,7 +42,7 @@ class DurationImpl extends SetterImpl<java.time.Duration> implements DurationSet
   }
 
   @Override
-  public void setNano(IntegerAssert<?> nano) {
+  public void setNano(GenericIntegerAssert<?> nano) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "nano"));
     this.nano = nano;
   }
@@ -54,97 +54,98 @@ class DurationImpl extends SetterImpl<java.time.Duration> implements DurationSet
   }
 
   @Override
-  public void setNegative(BooleanAssert<?> negative) {
+  public void setNegative(GenericBooleanAssert<?> negative) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_WHETHER, "negative"));
     this.negative = negative;
   }
 
   @Override
-  public void setSeconds(LongAssert<?> seconds) {
+  public void setSeconds(GenericLongAssert<?> seconds) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "seconds"));
     this.seconds = seconds;
   }
 
   @Override
-  public void setToDays(LongAssert<?> toDays) {
+  public void setToDays(GenericLongAssert<?> toDays) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to days"));
     this.toDays = toDays;
   }
 
   @Override
-  public void setToDaysPart(LongAssert<?> toDaysPart) {
+  public void setToDaysPart(GenericLongAssert<?> toDaysPart) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to days part"));
     this.toDaysPart = toDaysPart;
   }
 
   @Override
-  public void setToHours(LongAssert<?> toHours) {
+  public void setToHours(GenericLongAssert<?> toHours) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to hours"));
     this.toHours = toHours;
   }
 
   @Override
-  public void setToHoursPart(IntegerAssert<?> toHoursPart) {
+  public void setToHoursPart(GenericIntegerAssert<?> toHoursPart) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to hours part"));
     this.toHoursPart = toHoursPart;
   }
 
   @Override
-  public void setToMillis(LongAssert<?> toMillis) {
+  public void setToMillis(GenericLongAssert<?> toMillis) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to millis"));
     this.toMillis = toMillis;
   }
 
   @Override
-  public void setToMillisPart(IntegerAssert<?> toMillisPart) {
+  public void setToMillisPart(GenericIntegerAssert<?> toMillisPart) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to millis part"));
     this.toMillisPart = toMillisPart;
   }
 
   @Override
-  public void setToMinutes(LongAssert<?> toMinutes) {
+  public void setToMinutes(GenericLongAssert<?> toMinutes) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to minutes"));
     this.toMinutes = toMinutes;
   }
 
   @Override
-  public void setToMinutesPart(IntegerAssert<?> toMinutesPart) {
+  public void setToMinutesPart(GenericIntegerAssert<?> toMinutesPart) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to minutes part"));
     this.toMinutesPart = toMinutesPart;
   }
 
   @Override
-  public void setToNanos(LongAssert<?> toNanos) {
+  public void setToNanos(GenericLongAssert<?> toNanos) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to nanos"));
     this.toNanos = toNanos;
   }
 
   @Override
-  public void setToNanosPart(IntegerAssert<?> toNanosPart) {
+  public void setToNanosPart(GenericIntegerAssert<?> toNanosPart) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to nanos part"));
     this.toNanosPart = toNanosPart;
   }
 
   @Override
-  public void setToSeconds(LongAssert<?> toSeconds) {
+  public void setToSeconds(GenericLongAssert<?> toSeconds) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to seconds"));
     this.toSeconds = toSeconds;
   }
 
   @Override
-  public void setToSecondsPart(IntegerAssert<?> toSecondsPart) {
+  public void setToSecondsPart(GenericIntegerAssert<?> toSecondsPart) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to seconds part"));
     this.toSecondsPart = toSecondsPart;
   }
 
   @Override
-  public void setUnits(ListAssert<? super TemporalUnit, ?> units) {
+  public void setUnits(
+      GenericListAssert<? super TemporalUnit, ? super List<? extends TemporalUnit>, ?> units) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "units"));
     this.units = units;
   }
 
   @Override
-  public void setZero(BooleanAssert<?> zero) {
+  public void setZero(GenericBooleanAssert<?> zero) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_WHETHER, "zero"));
     this.zero = zero;
   }
@@ -180,7 +181,8 @@ class DurationImpl extends SetterImpl<java.time.Duration> implements DurationSet
   }
 
   private static void verifyAssertion(
-      java.time.Duration duration, ObjectAssert<? super java.time.Duration, ?> objectAssert) {
+      java.time.Duration duration,
+      GenericObjectAssert<? super java.time.Duration, ?> objectAssert) {
     if (objectAssert != null) objectAssert.verify(duration);
   }
 

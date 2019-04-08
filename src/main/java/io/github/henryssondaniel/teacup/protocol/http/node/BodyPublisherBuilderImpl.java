@@ -1,6 +1,6 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
-import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
 import java.net.http.HttpRequest;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,7 +16,7 @@ class BodyPublisherBuilderImpl
   }
 
   @Override
-  public BodyPublisherBuilder setContentLength(LongAssert<?> contentLength) {
+  public BodyPublisherBuilder setContentLength(GenericLongAssert<?> contentLength) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "content length"));
     getImplementation().setContentLength(contentLength);
     return this;

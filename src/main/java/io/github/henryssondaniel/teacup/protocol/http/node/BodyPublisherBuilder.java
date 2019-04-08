@@ -1,7 +1,7 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
 import io.github.henryssondaniel.teacup.core.NodeBuilder;
-import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
 import java.net.http.HttpRequest;
 
 /**
@@ -17,5 +17,5 @@ public interface BodyPublisherBuilder
    * @param contentLength the content length
    * @return the body publisher builder
    */
-  BodyPublisherBuilder setContentLength(LongAssert<?> contentLength);
+  BodyPublisherBuilder setContentLength(GenericLongAssert<?> contentLength);
 }

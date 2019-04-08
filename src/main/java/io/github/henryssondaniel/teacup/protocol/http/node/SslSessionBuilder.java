@@ -1,12 +1,12 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
 import io.github.henryssondaniel.teacup.core.NodeBuilder;
-import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ByteArrayAssert;
-import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
-import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectArrayAssert;
-import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericByteArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 import java.security.cert.Certificate;
 import javax.net.ssl.SSLSession;
 
@@ -22,7 +22,7 @@ public interface SslSessionBuilder extends NodeBuilder<SSLSession, SslSession, S
    * @param applicationBufferSize the application buffer size
    * @return the SSL session builder
    */
-  SslSessionBuilder setApplicationBufferSize(IntegerAssert<?> applicationBufferSize);
+  SslSessionBuilder setApplicationBufferSize(GenericIntegerAssert<?> applicationBufferSize);
 
   /**
    * Sets the cipher suite.
@@ -30,7 +30,7 @@ public interface SslSessionBuilder extends NodeBuilder<SSLSession, SslSession, S
    * @param cipherSuite the cipher suite
    * @return the SSL session builder
    */
-  SslSessionBuilder setCipherSuite(StringAssert<?> cipherSuite);
+  SslSessionBuilder setCipherSuite(GenericStringAssert<?> cipherSuite);
 
   /**
    * Sets the creation tine.
@@ -38,7 +38,7 @@ public interface SslSessionBuilder extends NodeBuilder<SSLSession, SslSession, S
    * @param creationTime the creation time
    * @return the SSL session builder
    */
-  SslSessionBuilder setCreationTime(LongAssert<?> creationTime);
+  SslSessionBuilder setCreationTime(GenericLongAssert<?> creationTime);
 
   /**
    * Sets the ID.
@@ -46,7 +46,7 @@ public interface SslSessionBuilder extends NodeBuilder<SSLSession, SslSession, S
    * @param id the ID
    * @return the SSL session builder
    */
-  SslSessionBuilder setId(ByteArrayAssert<?> id);
+  SslSessionBuilder setId(GenericByteArrayAssert<?> id);
 
   /**
    * Sets the last accessed time.
@@ -54,7 +54,7 @@ public interface SslSessionBuilder extends NodeBuilder<SSLSession, SslSession, S
    * @param lastAccessedTime the last accessed time
    * @return the SSL session builder
    */
-  SslSessionBuilder setLastAccessedTime(LongAssert<?> lastAccessedTime);
+  SslSessionBuilder setLastAccessedTime(GenericLongAssert<?> lastAccessedTime);
 
   /**
    * Sets the local certificates.
@@ -63,7 +63,7 @@ public interface SslSessionBuilder extends NodeBuilder<SSLSession, SslSession, S
    * @return the SSL session builder
    */
   SslSessionBuilder setLocalCertificates(
-      ObjectArrayAssert<? super Certificate, ?> localCertificates);
+      GenericObjectArrayAssert<? super Certificate, ?> localCertificates);
 
   /**
    * Sets the local principal.
@@ -79,7 +79,7 @@ public interface SslSessionBuilder extends NodeBuilder<SSLSession, SslSession, S
    * @param packetBufferSize the packet buffer size
    * @return the SSL session builder
    */
-  SslSessionBuilder setPacketBufferSize(IntegerAssert<?> packetBufferSize);
+  SslSessionBuilder setPacketBufferSize(GenericIntegerAssert<?> packetBufferSize);
 
   /**
    * Sets the peek certificates.
@@ -87,7 +87,8 @@ public interface SslSessionBuilder extends NodeBuilder<SSLSession, SslSession, S
    * @param peerCertificates the peek certificates
    * @return the SSL session builder
    */
-  SslSessionBuilder setPeerCertificates(ObjectArrayAssert<? super Certificate, ?> peerCertificates);
+  SslSessionBuilder setPeerCertificates(
+      GenericObjectArrayAssert<? super Certificate, ?> peerCertificates);
 
   /**
    * Sets the peer host.
@@ -95,7 +96,7 @@ public interface SslSessionBuilder extends NodeBuilder<SSLSession, SslSession, S
    * @param peerHost the peer host
    * @return the SSL session builder
    */
-  SslSessionBuilder setPeerHost(StringAssert<?> peerHost);
+  SslSessionBuilder setPeerHost(GenericStringAssert<?> peerHost);
 
   /**
    * Sets the peer port.
@@ -103,7 +104,7 @@ public interface SslSessionBuilder extends NodeBuilder<SSLSession, SslSession, S
    * @param peerPort the peer port
    * @return the SSL session builder
    */
-  SslSessionBuilder setPeerPort(IntegerAssert<?> peerPort);
+  SslSessionBuilder setPeerPort(GenericIntegerAssert<?> peerPort);
 
   /**
    * Sets the peer principal.
@@ -119,7 +120,7 @@ public interface SslSessionBuilder extends NodeBuilder<SSLSession, SslSession, S
    * @param protocol the protocol
    * @return the SSL session builder
    */
-  SslSessionBuilder setProtocol(StringAssert<?> protocol);
+  SslSessionBuilder setProtocol(GenericStringAssert<?> protocol);
 
   /**
    * Sets the session context.
@@ -135,7 +136,7 @@ public interface SslSessionBuilder extends NodeBuilder<SSLSession, SslSession, S
    * @param valid whether valid or not
    * @return the SSL session builder
    */
-  SslSessionBuilder setValid(BooleanAssert<?> valid);
+  SslSessionBuilder setValid(GenericBooleanAssert<?> valid);
 
   /**
    * Sets the value names.
@@ -143,5 +144,5 @@ public interface SslSessionBuilder extends NodeBuilder<SSLSession, SslSession, S
    * @param valueNames the value names
    * @return the SSL session builder
    */
-  SslSessionBuilder setValueNames(ObjectArrayAssert<? super String, ?> valueNames);
+  SslSessionBuilder setValueNames(GenericObjectArrayAssert<? super String, ?> valueNames);
 }

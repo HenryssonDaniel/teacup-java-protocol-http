@@ -1,44 +1,44 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
-import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ByteArrayAssert;
-import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
-import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectArrayAssert;
-import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericByteArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 import java.security.cert.Certificate;
 import javax.net.ssl.SSLSession;
 
 interface SslSessionSetter extends Setter<SSLSession>, SslSession {
-  void setApplicationBufferSize(IntegerAssert<?> applicationBufferSize);
+  void setApplicationBufferSize(GenericIntegerAssert<?> applicationBufferSize);
 
-  void setCipherSuite(StringAssert<?> cipherSuite);
+  void setCipherSuite(GenericStringAssert<?> cipherSuite);
 
-  void setCreationTime(LongAssert<?> creationTime);
+  void setCreationTime(GenericLongAssert<?> creationTime);
 
-  void setId(ByteArrayAssert<?> id);
+  void setId(GenericByteArrayAssert<?> id);
 
-  void setLastAccessedTime(LongAssert<?> lastAccessedTime);
+  void setLastAccessedTime(GenericLongAssert<?> lastAccessedTime);
 
-  void setLocalCertificates(ObjectArrayAssert<? super Certificate, ?> localCertificates);
+  void setLocalCertificates(GenericObjectArrayAssert<? super Certificate, ?> localCertificates);
 
   void setLocalPrincipal(Principal localPrincipal);
 
-  void setPacketBufferSize(IntegerAssert<?> packetBufferSize);
+  void setPacketBufferSize(GenericIntegerAssert<?> packetBufferSize);
 
-  void setPeerCertificates(ObjectArrayAssert<? super Certificate, ?> peerCertificates);
+  void setPeerCertificates(GenericObjectArrayAssert<? super Certificate, ?> peerCertificates);
 
-  void setPeerHost(StringAssert<?> peerHost);
+  void setPeerHost(GenericStringAssert<?> peerHost);
 
-  void setPeerPort(IntegerAssert<?> peerPort);
+  void setPeerPort(GenericIntegerAssert<?> peerPort);
 
   void setPeerPrincipal(Principal peerPrincipal);
 
-  void setProtocol(StringAssert<?> protocol);
+  void setProtocol(GenericStringAssert<?> protocol);
 
   void setSessionContext(SslSessionContext sessionContext);
 
-  void setValid(BooleanAssert<?> valid);
+  void setValid(GenericBooleanAssert<?> valid);
 
-  void setValueNames(ObjectArrayAssert<? super String, ?> valueNames);
+  void setValueNames(GenericObjectArrayAssert<? super String, ?> valueNames);
 }

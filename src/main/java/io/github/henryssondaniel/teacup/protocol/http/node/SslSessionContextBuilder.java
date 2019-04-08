@@ -1,8 +1,8 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
 import io.github.henryssondaniel.teacup.core.NodeBuilder;
-import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import java.util.Enumeration;
 import javax.net.ssl.SSLSessionContext;
 
@@ -19,7 +19,7 @@ public interface SslSessionContextBuilder
    * @param ids the ID's
    * @return the SSL session context builder
    */
-  SslSessionContextBuilder setIds(ObjectAssert<? super Enumeration<byte[]>, ?> ids);
+  SslSessionContextBuilder setIds(GenericObjectAssert<? super Enumeration<byte[]>, ?> ids);
 
   /**
    * Sets the session cache size.
@@ -27,7 +27,7 @@ public interface SslSessionContextBuilder
    * @param sessionCacheSize the session cache size
    * @return the SSL session context builder
    */
-  SslSessionContextBuilder setSessionCacheSize(IntegerAssert<?> sessionCacheSize);
+  SslSessionContextBuilder setSessionCacheSize(GenericIntegerAssert<?> sessionCacheSize);
 
   /**
    * Sets the session timeout.
@@ -35,5 +35,5 @@ public interface SslSessionContextBuilder
    * @param sessionTimeout the session timeout
    * @return the SSL session context builder
    */
-  SslSessionContextBuilder setSessionTimeout(IntegerAssert<?> sessionTimeout);
+  SslSessionContextBuilder setSessionTimeout(GenericIntegerAssert<?> sessionTimeout);
 }

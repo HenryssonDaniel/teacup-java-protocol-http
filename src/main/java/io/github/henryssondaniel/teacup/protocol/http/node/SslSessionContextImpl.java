@@ -1,7 +1,7 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
-import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,23 +11,23 @@ class SslSessionContextImpl extends SetterImpl<SSLSessionContext>
     implements SslSessionContextSetter {
   private static final Logger LOGGER = Logger.getLogger(SslSessionContextImpl.class.getName());
 
-  private ObjectAssert<? super Enumeration<byte[]>, ?> ids;
-  private ObjectAssert<Integer, ?> sessionCacheSize;
-  private ObjectAssert<Integer, ?> sessionTimeout;
+  private GenericObjectAssert<? super Enumeration<byte[]>, ?> ids;
+  private GenericObjectAssert<Integer, ?> sessionCacheSize;
+  private GenericObjectAssert<Integer, ?> sessionTimeout;
 
   @Override
-  public void setIds(ObjectAssert<? super Enumeration<byte[]>, ?> ids) {
+  public void setIds(GenericObjectAssert<? super Enumeration<byte[]>, ?> ids) {
     this.ids = ids;
   }
 
   @Override
-  public void setSessionCacheSize(IntegerAssert<?> sessionCacheSize) {
+  public void setSessionCacheSize(GenericIntegerAssert<?> sessionCacheSize) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "session cache size"));
     this.sessionCacheSize = sessionCacheSize;
   }
 
   @Override
-  public void setSessionTimeout(IntegerAssert<?> sessionTimeout) {
+  public void setSessionTimeout(GenericIntegerAssert<?> sessionTimeout) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "session timeout"));
     this.sessionTimeout = sessionTimeout;
   }
@@ -43,7 +43,7 @@ class SslSessionContextImpl extends SetterImpl<SSLSessionContext>
   }
 
   private static void verifyAssertion(
-      ObjectAssert<? super SSLSessionContext, ?> objectAssert,
+      GenericObjectAssert<? super SSLSessionContext, ?> objectAssert,
       SSLSessionContext sslSessionContext) {
     if (objectAssert != null) objectAssert.verify(sslSessionContext);
   }

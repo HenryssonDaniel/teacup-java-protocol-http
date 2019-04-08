@@ -3,10 +3,10 @@ package io.github.henryssondaniel.teacup.protocol.http.node;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
-import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
-import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 import java.net.URI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,12 +14,12 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 class UriImplTest {
-  private final BooleanAssert<?> booleanAssert = mock(BooleanAssert.class);
-  private final StringAssert<?> stringAssert = mock(StringAssert.class);
+  private final GenericBooleanAssert<?> genericBooleanAssert = mock(GenericBooleanAssert.class);
+  private final GenericStringAssert<?> genericStringAssert = mock(GenericStringAssert.class);
   private final URI uri = URI.create("uri");
   private final UriSetter uriSetter = new UriImpl();
 
-  @Mock private ObjectAssert<? super URI, ?> objectAssert;
+  @Mock private GenericObjectAssert<? super URI, ?> genericObjectAssert;
 
   @BeforeEach
   void beforeEach() {
@@ -28,147 +28,147 @@ class UriImplTest {
 
   @Test
   void setAbsolute() {
-    uriSetter.setAbsolute(booleanAssert);
+    uriSetter.setAbsolute(genericBooleanAssert);
     uriSetter.verify(uri);
 
-    verify(booleanAssert).verify(uri.isAbsolute());
+    verify(genericBooleanAssert).verify(uri.isAbsolute());
   }
 
   @Test
   void setAssertion() {
-    uriSetter.setAssertion(objectAssert);
+    uriSetter.setAssertion(genericObjectAssert);
     uriSetter.verify(uri);
 
-    verify(objectAssert).verify(uri);
+    verify(genericObjectAssert).verify(uri);
   }
 
   @Test
   void setAuthority() {
-    uriSetter.setAuthority(stringAssert);
+    uriSetter.setAuthority(genericStringAssert);
     uriSetter.verify(uri);
 
-    verify(stringAssert).verify(uri.getAuthority());
+    verify(genericStringAssert).verify(uri.getAuthority());
   }
 
   @Test
   void setFragment() {
-    uriSetter.setFragment(stringAssert);
+    uriSetter.setFragment(genericStringAssert);
     uriSetter.verify(uri);
 
-    verify(stringAssert).verify(uri.getFragment());
+    verify(genericStringAssert).verify(uri.getFragment());
   }
 
   @Test
   void setHost() {
-    uriSetter.setHost(stringAssert);
+    uriSetter.setHost(genericStringAssert);
     uriSetter.verify(uri);
 
-    verify(stringAssert).verify(uri.getHost());
+    verify(genericStringAssert).verify(uri.getHost());
   }
 
   @Test
   void setOpaque() {
-    uriSetter.setOpaque(booleanAssert);
+    uriSetter.setOpaque(genericBooleanAssert);
     uriSetter.verify(uri);
 
-    verify(booleanAssert).verify(uri.isOpaque());
+    verify(genericBooleanAssert).verify(uri.isOpaque());
   }
 
   @Test
   void setPath() {
-    uriSetter.setPath(stringAssert);
+    uriSetter.setPath(genericStringAssert);
     uriSetter.verify(uri);
 
-    verify(stringAssert).verify(uri.getPath());
+    verify(genericStringAssert).verify(uri.getPath());
   }
 
   @Test
   void setPort() {
-    IntegerAssert<?> integerAssert = mock(IntegerAssert.class);
+    GenericIntegerAssert<?> genericIntegerAssert = mock(GenericIntegerAssert.class);
 
-    uriSetter.setPort(integerAssert);
+    uriSetter.setPort(genericIntegerAssert);
     uriSetter.verify(uri);
 
-    verify(integerAssert).verify(uri.getPort());
+    verify(genericIntegerAssert).verify(uri.getPort());
   }
 
   @Test
   void setQuery() {
-    uriSetter.setQuery(stringAssert);
+    uriSetter.setQuery(genericStringAssert);
     uriSetter.verify(uri);
 
-    verify(stringAssert).verify(uri.getQuery());
+    verify(genericStringAssert).verify(uri.getQuery());
   }
 
   @Test
   void setRawAuthority() {
-    uriSetter.setRawAuthority(stringAssert);
+    uriSetter.setRawAuthority(genericStringAssert);
     uriSetter.verify(uri);
 
-    verify(stringAssert).verify(uri.getRawAuthority());
+    verify(genericStringAssert).verify(uri.getRawAuthority());
   }
 
   @Test
   void setRawFragment() {
-    uriSetter.setRawFragment(stringAssert);
+    uriSetter.setRawFragment(genericStringAssert);
     uriSetter.verify(uri);
 
-    verify(stringAssert).verify(uri.getRawFragment());
+    verify(genericStringAssert).verify(uri.getRawFragment());
   }
 
   @Test
   void setRawPath() {
-    uriSetter.setRawPath(stringAssert);
+    uriSetter.setRawPath(genericStringAssert);
     uriSetter.verify(uri);
 
-    verify(stringAssert).verify(uri.getRawPath());
+    verify(genericStringAssert).verify(uri.getRawPath());
   }
 
   @Test
   void setRawQuery() {
-    uriSetter.setRawQuery(stringAssert);
+    uriSetter.setRawQuery(genericStringAssert);
     uriSetter.verify(uri);
 
-    verify(stringAssert).verify(uri.getRawQuery());
+    verify(genericStringAssert).verify(uri.getRawQuery());
   }
 
   @Test
   void setRawSchemeSpecificPart() {
-    uriSetter.setRawSchemeSpecificPart(stringAssert);
+    uriSetter.setRawSchemeSpecificPart(genericStringAssert);
     uriSetter.verify(uri);
 
-    verify(stringAssert).verify(uri.getRawSchemeSpecificPart());
+    verify(genericStringAssert).verify(uri.getRawSchemeSpecificPart());
   }
 
   @Test
   void setRawUserInfo() {
-    uriSetter.setRawUserInfo(stringAssert);
+    uriSetter.setRawUserInfo(genericStringAssert);
     uriSetter.verify(uri);
 
-    verify(stringAssert).verify(uri.getRawUserInfo());
+    verify(genericStringAssert).verify(uri.getRawUserInfo());
   }
 
   @Test
   void setScheme() {
-    uriSetter.setScheme(stringAssert);
+    uriSetter.setScheme(genericStringAssert);
     uriSetter.verify(uri);
 
-    verify(stringAssert).verify(uri.getScheme());
+    verify(genericStringAssert).verify(uri.getScheme());
   }
 
   @Test
   void setSchemeSpecificPart() {
-    uriSetter.setSchemeSpecificPart(stringAssert);
+    uriSetter.setSchemeSpecificPart(genericStringAssert);
     uriSetter.verify(uri);
 
-    verify(stringAssert).verify(uri.getSchemeSpecificPart());
+    verify(genericStringAssert).verify(uri.getSchemeSpecificPart());
   }
 
   @Test
   void setUserInfo() {
-    uriSetter.setUserInfo(stringAssert);
+    uriSetter.setUserInfo(genericStringAssert);
     uriSetter.verify(uri);
 
-    verify(stringAssert).verify(uri.getUserInfo());
+    verify(genericStringAssert).verify(uri.getUserInfo());
   }
 }

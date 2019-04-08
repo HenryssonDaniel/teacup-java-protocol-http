@@ -5,15 +5,16 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import io.github.henryssondaniel.teacup.core.assertion.ComparableAssert;
-import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
-import io.github.henryssondaniel.teacup.core.assertion.MapAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericComparableAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericMapAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpResponse;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -22,12 +23,16 @@ import org.mockito.MockitoAnnotations;
 class ResponseImplTest {
   private final ResponseSetter<String> responseSetter = new ResponseImpl<>();
 
-  @Mock private ComparableAssert<? super Version, ?> comparableAssert;
+  @Mock private GenericComparableAssert<? super Version, ?> genericComparableAssert;
+
+  @Mock
+  private GenericMapAssert<String, List<String>, ? super Map<String, List<String>>, ?>
+      genericMapAssert;
+
+  @Mock private GenericObjectAssert<? super HttpResponse<String>, ?> genericObjectAssert;
+  @Mock private GenericObjectAssert<? super String, ?> genericStringObjectAssert;
   @Mock private HttpResponse<String> httpResponse;
-  @Mock private MapAssert<String, List<String>, ?> mapAssert;
-  @Mock private ObjectAssert<? super HttpResponse<String>, ?> objectAssert;
   @Mock private Response<String> response;
-  @Mock private ObjectAssert<? super String, ?> stringObjectAssert;
 
   @BeforeEach
   void beforeEach() {
@@ -36,7 +41,7 @@ class ResponseImplTest {
 
   @Test
   void setAssertion() {
-    responseSetter.setAssertion(objectAssert);
+    responseSetter.setAssertion(genericObjectAssert);
     responseSetter.verify(httpResponse);
 
     verify(httpResponse, never()).body();
@@ -48,12 +53,12 @@ class ResponseImplTest {
     verify(httpResponse, never()).uri();
     verify(httpResponse, never()).version();
 
-    verify(objectAssert).verify(httpResponse);
+    verify(genericObjectAssert).verify(httpResponse);
   }
 
   @Test
   void setBody() {
-    responseSetter.setBody(stringObjectAssert);
+    responseSetter.setBody(genericStringObjectAssert);
     responseSetter.verify(httpResponse);
 
     verify(httpResponse).body();
@@ -65,7 +70,7 @@ class ResponseImplTest {
     verify(httpResponse, never()).uri();
     verify(httpResponse, never()).version();
 
-    verify(stringObjectAssert).verify(httpResponse.body());
+    verify(genericStringObjectAssert).verify(httpResponse.body());
   }
 
   @Test
@@ -73,7 +78,7 @@ class ResponseImplTest {
     when(httpResponse.headers())
         .thenReturn(HttpHeaders.of(Collections.emptyMap(), (s1, s2) -> false));
 
-    responseSetter.setHeaders(mapAssert);
+    responseSetter.setHeaders(genericMapAssert);
     responseSetter.verify(httpResponse);
 
     verify(httpResponse, never()).body();
@@ -85,7 +90,7 @@ class ResponseImplTest {
     verify(httpResponse, never()).uri();
     verify(httpResponse, never()).version();
 
-    verify(mapAssert).verify(httpResponse.headers().map());
+    verify(genericMapAssert).verify(httpResponse.headers().map());
   }
 
   @Test
@@ -145,9 +150,9 @@ class ResponseImplTest {
 
   @Test
   void setStatusCode() {
-    IntegerAssert<?> integerAssert = mock(IntegerAssert.class);
+    GenericIntegerAssert<?> genericIntegerAssert = mock(GenericIntegerAssert.class);
 
-    responseSetter.setStatusCode(integerAssert);
+    responseSetter.setStatusCode(genericIntegerAssert);
     responseSetter.verify(httpResponse);
 
     verify(httpResponse, never()).body();
@@ -159,7 +164,7 @@ class ResponseImplTest {
     verify(httpResponse, never()).uri();
     verify(httpResponse, never()).version();
 
-    verify(integerAssert).verify(httpResponse.statusCode());
+    verify(genericIntegerAssert).verify(httpResponse.statusCode());
   }
 
   @Test
@@ -183,7 +188,7 @@ class ResponseImplTest {
 
   @Test
   void setVersion() {
-    responseSetter.setVersion(comparableAssert);
+    responseSetter.setVersion(genericComparableAssert);
     responseSetter.verify(httpResponse);
 
     verify(httpResponse, never()).body();
@@ -195,6 +200,6 @@ class ResponseImplTest {
     verify(httpResponse, never()).uri();
     verify(httpResponse).version();
 
-    verify(comparableAssert).verify(httpResponse.version());
+    verify(genericComparableAssert).verify(httpResponse.version());
   }
 }

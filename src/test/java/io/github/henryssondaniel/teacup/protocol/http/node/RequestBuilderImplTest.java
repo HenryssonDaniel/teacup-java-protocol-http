@@ -4,12 +4,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ComparableAssert;
-import io.github.henryssondaniel.teacup.core.assertion.MapAssert;
-import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericComparableAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericMapAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 import java.net.http.HttpClient.Version;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -19,9 +20,13 @@ import org.mockito.MockitoAnnotations;
 class RequestBuilderImplTest {
   @InjectMocks private final RequestBuilder requestBuilder = new RequestBuilderImpl();
 
-  @Mock private ComparableAssert<Version, ?> comparableAssert;
+  @Mock private GenericComparableAssert<Version, ?> genericComparableAssert;
+
+  @Mock
+  private GenericMapAssert<String, List<String>, ? super Map<String, List<String>>, ?>
+      genericMapAssert;
+
   @Mock private RequestSetter implementation;
-  @Mock private MapAssert<String, List<String>, ?> mapAssert;
 
   @BeforeEach
   void beforeEach() {
@@ -44,24 +49,24 @@ class RequestBuilderImplTest {
 
   @Test
   void setExpectContinue() {
-    var booleanAssert = mock(BooleanAssert.class);
+    var genericBooleanAssert = mock(GenericBooleanAssert.class);
 
-    assertThat(requestBuilder.setExpectContinue(booleanAssert)).isSameAs(requestBuilder);
-    verify(implementation).setExpectContinue(booleanAssert);
+    assertThat(requestBuilder.setExpectContinue(genericBooleanAssert)).isSameAs(requestBuilder);
+    verify(implementation).setExpectContinue(genericBooleanAssert);
   }
 
   @Test
   void setHeaders() {
-    assertThat(requestBuilder.setHeaders(mapAssert)).isSameAs(requestBuilder);
-    verify(implementation).setHeaders(mapAssert);
+    assertThat(requestBuilder.setHeaders(genericMapAssert)).isSameAs(requestBuilder);
+    verify(implementation).setHeaders(genericMapAssert);
   }
 
   @Test
   void setMethod() {
-    var stringAssert = mock(StringAssert.class);
+    var genericStringAssert = mock(GenericStringAssert.class);
 
-    assertThat(requestBuilder.setMethod(stringAssert)).isSameAs(requestBuilder);
-    verify(implementation).setMethod(stringAssert);
+    assertThat(requestBuilder.setMethod(genericStringAssert)).isSameAs(requestBuilder);
+    verify(implementation).setMethod(genericStringAssert);
   }
 
   @Test
@@ -82,7 +87,7 @@ class RequestBuilderImplTest {
 
   @Test
   void setVersion() {
-    assertThat(requestBuilder.setVersion(comparableAssert)).isSameAs(requestBuilder);
-    verify(implementation).setVersion(comparableAssert);
+    assertThat(requestBuilder.setVersion(genericComparableAssert)).isSameAs(requestBuilder);
+    verify(implementation).setVersion(genericComparableAssert);
   }
 }

@@ -4,11 +4,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ByteArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericByteArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
 import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectArrayAssert;
 import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
 import java.security.cert.Certificate;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,15 +21,15 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 class SslSessionBuilderImplTest {
-  private final IntegerAssert<?> integerAssert = mock(IntegerAssert.class);
-  private final LongAssert<?> longAssert = mock(LongAssert.class);
+  private final GenericIntegerAssert<?> genericIntegerAssert = mock(IntegerAssert.class);
+  private final GenericLongAssert<?> genericLongAssert = mock(LongAssert.class);
+  private final GenericStringAssert<?> genericStringAssert = mock(StringAssert.class);
   private final Principal principal = mock(Principal.class);
   @InjectMocks private final SslSessionBuilder sslSessionBuilder = new SslSessionBuilderImpl();
-  private final StringAssert<?> stringAssert = mock(StringAssert.class);
 
-  @Mock private ObjectArrayAssert<? super Certificate, ?> certificateArrayAssert;
+  @Mock private GenericObjectArrayAssert<? super Certificate, ?> genericObjectArrayAssert;
+  @Mock private GenericObjectArrayAssert<? super String, ?> genericStringArrayAssert;
   @Mock private SslSessionSetter implementation;
-  @Mock private ObjectArrayAssert<? super String, ?> stringArrayAssert;
 
   @BeforeEach
   void beforeEach() {
@@ -41,42 +44,43 @@ class SslSessionBuilderImplTest {
 
   @Test
   void setApplicationBufferSize() {
-    assertThat(sslSessionBuilder.setApplicationBufferSize(integerAssert))
+    assertThat(sslSessionBuilder.setApplicationBufferSize(genericIntegerAssert))
         .isSameAs(sslSessionBuilder);
-    verify(implementation).setApplicationBufferSize(integerAssert);
+    verify(implementation).setApplicationBufferSize(genericIntegerAssert);
   }
 
   @Test
   void setCipherSuite() {
-    assertThat(sslSessionBuilder.setCipherSuite(stringAssert)).isSameAs(sslSessionBuilder);
-    verify(implementation).setCipherSuite(stringAssert);
+    assertThat(sslSessionBuilder.setCipherSuite(genericStringAssert)).isSameAs(sslSessionBuilder);
+    verify(implementation).setCipherSuite(genericStringAssert);
   }
 
   @Test
   void setCreationTime() {
-    assertThat(sslSessionBuilder.setCreationTime(longAssert)).isSameAs(sslSessionBuilder);
-    verify(implementation).setCreationTime(longAssert);
+    assertThat(sslSessionBuilder.setCreationTime(genericLongAssert)).isSameAs(sslSessionBuilder);
+    verify(implementation).setCreationTime(genericLongAssert);
   }
 
   @Test
   void setId() {
-    var byteArrayAssert = mock(ByteArrayAssert.class);
+    var genericByteArrayAssert = mock(GenericByteArrayAssert.class);
 
-    assertThat(sslSessionBuilder.setId(byteArrayAssert)).isSameAs(sslSessionBuilder);
-    verify(implementation).setId(byteArrayAssert);
+    assertThat(sslSessionBuilder.setId(genericByteArrayAssert)).isSameAs(sslSessionBuilder);
+    verify(implementation).setId(genericByteArrayAssert);
   }
 
   @Test
   void setLastAccessedTime() {
-    assertThat(sslSessionBuilder.setLastAccessedTime(longAssert)).isSameAs(sslSessionBuilder);
-    verify(implementation).setLastAccessedTime(longAssert);
+    assertThat(sslSessionBuilder.setLastAccessedTime(genericLongAssert))
+        .isSameAs(sslSessionBuilder);
+    verify(implementation).setLastAccessedTime(genericLongAssert);
   }
 
   @Test
   void setLocalCertificates() {
-    assertThat(sslSessionBuilder.setLocalCertificates(certificateArrayAssert))
+    assertThat(sslSessionBuilder.setLocalCertificates(genericObjectArrayAssert))
         .isSameAs(sslSessionBuilder);
-    verify(implementation).setLocalCertificates(certificateArrayAssert);
+    verify(implementation).setLocalCertificates(genericObjectArrayAssert);
   }
 
   @Test
@@ -87,27 +91,28 @@ class SslSessionBuilderImplTest {
 
   @Test
   void setPacketBufferSize() {
-    assertThat(sslSessionBuilder.setPacketBufferSize(integerAssert)).isSameAs(sslSessionBuilder);
-    verify(implementation).setPacketBufferSize(integerAssert);
+    assertThat(sslSessionBuilder.setPacketBufferSize(genericIntegerAssert))
+        .isSameAs(sslSessionBuilder);
+    verify(implementation).setPacketBufferSize(genericIntegerAssert);
   }
 
   @Test
   void setPeerCertificates() {
-    assertThat(sslSessionBuilder.setPeerCertificates(certificateArrayAssert))
+    assertThat(sslSessionBuilder.setPeerCertificates(genericObjectArrayAssert))
         .isSameAs(sslSessionBuilder);
-    verify(implementation).setPeerCertificates(certificateArrayAssert);
+    verify(implementation).setPeerCertificates(genericObjectArrayAssert);
   }
 
   @Test
   void setPeerHost() {
-    assertThat(sslSessionBuilder.setPeerHost(stringAssert)).isSameAs(sslSessionBuilder);
-    verify(implementation).setPeerHost(stringAssert);
+    assertThat(sslSessionBuilder.setPeerHost(genericStringAssert)).isSameAs(sslSessionBuilder);
+    verify(implementation).setPeerHost(genericStringAssert);
   }
 
   @Test
   void setPeerPort() {
-    assertThat(sslSessionBuilder.setPeerPort(integerAssert)).isSameAs(sslSessionBuilder);
-    verify(implementation).setPeerPort(integerAssert);
+    assertThat(sslSessionBuilder.setPeerPort(genericIntegerAssert)).isSameAs(sslSessionBuilder);
+    verify(implementation).setPeerPort(genericIntegerAssert);
   }
 
   @Test
@@ -118,8 +123,8 @@ class SslSessionBuilderImplTest {
 
   @Test
   void setProtocol() {
-    assertThat(sslSessionBuilder.setProtocol(stringAssert)).isSameAs(sslSessionBuilder);
-    verify(implementation).setProtocol(stringAssert);
+    assertThat(sslSessionBuilder.setProtocol(genericStringAssert)).isSameAs(sslSessionBuilder);
+    verify(implementation).setProtocol(genericStringAssert);
   }
 
   @Test
@@ -132,15 +137,16 @@ class SslSessionBuilderImplTest {
 
   @Test
   void setValid() {
-    var booleanAssert = mock(BooleanAssert.class);
+    var genericBooleanAssert = mock(GenericBooleanAssert.class);
 
-    assertThat(sslSessionBuilder.setValid(booleanAssert)).isSameAs(sslSessionBuilder);
-    verify(implementation).setValid(booleanAssert);
+    assertThat(sslSessionBuilder.setValid(genericBooleanAssert)).isSameAs(sslSessionBuilder);
+    verify(implementation).setValid(genericBooleanAssert);
   }
 
   @Test
   void setValueNames() {
-    assertThat(sslSessionBuilder.setValueNames(stringArrayAssert)).isSameAs(sslSessionBuilder);
-    verify(implementation).setValueNames(stringArrayAssert);
+    assertThat(sslSessionBuilder.setValueNames(genericStringArrayAssert))
+        .isSameAs(sslSessionBuilder);
+    verify(implementation).setValueNames(genericStringArrayAssert);
   }
 }

@@ -3,12 +3,12 @@ package io.github.henryssondaniel.teacup.protocol.http.node;
 import static io.github.henryssondaniel.teacup.protocol.http.node.Constants.SETTING_THE;
 import static io.github.henryssondaniel.teacup.protocol.http.node.Constants.SETTING_WHETHER;
 
-import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ByteArrayAssert;
-import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
-import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectArrayAssert;
-import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericByteArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 import java.security.cert.Certificate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,35 +24,35 @@ class SslSessionBuilderImpl
   }
 
   @Override
-  public SslSessionBuilder setApplicationBufferSize(IntegerAssert<?> applicationBufferSize) {
+  public SslSessionBuilder setApplicationBufferSize(GenericIntegerAssert<?> applicationBufferSize) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "application buffer size"));
     getImplementation().setApplicationBufferSize(applicationBufferSize);
     return this;
   }
 
   @Override
-  public SslSessionBuilder setCipherSuite(StringAssert<?> cipherSuite) {
+  public SslSessionBuilder setCipherSuite(GenericStringAssert<?> cipherSuite) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "cipher suite"));
     getImplementation().setCipherSuite(cipherSuite);
     return this;
   }
 
   @Override
-  public SslSessionBuilder setCreationTime(LongAssert<?> creationTime) {
+  public SslSessionBuilder setCreationTime(GenericLongAssert<?> creationTime) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "creation time"));
     getImplementation().setCreationTime(creationTime);
     return this;
   }
 
   @Override
-  public SslSessionBuilder setId(ByteArrayAssert<?> id) {
+  public SslSessionBuilder setId(GenericByteArrayAssert<?> id) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "ID"));
     getImplementation().setId(id);
     return this;
   }
 
   @Override
-  public SslSessionBuilder setLastAccessedTime(LongAssert<?> lastAccessedTime) {
+  public SslSessionBuilder setLastAccessedTime(GenericLongAssert<?> lastAccessedTime) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "last accessed time"));
     getImplementation().setLastAccessedTime(lastAccessedTime);
     return this;
@@ -60,7 +60,7 @@ class SslSessionBuilderImpl
 
   @Override
   public SslSessionBuilder setLocalCertificates(
-      ObjectArrayAssert<? super Certificate, ?> localCertificates) {
+      GenericObjectArrayAssert<? super Certificate, ?> localCertificates) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "local certificates"));
     getImplementation().setLocalCertificates(localCertificates);
     return this;
@@ -74,7 +74,7 @@ class SslSessionBuilderImpl
   }
 
   @Override
-  public SslSessionBuilder setPacketBufferSize(IntegerAssert<?> packetBufferSize) {
+  public SslSessionBuilder setPacketBufferSize(GenericIntegerAssert<?> packetBufferSize) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "packet buffer size"));
     getImplementation().setPacketBufferSize(packetBufferSize);
     return this;
@@ -82,21 +82,21 @@ class SslSessionBuilderImpl
 
   @Override
   public SslSessionBuilder setPeerCertificates(
-      ObjectArrayAssert<? super Certificate, ?> peerCertificates) {
+      GenericObjectArrayAssert<? super Certificate, ?> peerCertificates) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "peer certificates"));
     getImplementation().setPeerCertificates(peerCertificates);
     return this;
   }
 
   @Override
-  public SslSessionBuilder setPeerHost(StringAssert<?> peerHost) {
+  public SslSessionBuilder setPeerHost(GenericStringAssert<?> peerHost) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "peer host"));
     getImplementation().setPeerHost(peerHost);
     return this;
   }
 
   @Override
-  public SslSessionBuilder setPeerPort(IntegerAssert<?> peerPort) {
+  public SslSessionBuilder setPeerPort(GenericIntegerAssert<?> peerPort) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "peer port"));
     getImplementation().setPeerPort(peerPort);
     return this;
@@ -110,7 +110,7 @@ class SslSessionBuilderImpl
   }
 
   @Override
-  public SslSessionBuilder setProtocol(StringAssert<?> protocol) {
+  public SslSessionBuilder setProtocol(GenericStringAssert<?> protocol) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "protocol"));
     getImplementation().setProtocol(protocol);
     return this;
@@ -124,14 +124,14 @@ class SslSessionBuilderImpl
   }
 
   @Override
-  public SslSessionBuilder setValid(BooleanAssert<?> valid) {
+  public SslSessionBuilder setValid(GenericBooleanAssert<?> valid) {
     LOGGER.log(Level.FINE, String.format(SETTING_WHETHER, "valid"));
     getImplementation().setValid(valid);
     return this;
   }
 
   @Override
-  public SslSessionBuilder setValueNames(ObjectArrayAssert<? super String, ?> valueNames) {
+  public SslSessionBuilder setValueNames(GenericObjectArrayAssert<? super String, ?> valueNames) {
     LOGGER.log(Level.FINE, String.format(SETTING_THE, "value names"));
     getImplementation().setValueNames(valueNames);
     return this;

@@ -1,42 +1,42 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
-import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
-import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
-import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 import java.net.URI;
 
 interface UriSetter extends Setter<URI>, Uri {
-  void setAbsolute(BooleanAssert<?> absolute);
+  void setAbsolute(GenericBooleanAssert<?> absolute);
 
-  void setAuthority(StringAssert<?> authority);
+  void setAuthority(GenericStringAssert<?> authority);
 
-  void setFragment(StringAssert<?> fragment);
+  void setFragment(GenericStringAssert<?> fragment);
 
-  void setHost(StringAssert<?> host);
+  void setHost(GenericStringAssert<?> host);
 
-  void setOpaque(BooleanAssert<?> opaque);
+  void setOpaque(GenericBooleanAssert<?> opaque);
 
-  void setPath(StringAssert<?> path);
+  void setPath(GenericStringAssert<?> path);
 
-  void setPort(IntegerAssert<?> port);
+  void setPort(GenericIntegerAssert<?> port);
 
-  void setQuery(StringAssert<?> query);
+  void setQuery(GenericStringAssert<?> query);
 
-  void setRawAuthority(StringAssert<?> rawAuthority);
+  void setRawAuthority(GenericStringAssert<?> rawAuthority);
 
-  void setRawFragment(StringAssert<?> rawFragment);
+  void setRawFragment(GenericStringAssert<?> rawFragment);
 
-  void setRawPath(StringAssert<?> rawPath);
+  void setRawPath(GenericStringAssert<?> rawPath);
 
-  void setRawQuery(StringAssert<?> rawQuery);
+  void setRawQuery(GenericStringAssert<?> rawQuery);
 
-  void setRawSchemeSpecificPart(StringAssert<?> rawSchemeSpecificPart);
+  void setRawSchemeSpecificPart(GenericStringAssert<?> rawSchemeSpecificPart);
 
-  void setRawUserInfo(StringAssert<?> rawUserInfo);
+  void setRawUserInfo(GenericStringAssert<?> rawUserInfo);
 
-  void setScheme(StringAssert<?> scheme);
+  void setScheme(GenericStringAssert<?> scheme);
 
-  void setSchemeSpecificPart(StringAssert<?> schemeSpecificPart);
+  void setSchemeSpecificPart(GenericStringAssert<?> schemeSpecificPart);
 
-  void setUserInfo(StringAssert<?> userInfo);
+  void setUserInfo(GenericStringAssert<?> userInfo);
 }

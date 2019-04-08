@@ -1,10 +1,10 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
 import io.github.henryssondaniel.teacup.core.Node;
-import io.github.henryssondaniel.teacup.core.assertion.ComparableAssert;
-import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
-import io.github.henryssondaniel.teacup.core.assertion.MapAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericComparableAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericMapAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import java.net.URI;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpRequest;
@@ -18,22 +18,23 @@ import javax.net.ssl.SSLSession;
 class ResponseImpl<T> extends SetterImpl<HttpResponse<T>> implements ResponseSetter<T> {
   private static final Logger LOGGER = Logger.getLogger(ResponseImpl.class.getName());
 
-  private ObjectAssert<? super T, ?> body;
-  private ObjectAssert<Map<String, List<String>>, ?> headers;
+  private GenericObjectAssert<? super T, ?> body;
+  private GenericObjectAssert<? super Map<String, List<String>>, ?> headers;
   private Node<HttpResponse<T>> previousResponse;
   private Node<HttpRequest> request;
   private Node<SSLSession> sslSession;
-  private ObjectAssert<Integer, ?> statusCode;
+  private GenericObjectAssert<Integer, ?> statusCode;
   private Node<URI> uri;
-  private ObjectAssert<? super Version, ?> version;
+  private GenericObjectAssert<? super Version, ?> version;
 
   @Override
-  public void setBody(ObjectAssert<? super T, ?> body) {
+  public void setBody(GenericObjectAssert<? super T, ?> body) {
     this.body = body;
   }
 
   @Override
-  public void setHeaders(MapAssert<String, List<String>, ?> headers) {
+  public void setHeaders(
+      GenericMapAssert<String, List<String>, ? super Map<String, List<String>>, ?> headers) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "headers"));
     this.headers = headers;
   }
@@ -57,7 +58,7 @@ class ResponseImpl<T> extends SetterImpl<HttpResponse<T>> implements ResponseSet
   }
 
   @Override
-  public void setStatusCode(IntegerAssert<?> statusCode) {
+  public void setStatusCode(GenericIntegerAssert<?> statusCode) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "status code"));
     this.statusCode = statusCode;
   }
@@ -69,7 +70,7 @@ class ResponseImpl<T> extends SetterImpl<HttpResponse<T>> implements ResponseSet
   }
 
   @Override
-  public void setVersion(ComparableAssert<? super Version, ?> version) {
+  public void setVersion(GenericComparableAssert<? super Version, ?> version) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "version"));
     this.version = version;
   }
@@ -90,7 +91,7 @@ class ResponseImpl<T> extends SetterImpl<HttpResponse<T>> implements ResponseSet
   }
 
   private void verifyAssertion(
-      HttpResponse<T> httpResponse, ObjectAssert<? super HttpResponse<T>, ?> objectAssert) {
+      HttpResponse<T> httpResponse, GenericObjectAssert<? super HttpResponse<T>, ?> objectAssert) {
     if (objectAssert != null) objectAssert.verify(httpResponse);
   }
 

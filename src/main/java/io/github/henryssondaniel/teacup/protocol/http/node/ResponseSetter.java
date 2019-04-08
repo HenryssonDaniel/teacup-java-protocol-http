@@ -1,17 +1,19 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
-import io.github.henryssondaniel.teacup.core.assertion.ComparableAssert;
-import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
-import io.github.henryssondaniel.teacup.core.assertion.MapAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericComparableAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericMapAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpResponse;
 import java.util.List;
+import java.util.Map;
 
 interface ResponseSetter<T> extends Response<T>, Setter<HttpResponse<T>> {
-  void setBody(ObjectAssert<? super T, ?> body);
+  void setBody(GenericObjectAssert<? super T, ?> body);
 
-  void setHeaders(MapAssert<String, List<String>, ?> headers);
+  void setHeaders(
+      GenericMapAssert<String, List<String>, ? super Map<String, List<String>>, ?> headers);
 
   void setPreviousResponse(Response<T> previousResponse);
 
@@ -19,9 +21,9 @@ interface ResponseSetter<T> extends Response<T>, Setter<HttpResponse<T>> {
 
   void setSslSession(SslSession sslSession);
 
-  void setStatusCode(IntegerAssert<?> statusCode);
+  void setStatusCode(GenericIntegerAssert<?> statusCode);
 
   void setUri(Uri uri);
 
-  void setVersion(ComparableAssert<? super Version, ?> version);
+  void setVersion(GenericComparableAssert<? super Version, ?> version);
 }

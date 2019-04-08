@@ -1,17 +1,17 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
-import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 import java.security.Principal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 class PrincipalImpl extends SetterImpl<Principal> implements PrincipalSetter {
   private static final Logger LOGGER = Logger.getLogger(PrincipalImpl.class.getName());
-  private ObjectAssert<String, ?> name;
+  private GenericObjectAssert<String, ?> name;
 
   @Override
-  public void setName(StringAssert<?> name) {
+  public void setName(GenericStringAssert<?> name) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "name"));
     this.name = name;
   }
@@ -25,7 +25,7 @@ class PrincipalImpl extends SetterImpl<Principal> implements PrincipalSetter {
   }
 
   private static void verifyAssertion(
-      ObjectAssert<? super Principal, ?> objectAssert, Principal principal) {
+      GenericObjectAssert<? super Principal, ?> objectAssert, Principal principal) {
     if (objectAssert != null) objectAssert.verify(principal);
   }
 }

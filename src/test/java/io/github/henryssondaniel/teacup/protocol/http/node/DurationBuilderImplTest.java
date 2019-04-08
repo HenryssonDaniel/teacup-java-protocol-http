@@ -4,11 +4,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
-import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ListAssert;
-import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericListAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
 import java.time.temporal.TemporalUnit;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,14 +17,17 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 class DurationBuilderImplTest {
-  private final BooleanAssert<?> booleanAssert = mock(BooleanAssert.class);
   private final Duration duration = mock(Duration.class);
   @InjectMocks private final DurationBuilder durationBuilder = new DurationBuilderImpl();
-  private final IntegerAssert<?> integerAssert = mock(IntegerAssert.class);
-  private final LongAssert<?> longAssert = mock(LongAssert.class);
+  private final GenericBooleanAssert<?> genericBooleanAssert = mock(GenericBooleanAssert.class);
+  private final GenericIntegerAssert<?> genericIntegerAssert = mock(GenericIntegerAssert.class);
+  private final GenericLongAssert<?> genericLongAssert = mock(GenericLongAssert.class);
+
+  @Mock
+  private GenericListAssert<? super TemporalUnit, ? super List<? extends TemporalUnit>, ?>
+      genericListAssert;
 
   @Mock private DurationSetter implementation;
-  @Mock private ListAssert<? super TemporalUnit, ?> listAssert;
 
   @BeforeEach
   void beforeEach() {
@@ -44,8 +48,8 @@ class DurationBuilderImplTest {
 
   @Test
   void setNano() {
-    assertThat(durationBuilder.setNano(integerAssert)).isSameAs(durationBuilder);
-    verify(implementation).setNano(integerAssert);
+    assertThat(durationBuilder.setNano(genericIntegerAssert)).isSameAs(durationBuilder);
+    verify(implementation).setNano(genericIntegerAssert);
   }
 
   @Test
@@ -56,97 +60,97 @@ class DurationBuilderImplTest {
 
   @Test
   void setNegative() {
-    assertThat(durationBuilder.setNegative(booleanAssert)).isSameAs(durationBuilder);
-    verify(implementation).setNegative(booleanAssert);
+    assertThat(durationBuilder.setNegative(genericBooleanAssert)).isSameAs(durationBuilder);
+    verify(implementation).setNegative(genericBooleanAssert);
   }
 
   @Test
   void setSeconds() {
-    assertThat(durationBuilder.setSeconds(longAssert)).isSameAs(durationBuilder);
-    verify(implementation).setSeconds(longAssert);
+    assertThat(durationBuilder.setSeconds(genericLongAssert)).isSameAs(durationBuilder);
+    verify(implementation).setSeconds(genericLongAssert);
   }
 
   @Test
   void setToDays() {
-    assertThat(durationBuilder.setToDays(longAssert)).isSameAs(durationBuilder);
-    verify(implementation).setToDays(longAssert);
+    assertThat(durationBuilder.setToDays(genericLongAssert)).isSameAs(durationBuilder);
+    verify(implementation).setToDays(genericLongAssert);
   }
 
   @Test
   void setToDaysPart() {
-    assertThat(durationBuilder.setToDaysPart(longAssert)).isSameAs(durationBuilder);
-    verify(implementation).setToDaysPart(longAssert);
+    assertThat(durationBuilder.setToDaysPart(genericLongAssert)).isSameAs(durationBuilder);
+    verify(implementation).setToDaysPart(genericLongAssert);
   }
 
   @Test
   void setToHours() {
-    assertThat(durationBuilder.setToHours(longAssert)).isSameAs(durationBuilder);
-    verify(implementation).setToHours(longAssert);
+    assertThat(durationBuilder.setToHours(genericLongAssert)).isSameAs(durationBuilder);
+    verify(implementation).setToHours(genericLongAssert);
   }
 
   @Test
   void setToHoursPart() {
-    assertThat(durationBuilder.setToHoursPart(integerAssert)).isSameAs(durationBuilder);
-    verify(implementation).setToHoursPart(integerAssert);
+    assertThat(durationBuilder.setToHoursPart(genericIntegerAssert)).isSameAs(durationBuilder);
+    verify(implementation).setToHoursPart(genericIntegerAssert);
   }
 
   @Test
   void setToMillis() {
-    assertThat(durationBuilder.setToMillis(longAssert)).isSameAs(durationBuilder);
-    verify(implementation).setToMillis(longAssert);
+    assertThat(durationBuilder.setToMillis(genericLongAssert)).isSameAs(durationBuilder);
+    verify(implementation).setToMillis(genericLongAssert);
   }
 
   @Test
   void setToMillisPart() {
-    assertThat(durationBuilder.setToMillisPart(integerAssert)).isSameAs(durationBuilder);
-    verify(implementation).setToMillisPart(integerAssert);
+    assertThat(durationBuilder.setToMillisPart(genericIntegerAssert)).isSameAs(durationBuilder);
+    verify(implementation).setToMillisPart(genericIntegerAssert);
   }
 
   @Test
   void setToMinutes() {
-    assertThat(durationBuilder.setToMinutes(longAssert)).isSameAs(durationBuilder);
-    verify(implementation).setToMinutes(longAssert);
+    assertThat(durationBuilder.setToMinutes(genericLongAssert)).isSameAs(durationBuilder);
+    verify(implementation).setToMinutes(genericLongAssert);
   }
 
   @Test
   void setToMinutesPart() {
-    assertThat(durationBuilder.setToMinutesPart(integerAssert)).isSameAs(durationBuilder);
-    verify(implementation).setToMinutesPart(integerAssert);
+    assertThat(durationBuilder.setToMinutesPart(genericIntegerAssert)).isSameAs(durationBuilder);
+    verify(implementation).setToMinutesPart(genericIntegerAssert);
   }
 
   @Test
   void setToNanos() {
-    assertThat(durationBuilder.setToNanos(longAssert)).isSameAs(durationBuilder);
-    verify(implementation).setToNanos(longAssert);
+    assertThat(durationBuilder.setToNanos(genericLongAssert)).isSameAs(durationBuilder);
+    verify(implementation).setToNanos(genericLongAssert);
   }
 
   @Test
   void setToNanosPart() {
-    assertThat(durationBuilder.setToNanosPart(integerAssert)).isSameAs(durationBuilder);
-    verify(implementation).setToNanosPart(integerAssert);
+    assertThat(durationBuilder.setToNanosPart(genericIntegerAssert)).isSameAs(durationBuilder);
+    verify(implementation).setToNanosPart(genericIntegerAssert);
   }
 
   @Test
   void setToSeconds() {
-    assertThat(durationBuilder.setToSeconds(longAssert)).isSameAs(durationBuilder);
-    verify(implementation).setToSeconds(longAssert);
+    assertThat(durationBuilder.setToSeconds(genericLongAssert)).isSameAs(durationBuilder);
+    verify(implementation).setToSeconds(genericLongAssert);
   }
 
   @Test
   void setToSecondsPart() {
-    assertThat(durationBuilder.setToSecondsPart(integerAssert)).isSameAs(durationBuilder);
-    verify(implementation).setToSecondsPart(integerAssert);
+    assertThat(durationBuilder.setToSecondsPart(genericIntegerAssert)).isSameAs(durationBuilder);
+    verify(implementation).setToSecondsPart(genericIntegerAssert);
   }
 
   @Test
   void setUnits() {
-    assertThat(durationBuilder.setUnits(listAssert)).isSameAs(durationBuilder);
-    verify(implementation).setUnits(listAssert);
+    assertThat(durationBuilder.setUnits(genericListAssert)).isSameAs(durationBuilder);
+    verify(implementation).setUnits(genericListAssert);
   }
 
   @Test
   void setZero() {
-    assertThat(durationBuilder.setZero(booleanAssert)).isSameAs(durationBuilder);
-    verify(implementation).setZero(booleanAssert);
+    assertThat(durationBuilder.setZero(genericBooleanAssert)).isSameAs(durationBuilder);
+    verify(implementation).setZero(genericBooleanAssert);
   }
 }

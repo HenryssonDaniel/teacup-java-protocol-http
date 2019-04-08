@@ -6,12 +6,15 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ByteArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericByteArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
 import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectArrayAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
 import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
 import java.security.cert.Certificate;
 import javax.net.ssl.SSLPeerUnverifiedException;
@@ -25,16 +28,16 @@ class SslSessionImplTest {
   private static final SSLPeerUnverifiedException SSL_PEER_UNVERIFIED_EXCEPTION =
       new SSLPeerUnverifiedException("test");
 
-  private final IntegerAssert<?> integerAssert = mock(IntegerAssert.class);
-  private final LongAssert<?> longAssert = mock(LongAssert.class);
+  private final GenericIntegerAssert<?> genericIntegerAssert = mock(IntegerAssert.class);
+  private final GenericLongAssert<?> genericLongAssert = mock(LongAssert.class);
+  private final GenericStringAssert<?> genericStringAssert = mock(StringAssert.class);
   private final Principal principal = mock(Principal.class);
   private final SSLSession sslSession = mock(SSLSession.class);
   private final SslSessionSetter sslSessionSetter = new SslSessionImpl();
-  private final StringAssert<?> stringAssert = mock(StringAssert.class);
 
-  @Mock private ObjectArrayAssert<Certificate, ?> objectArrayAssert;
-  @Mock private ObjectAssert<? super SSLSession, ?> objectAssert;
-  @Mock private ObjectArrayAssert<String, ?> stringObjectArrayAssert;
+  @Mock private GenericObjectArrayAssert<Certificate, ?> genericObjectArrayAssert;
+  @Mock private GenericObjectAssert<? super SSLSession, ?> genericObjectAssert;
+  @Mock private GenericObjectArrayAssert<String, ?> genericStringObjectArrayAssert;
 
   @BeforeEach
   void beforeEach() {
@@ -43,7 +46,7 @@ class SslSessionImplTest {
 
   @Test
   void setApplicationBufferSize() throws SSLPeerUnverifiedException {
-    sslSessionSetter.setApplicationBufferSize(integerAssert);
+    sslSessionSetter.setApplicationBufferSize(genericIntegerAssert);
     sslSessionSetter.verify(sslSession);
 
     verify(sslSession).getApplicationBufferSize();
@@ -63,12 +66,12 @@ class SslSessionImplTest {
     verify(sslSession, never()).getValueNames();
     verify(sslSession, never()).isValid();
 
-    verify(integerAssert).verify(sslSession.getApplicationBufferSize());
+    verify(genericIntegerAssert).verify(sslSession.getApplicationBufferSize());
   }
 
   @Test
   void setAssertion() throws SSLPeerUnverifiedException {
-    sslSessionSetter.setAssertion(objectAssert);
+    sslSessionSetter.setAssertion(genericObjectAssert);
     sslSessionSetter.verify(sslSession);
 
     verify(sslSession, never()).getApplicationBufferSize();
@@ -88,12 +91,12 @@ class SslSessionImplTest {
     verify(sslSession, never()).getValueNames();
     verify(sslSession, never()).isValid();
 
-    verify(objectAssert).verify(sslSession);
+    verify(genericObjectAssert).verify(sslSession);
   }
 
   @Test
   void setCipherSuite() throws SSLPeerUnverifiedException {
-    sslSessionSetter.setCipherSuite(stringAssert);
+    sslSessionSetter.setCipherSuite(genericStringAssert);
     sslSessionSetter.verify(sslSession);
 
     verify(sslSession, never()).getApplicationBufferSize();
@@ -113,12 +116,12 @@ class SslSessionImplTest {
     verify(sslSession, never()).getValueNames();
     verify(sslSession, never()).isValid();
 
-    verify(stringAssert).verify(sslSession.getCipherSuite());
+    verify(genericStringAssert).verify(sslSession.getCipherSuite());
   }
 
   @Test
   void setCreationTime() throws SSLPeerUnverifiedException {
-    sslSessionSetter.setCreationTime(longAssert);
+    sslSessionSetter.setCreationTime(genericLongAssert);
     sslSessionSetter.verify(sslSession);
 
     verify(sslSession, never()).getApplicationBufferSize();
@@ -138,14 +141,14 @@ class SslSessionImplTest {
     verify(sslSession, never()).getValueNames();
     verify(sslSession, never()).isValid();
 
-    verify(longAssert).verify(sslSession.getCreationTime());
+    verify(genericLongAssert).verify(sslSession.getCreationTime());
   }
 
   @Test
   void setId() throws SSLPeerUnverifiedException {
-    ByteArrayAssert<?> byteArrayAssert = mock(ByteArrayAssert.class);
+    GenericByteArrayAssert<?> genericByteArrayAssert = mock(GenericByteArrayAssert.class);
 
-    sslSessionSetter.setId(byteArrayAssert);
+    sslSessionSetter.setId(genericByteArrayAssert);
     sslSessionSetter.verify(sslSession);
 
     verify(sslSession, never()).getApplicationBufferSize();
@@ -165,12 +168,12 @@ class SslSessionImplTest {
     verify(sslSession, never()).getValueNames();
     verify(sslSession, never()).isValid();
 
-    verify(byteArrayAssert).verify(sslSession.getId());
+    verify(genericByteArrayAssert).verify(sslSession.getId());
   }
 
   @Test
   void setLastAccessedTime() throws SSLPeerUnverifiedException {
-    sslSessionSetter.setLastAccessedTime(longAssert);
+    sslSessionSetter.setLastAccessedTime(genericLongAssert);
     sslSessionSetter.verify(sslSession);
 
     verify(sslSession, never()).getApplicationBufferSize();
@@ -190,12 +193,12 @@ class SslSessionImplTest {
     verify(sslSession, never()).getValueNames();
     verify(sslSession, never()).isValid();
 
-    verify(longAssert).verify(sslSession.getLastAccessedTime());
+    verify(genericLongAssert).verify(sslSession.getLastAccessedTime());
   }
 
   @Test
   void setLocalCertificates() throws SSLPeerUnverifiedException {
-    sslSessionSetter.setLocalCertificates(objectArrayAssert);
+    sslSessionSetter.setLocalCertificates(genericObjectArrayAssert);
     sslSessionSetter.verify(sslSession);
 
     verify(sslSession, never()).getApplicationBufferSize();
@@ -215,7 +218,7 @@ class SslSessionImplTest {
     verify(sslSession, never()).getValueNames();
     verify(sslSession, never()).isValid();
 
-    verify(objectArrayAssert).verify(sslSession.getLocalCertificates());
+    verify(genericObjectArrayAssert).verify(sslSession.getLocalCertificates());
   }
 
   @Test
@@ -245,7 +248,7 @@ class SslSessionImplTest {
 
   @Test
   void setPacketBufferSize() throws SSLPeerUnverifiedException {
-    sslSessionSetter.setPacketBufferSize(integerAssert);
+    sslSessionSetter.setPacketBufferSize(genericIntegerAssert);
     sslSessionSetter.verify(sslSession);
 
     verify(sslSession, never()).getApplicationBufferSize();
@@ -265,12 +268,12 @@ class SslSessionImplTest {
     verify(sslSession, never()).getValueNames();
     verify(sslSession, never()).isValid();
 
-    verify(integerAssert).verify(sslSession.getPacketBufferSize());
+    verify(genericIntegerAssert).verify(sslSession.getPacketBufferSize());
   }
 
   @Test
   void setPeerCertificates() throws SSLPeerUnverifiedException {
-    sslSessionSetter.setPeerCertificates(objectArrayAssert);
+    sslSessionSetter.setPeerCertificates(genericObjectArrayAssert);
     sslSessionSetter.verify(sslSession);
 
     verify(sslSession, never()).getApplicationBufferSize();
@@ -290,14 +293,14 @@ class SslSessionImplTest {
     verify(sslSession, never()).getValueNames();
     verify(sslSession, never()).isValid();
 
-    verify(objectArrayAssert).verify(sslSession.getPeerCertificates());
+    verify(genericObjectArrayAssert).verify(sslSession.getPeerCertificates());
   }
 
   @Test
   void setPeerCertificatesError() throws SSLPeerUnverifiedException {
     when(sslSession.getPeerCertificates()).thenThrow(SSL_PEER_UNVERIFIED_EXCEPTION);
 
-    sslSessionSetter.setPeerCertificates(objectArrayAssert);
+    sslSessionSetter.setPeerCertificates(genericObjectArrayAssert);
     sslSessionSetter.verify(sslSession);
 
     verify(sslSession, never()).getApplicationBufferSize();
@@ -317,12 +320,12 @@ class SslSessionImplTest {
     verify(sslSession, never()).getValueNames();
     verify(sslSession, never()).isValid();
 
-    verify(objectArrayAssert, never()).verify(any());
+    verify(genericObjectArrayAssert, never()).verify(any());
   }
 
   @Test
   void setPeerHost() throws SSLPeerUnverifiedException {
-    sslSessionSetter.setPeerHost(stringAssert);
+    sslSessionSetter.setPeerHost(genericStringAssert);
     sslSessionSetter.verify(sslSession);
 
     verify(sslSession, never()).getApplicationBufferSize();
@@ -342,12 +345,12 @@ class SslSessionImplTest {
     verify(sslSession, never()).getValueNames();
     verify(sslSession, never()).isValid();
 
-    verify(stringAssert).verify(sslSession.getPeerHost());
+    verify(genericStringAssert).verify(sslSession.getPeerHost());
   }
 
   @Test
   void setPeerPort() throws SSLPeerUnverifiedException {
-    sslSessionSetter.setPeerPort(integerAssert);
+    sslSessionSetter.setPeerPort(genericIntegerAssert);
     sslSessionSetter.verify(sslSession);
 
     verify(sslSession, never()).getApplicationBufferSize();
@@ -367,7 +370,7 @@ class SslSessionImplTest {
     verify(sslSession, never()).getValueNames();
     verify(sslSession, never()).isValid();
 
-    verify(integerAssert).verify(sslSession.getPeerPort());
+    verify(genericIntegerAssert).verify(sslSession.getPeerPort());
   }
 
   @Test
@@ -424,7 +427,7 @@ class SslSessionImplTest {
 
   @Test
   void setProtocol() throws SSLPeerUnverifiedException {
-    sslSessionSetter.setProtocol(stringAssert);
+    sslSessionSetter.setProtocol(genericStringAssert);
     sslSessionSetter.verify(sslSession);
 
     verify(sslSession, never()).getApplicationBufferSize();
@@ -444,7 +447,7 @@ class SslSessionImplTest {
     verify(sslSession, never()).getValueNames();
     verify(sslSession, never()).isValid();
 
-    verify(stringAssert).verify(sslSession.getProtocol());
+    verify(genericStringAssert).verify(sslSession.getProtocol());
   }
 
   @Test
@@ -476,9 +479,9 @@ class SslSessionImplTest {
 
   @Test
   void setValid() throws SSLPeerUnverifiedException {
-    BooleanAssert<?> booleanAssert = mock(BooleanAssert.class);
+    GenericBooleanAssert<?> genericBooleanAssert = mock(GenericBooleanAssert.class);
 
-    sslSessionSetter.setValid(booleanAssert);
+    sslSessionSetter.setValid(genericBooleanAssert);
     sslSessionSetter.verify(sslSession);
 
     verify(sslSession, never()).getApplicationBufferSize();
@@ -498,12 +501,12 @@ class SslSessionImplTest {
     verify(sslSession, never()).getValueNames();
     verify(sslSession).isValid();
 
-    verify(booleanAssert).verify(sslSession.isValid());
+    verify(genericBooleanAssert).verify(sslSession.isValid());
   }
 
   @Test
   void setValueNames() throws SSLPeerUnverifiedException {
-    sslSessionSetter.setValueNames(stringObjectArrayAssert);
+    sslSessionSetter.setValueNames(genericStringObjectArrayAssert);
     sslSessionSetter.verify(sslSession);
 
     verify(sslSession, never()).getApplicationBufferSize();
@@ -523,6 +526,6 @@ class SslSessionImplTest {
     verify(sslSession).getValueNames();
     verify(sslSession, never()).isValid();
 
-    verify(stringObjectArrayAssert).verify(sslSession.getValueNames());
+    verify(genericStringObjectArrayAssert).verify(sslSession.getValueNames());
   }
 }

@@ -3,7 +3,7 @@ package io.github.henryssondaniel.teacup.protocol.http.node;
 import io.github.henryssondaniel.teacup.core.DefaultNodeBuilder;
 import io.github.henryssondaniel.teacup.core.Node;
 import io.github.henryssondaniel.teacup.core.NodeBuilder;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 
 abstract class BuilderImpl<
         T, U extends Node<T>, V extends Setter<T>, X extends NodeBuilder<T, U, X>>
@@ -13,7 +13,7 @@ abstract class BuilderImpl<
   }
 
   @Override
-  protected void doAssertion(ObjectAssert<T, ?> objectAssert) {
+  protected void doAssertion(GenericObjectAssert<T, ?> objectAssert) {
     getImplementation().setAssertion(objectAssert);
   }
 }

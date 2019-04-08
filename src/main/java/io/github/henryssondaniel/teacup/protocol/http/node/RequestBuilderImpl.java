@@ -1,12 +1,13 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
-import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ComparableAssert;
-import io.github.henryssondaniel.teacup.core.assertion.MapAssert;
-import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericComparableAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericMapAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpRequest;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,21 +27,22 @@ class RequestBuilderImpl extends BuilderImpl<HttpRequest, Request, RequestSetter
   }
 
   @Override
-  public RequestBuilder setExpectContinue(BooleanAssert<?> expectContinue) {
+  public RequestBuilder setExpectContinue(GenericBooleanAssert<?> expectContinue) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "expect continue"));
     getImplementation().setExpectContinue(expectContinue);
     return this;
   }
 
   @Override
-  public RequestBuilder setHeaders(MapAssert<String, List<String>, ?> headers) {
+  public RequestBuilder setHeaders(
+      GenericMapAssert<String, List<String>, ? super Map<String, List<String>>, ?> headers) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "headers"));
     getImplementation().setHeaders(headers);
     return this;
   }
 
   @Override
-  public RequestBuilder setMethod(StringAssert<?> method) {
+  public RequestBuilder setMethod(GenericStringAssert<?> method) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "method"));
     getImplementation().setMethod(method);
     return this;
@@ -61,7 +63,7 @@ class RequestBuilderImpl extends BuilderImpl<HttpRequest, Request, RequestSetter
   }
 
   @Override
-  public RequestBuilder setVersion(ComparableAssert<? super Version, ?> version) {
+  public RequestBuilder setVersion(GenericComparableAssert<? super Version, ?> version) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "version"));
     getImplementation().setVersion(version);
     return this;

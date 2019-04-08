@@ -5,8 +5,8 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import java.net.http.HttpRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,7 @@ class BodyPublisherImplTest {
   private final HttpRequest.BodyPublisher bodyPublisher = mock(HttpRequest.BodyPublisher.class);
   private final BodyPublisherSetter bodyPublisherSetter = new BodyPublisherImpl();
 
-  @Mock private ObjectAssert<? super HttpRequest.BodyPublisher, ?> objectAssert;
+  @Mock private GenericObjectAssert<? super HttpRequest.BodyPublisher, ?> objectAssert;
 
   @BeforeEach
   void beforeEach() {
@@ -35,8 +35,8 @@ class BodyPublisherImplTest {
 
   @Test
   void setContentLength() {
-    LongAssert<?> longAssert = mock(LongAssert.class);
-    bodyPublisherSetter.setContentLength(longAssert);
+    GenericLongAssert<?> genericLongAssert = mock(GenericLongAssert.class);
+    bodyPublisherSetter.setContentLength(genericLongAssert);
 
     var contentLength = 1L;
     when(bodyPublisher.contentLength()).thenReturn(contentLength);
@@ -44,6 +44,6 @@ class BodyPublisherImplTest {
     bodyPublisherSetter.verify(bodyPublisher);
 
     verify(bodyPublisher).contentLength();
-    verify(longAssert).verify(contentLength);
+    verify(genericLongAssert).verify(contentLength);
   }
 }

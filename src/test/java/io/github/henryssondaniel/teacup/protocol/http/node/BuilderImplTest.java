@@ -3,15 +3,15 @@ package io.github.henryssondaniel.teacup.protocol.http.node;
 import static org.mockito.Mockito.verify;
 
 import io.github.henryssondaniel.teacup.core.Node;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 class BuilderImplTest {
+  @Mock private GenericObjectAssert<String, ?> genericObjectAssert;
   @Mock private Setter<String> implementation;
-  @Mock private ObjectAssert<String, ?> objectAssert;
 
   @BeforeEach
   void beforeEach() {
@@ -20,8 +20,8 @@ class BuilderImplTest {
 
   @Test
   void doAssertion() {
-    new TestBuilderImpl(implementation).doAssertion(objectAssert);
-    verify(implementation).setAssertion(objectAssert);
+    new TestBuilderImpl(implementation).doAssertion(genericObjectAssert);
+    verify(implementation).setAssertion(genericObjectAssert);
   }
 
   private static final class TestBuilderImpl

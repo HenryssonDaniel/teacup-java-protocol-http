@@ -1,10 +1,11 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
-import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
-import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ListAssert;
-import io.github.henryssondaniel.teacup.core.assertion.LongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericListAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
 import java.time.temporal.TemporalUnit;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,7 +26,7 @@ class DurationBuilderImpl
   }
 
   @Override
-  public DurationBuilder setNano(IntegerAssert<?> nano) {
+  public DurationBuilder setNano(GenericIntegerAssert<?> nano) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "nano"));
     getImplementation().setNano(nano);
     return this;
@@ -39,112 +40,113 @@ class DurationBuilderImpl
   }
 
   @Override
-  public DurationBuilder setNegative(BooleanAssert<?> negative) {
+  public DurationBuilder setNegative(GenericBooleanAssert<?> negative) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "negative"));
     getImplementation().setNegative(negative);
     return this;
   }
 
   @Override
-  public DurationBuilder setSeconds(LongAssert<?> seconds) {
+  public DurationBuilder setSeconds(GenericLongAssert<?> seconds) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "seconds"));
     getImplementation().setSeconds(seconds);
     return this;
   }
 
   @Override
-  public DurationBuilder setToDays(LongAssert<?> toDays) {
+  public DurationBuilder setToDays(GenericLongAssert<?> toDays) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to days"));
     getImplementation().setToDays(toDays);
     return this;
   }
 
   @Override
-  public DurationBuilder setToDaysPart(LongAssert<?> toDaysPart) {
+  public DurationBuilder setToDaysPart(GenericLongAssert<?> toDaysPart) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to days part"));
     getImplementation().setToDaysPart(toDaysPart);
     return this;
   }
 
   @Override
-  public DurationBuilder setToHours(LongAssert<?> toHours) {
+  public DurationBuilder setToHours(GenericLongAssert<?> toHours) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to hours"));
     getImplementation().setToHours(toHours);
     return this;
   }
 
   @Override
-  public DurationBuilder setToHoursPart(IntegerAssert<?> toHoursPart) {
+  public DurationBuilder setToHoursPart(GenericIntegerAssert<?> toHoursPart) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to hours part"));
     getImplementation().setToHoursPart(toHoursPart);
     return this;
   }
 
   @Override
-  public DurationBuilder setToMillis(LongAssert<?> toMillis) {
+  public DurationBuilder setToMillis(GenericLongAssert<?> toMillis) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to millis"));
     getImplementation().setToMillis(toMillis);
     return this;
   }
 
   @Override
-  public DurationBuilder setToMillisPart(IntegerAssert<?> toMillisPart) {
+  public DurationBuilder setToMillisPart(GenericIntegerAssert<?> toMillisPart) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to millis part"));
     getImplementation().setToMillisPart(toMillisPart);
     return this;
   }
 
   @Override
-  public DurationBuilder setToMinutes(LongAssert<?> toMinutes) {
+  public DurationBuilder setToMinutes(GenericLongAssert<?> toMinutes) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to minutes"));
     getImplementation().setToMinutes(toMinutes);
     return this;
   }
 
   @Override
-  public DurationBuilder setToMinutesPart(IntegerAssert<?> toMinutesPart) {
+  public DurationBuilder setToMinutesPart(GenericIntegerAssert<?> toMinutesPart) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to minutes part"));
     getImplementation().setToMinutesPart(toMinutesPart);
     return this;
   }
 
   @Override
-  public DurationBuilder setToNanos(LongAssert<?> toNanos) {
+  public DurationBuilder setToNanos(GenericLongAssert<?> toNanos) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to nanos"));
     getImplementation().setToNanos(toNanos);
     return this;
   }
 
   @Override
-  public DurationBuilder setToNanosPart(IntegerAssert<?> toNanosPart) {
+  public DurationBuilder setToNanosPart(GenericIntegerAssert<?> toNanosPart) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to nanos part"));
     getImplementation().setToNanosPart(toNanosPart);
     return this;
   }
 
   @Override
-  public DurationBuilder setToSeconds(LongAssert<?> toSeconds) {
+  public DurationBuilder setToSeconds(GenericLongAssert<?> toSeconds) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to seconds"));
     getImplementation().setToSeconds(toSeconds);
     return this;
   }
 
   @Override
-  public DurationBuilder setToSecondsPart(IntegerAssert<?> toSecondsPart) {
+  public DurationBuilder setToSecondsPart(GenericIntegerAssert<?> toSecondsPart) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "to seconds part"));
     getImplementation().setToSecondsPart(toSecondsPart);
     return this;
   }
 
   @Override
-  public DurationBuilder setUnits(ListAssert<? super TemporalUnit, ?> units) {
+  public DurationBuilder setUnits(
+      GenericListAssert<? super TemporalUnit, ? super List<? extends TemporalUnit>, ?> units) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "units"));
     getImplementation().setUnits(units);
     return this;
   }
 
   @Override
-  public DurationBuilder setZero(BooleanAssert<?> zero) {
+  public DurationBuilder setZero(GenericBooleanAssert<?> zero) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "zero"));
     getImplementation().setZero(zero);
     return this;

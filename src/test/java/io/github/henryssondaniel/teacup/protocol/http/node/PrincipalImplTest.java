@@ -4,8 +4,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
-import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 import java.security.Principal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ class PrincipalImplTest {
   private final Principal principal = mock(Principal.class);
   private final PrincipalSetter principalSetter = new PrincipalImpl();
 
-  @Mock private ObjectAssert<? super Principal, ?> objectAssert;
+  @Mock private GenericObjectAssert<? super Principal, ?> genericObjectAssert;
 
   @BeforeEach
   void beforeEach() {
@@ -25,21 +25,21 @@ class PrincipalImplTest {
 
   @Test
   void setAssertion() {
-    principalSetter.setAssertion(objectAssert);
+    principalSetter.setAssertion(genericObjectAssert);
     principalSetter.verify(principal);
 
-    verify(objectAssert).verify(principal);
+    verify(genericObjectAssert).verify(principal);
     verify(principal, never()).getName();
   }
 
   @Test
   void setName() {
-    StringAssert<?> stringAssert = mock(StringAssert.class);
+    GenericStringAssert<?> genericStringAssert = mock(GenericStringAssert.class);
 
-    principalSetter.setName(stringAssert);
+    principalSetter.setName(genericStringAssert);
     principalSetter.verify(principal);
 
     verify(principal).getName();
-    verify(stringAssert).verify(principal.getName());
+    verify(genericStringAssert).verify(principal.getName());
   }
 }

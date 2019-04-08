@@ -1,11 +1,11 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
 import io.github.henryssondaniel.teacup.core.Node;
-import io.github.henryssondaniel.teacup.core.assertion.BooleanAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ComparableAssert;
-import io.github.henryssondaniel.teacup.core.assertion.MapAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
-import io.github.henryssondaniel.teacup.core.assertion.StringAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericComparableAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericMapAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 import java.net.URI;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpRequest;
@@ -18,12 +18,12 @@ class RequestImpl extends SetterImpl<HttpRequest> implements RequestSetter {
   private static final Logger LOGGER = Logger.getLogger(RequestImpl.class.getName());
 
   private Node<HttpRequest.BodyPublisher> bodyPublisher;
-  private ObjectAssert<Boolean, ?> expectContinue;
-  private ObjectAssert<Map<String, List<String>>, ?> headers;
-  private ObjectAssert<String, ?> method;
+  private GenericObjectAssert<Boolean, ?> expectContinue;
+  private GenericObjectAssert<? super Map<String, List<String>>, ?> headers;
+  private GenericObjectAssert<String, ?> method;
   private Node<java.time.Duration> timeout;
   private Node<URI> uri;
-  private ObjectAssert<? super Version, ?> version;
+  private GenericObjectAssert<? super Version, ?> version;
 
   @Override
   public void setBodyPublisher(BodyPublisher bodyPublisher) {
@@ -32,19 +32,20 @@ class RequestImpl extends SetterImpl<HttpRequest> implements RequestSetter {
   }
 
   @Override
-  public void setExpectContinue(BooleanAssert<?> expectContinue) {
+  public void setExpectContinue(GenericBooleanAssert<?> expectContinue) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_WHETHER, "expect continue"));
     this.expectContinue = expectContinue;
   }
 
   @Override
-  public void setHeaders(MapAssert<String, List<String>, ?> headers) {
+  public void setHeaders(
+      GenericMapAssert<String, List<String>, ? super Map<String, List<String>>, ?> headers) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "headers"));
     this.headers = headers;
   }
 
   @Override
-  public void setMethod(StringAssert<?> method) {
+  public void setMethod(GenericStringAssert<?> method) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "method"));
     this.method = method;
   }
@@ -62,7 +63,7 @@ class RequestImpl extends SetterImpl<HttpRequest> implements RequestSetter {
   }
 
   @Override
-  public void setVersion(ComparableAssert<? super Version, ?> version) {
+  public void setVersion(GenericComparableAssert<? super Version, ?> version) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "version"));
     this.version = version;
   }
@@ -82,7 +83,7 @@ class RequestImpl extends SetterImpl<HttpRequest> implements RequestSetter {
   }
 
   private static void verifyAssertion(
-      HttpRequest httpRequest, ObjectAssert<? super HttpRequest, ?> objectAssert) {
+      HttpRequest httpRequest, GenericObjectAssert<? super HttpRequest, ?> objectAssert) {
     if (objectAssert != null) objectAssert.verify(httpRequest);
   }
 

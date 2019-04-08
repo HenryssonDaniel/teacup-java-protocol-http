@@ -1,12 +1,13 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
-import io.github.henryssondaniel.teacup.core.assertion.ComparableAssert;
-import io.github.henryssondaniel.teacup.core.assertion.IntegerAssert;
-import io.github.henryssondaniel.teacup.core.assertion.MapAssert;
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericComparableAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericMapAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpResponse;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,14 +21,15 @@ class ResponseBuilderImpl<T>
   }
 
   @Override
-  public ResponseBuilder<T> setBody(ObjectAssert<? super T, ?> body) {
+  public ResponseBuilder<T> setBody(GenericObjectAssert<? super T, ?> body) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "body"));
     getImplementation().setBody(body);
     return this;
   }
 
   @Override
-  public ResponseBuilder<T> setHeaders(MapAssert<String, List<String>, ?> headers) {
+  public ResponseBuilder<T> setHeaders(
+      GenericMapAssert<String, List<String>, ? super Map<String, List<String>>, ?> headers) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "headers"));
     getImplementation().setHeaders(headers);
     return this;
@@ -55,7 +57,7 @@ class ResponseBuilderImpl<T>
   }
 
   @Override
-  public ResponseBuilder<T> setStatusCode(IntegerAssert<?> statusCode) {
+  public ResponseBuilder<T> setStatusCode(GenericIntegerAssert<?> statusCode) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "status code"));
     getImplementation().setStatusCode(statusCode);
     return this;
@@ -69,7 +71,7 @@ class ResponseBuilderImpl<T>
   }
 
   @Override
-  public ResponseBuilder<T> setVersion(ComparableAssert<? super Version, ?> version) {
+  public ResponseBuilder<T> setVersion(GenericComparableAssert<? super Version, ?> version) {
     LOGGER.log(Level.FINE, String.format(Constants.SETTING_THE, "version"));
     getImplementation().setVersion(version);
     return this;
