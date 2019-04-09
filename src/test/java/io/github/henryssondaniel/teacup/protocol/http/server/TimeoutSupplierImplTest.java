@@ -8,7 +8,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -17,7 +16,6 @@ import org.mockito.MockitoAnnotations;
 class TimeoutSupplierImplTest {
   private final Object lock = new Object();
   private final TimeoutSupplier timeoutSupplier = new TimeoutSupplierImpl();
-
   @Mock private Consumer<? super List<Request>> consumer;
   private boolean waiting = true;
 
@@ -44,7 +42,7 @@ class TimeoutSupplierImplTest {
     synchronized (lock) {
       while (waiting) lock.wait(1L);
 
-      Assertions.assertThat(requests).isEmpty();
+      assertThat(requests).isEmpty();
     }
   }
 
@@ -67,6 +65,7 @@ class TimeoutSupplierImplTest {
 
   private void get(Collection<? super Request> requests) {
     synchronized (lock) {
+      requests.addAll(timeoutSupplier.get());
       requests.addAll(timeoutSupplier.get());
       waiting = false;
       lock.notifyAll();
