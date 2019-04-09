@@ -15,13 +15,13 @@ import org.mockito.MockitoAnnotations;
 
 class TimeoutSupplierImplTest {
   private final Object lock = new Object();
-  private final Request request = mock(Request.class);
   private final TimeoutSupplier timeoutSupplier = new TimeoutSupplierImpl();
   @Mock private Consumer<? super List<Request>> consumer;
   private boolean waiting = true;
 
   @Test
   void addAndGetRequest() {
+    var request = mock(Request.class);
     timeoutSupplier.addRequest(request);
     assertThat(timeoutSupplier.get()).containsExactly(request);
   }
@@ -37,6 +37,7 @@ class TimeoutSupplierImplTest {
 
     var thread = new Thread(() -> get(requests));
     thread.start();
+    Thread.sleep(5L);
     thread.interrupt();
 
     synchronized (lock) {
@@ -44,16 +45,6 @@ class TimeoutSupplierImplTest {
 
       assertThat(requests).isEmpty();
     }
-  }
-
-  @Test
-  void getWhenMultipleListeners() {
-    List<Request> requests = new LinkedList<>();
-    new Thread(() -> get(requests)).start();
-
-    timeoutSupplier.addRequest(request);
-
-    assertThat(requests).containsExactly(request);
   }
 
   @Test
@@ -75,7 +66,6 @@ class TimeoutSupplierImplTest {
 
   private void get(Collection<? super Request> requests) {
     synchronized (lock) {
-      requests.addAll(timeoutSupplier.get());
       requests.addAll(timeoutSupplier.get());
       waiting = false;
       lock.notifyAll();
