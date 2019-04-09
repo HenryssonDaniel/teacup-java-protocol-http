@@ -15,7 +15,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ssl.SSLSession;
 
-class ResponseImpl<T> extends SetterImpl<HttpResponse<T>> implements ResponseSetter<T> {
+class ResponseImpl<T> extends SetterImpl<HttpResponse<T>, GenericObjectAssert<HttpResponse<T>, ?>>
+    implements ResponseSetter<T> {
   private static final Logger LOGGER = Logger.getLogger(ResponseImpl.class.getName());
 
   private GenericObjectAssert<? super T, ?> body;

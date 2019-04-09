@@ -12,7 +12,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class DurationImpl extends SetterImpl<java.time.Duration> implements DurationSetter {
+class DurationImpl
+    extends SetterImpl<java.time.Duration, GenericObjectAssert<java.time.Duration, ?>>
+    implements DurationSetter {
   private static final Logger LOGGER = Logger.getLogger(DurationImpl.class.getName());
 
   private Node<java.time.Duration> abs;

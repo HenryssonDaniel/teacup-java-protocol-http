@@ -11,7 +11,7 @@ import org.mockito.MockitoAnnotations;
 
 class BuilderImplTest {
   @Mock private GenericObjectAssert<String, ?> genericObjectAssert;
-  @Mock private Setter<String> implementation;
+  @Mock private Setter<String, GenericObjectAssert<String, ?>> implementation;
 
   @BeforeEach
   void beforeEach() {
@@ -25,13 +25,14 @@ class BuilderImplTest {
   }
 
   private static final class TestBuilderImpl
-      extends BuilderImpl<String, Node<String>, Setter<String>, TestBuilderImpl> {
-    private TestBuilderImpl(Setter<String> setter) {
+      extends BuilderImpl<
+          String, Node<String>, Setter<String, GenericObjectAssert<String, ?>>, TestBuilderImpl> {
+    private TestBuilderImpl(Setter<String, GenericObjectAssert<String, ?>> setter) {
       super(setter);
     }
 
     @Override
-    protected Setter<String> createImplementation() {
+    protected Setter<String, GenericObjectAssert<String, ?>> createImplementation() {
       return null;
     }
   }

@@ -2,10 +2,11 @@ package io.github.henryssondaniel.teacup.protocol.http.node;
 
 import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 import java.net.URI;
 
-interface UriSetter extends Setter<URI>, Uri {
+interface UriSetter extends Setter<URI, GenericObjectAssert<URI, ?>>, Uri {
   void setAbsolute(GenericBooleanAssert<?> absolute);
 
   void setAuthority(GenericStringAssert<?> authority);

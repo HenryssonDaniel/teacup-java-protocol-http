@@ -7,7 +7,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ssl.SSLSessionContext;
 
-class SslSessionContextImpl extends SetterImpl<SSLSessionContext>
+class SslSessionContextImpl
+    extends SetterImpl<SSLSessionContext, GenericObjectAssert<SSLSessionContext, ?>>
     implements SslSessionContextSetter {
   private static final Logger LOGGER = Logger.getLogger(SslSessionContextImpl.class.getName());
 

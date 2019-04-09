@@ -17,7 +17,8 @@ import javax.net.ssl.SSLPeerUnverifiedException;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSessionContext;
 
-class SslSessionImpl extends SetterImpl<SSLSession> implements SslSessionSetter {
+class SslSessionImpl extends SetterImpl<SSLSession, GenericObjectAssert<SSLSession, ?>>
+    implements SslSessionSetter {
   private static final Logger LOGGER = Logger.getLogger(SslSessionImpl.class.getName());
 
   private GenericObjectAssert<? super Integer, ?> applicationBufferSize;

@@ -4,10 +4,12 @@ import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericListAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import java.time.temporal.TemporalUnit;
 import java.util.List;
 
-interface DurationSetter extends Duration, Setter<java.time.Duration> {
+interface DurationSetter
+    extends Duration, Setter<java.time.Duration, GenericObjectAssert<java.time.Duration, ?>> {
   void setAbs(Duration abs);
 
   void setNano(GenericIntegerAssert<?> nano);

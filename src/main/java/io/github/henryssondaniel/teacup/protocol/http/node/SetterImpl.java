@@ -2,16 +2,16 @@ package io.github.henryssondaniel.teacup.protocol.http.node;
 
 import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 
-abstract class SetterImpl<T> implements Setter<T> {
-  private GenericObjectAssert<T, ?> assertion;
+abstract class SetterImpl<T, U extends GenericObjectAssert<T, ?>> implements Setter<T, U> {
+  private U assertion;
 
   @Override
-  public GenericObjectAssert<T, ?> getAssertion() {
+  public U getAssertion() {
     return assertion;
   }
 
   @Override
-  public void setAssertion(GenericObjectAssert<T, ?> assertion) {
+  public void setAssertion(U assertion) {
     this.assertion = assertion;
   }
 }

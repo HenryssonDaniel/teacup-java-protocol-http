@@ -14,7 +14,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class RequestImpl extends SetterImpl<HttpRequest> implements RequestSetter {
+class RequestImpl extends SetterImpl<HttpRequest, GenericObjectAssert<HttpRequest, ?>>
+    implements RequestSetter {
   private static final Logger LOGGER = Logger.getLogger(RequestImpl.class.getName());
 
   private Node<HttpRequest.BodyPublisher> bodyPublisher;

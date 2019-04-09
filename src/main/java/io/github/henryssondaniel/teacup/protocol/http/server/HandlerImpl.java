@@ -86,36 +86,37 @@ class HandlerImpl implements Handler {
 
     LOGGER.log(
         Level.INFO,
-        "Request:"
-            + System.lineSeparator()
-            + "HTTP context:"
-            + System.lineSeparator()
-            + logHttpContext(httpContext)
-            + System.lineSeparator()
-            + "Local address: "
-            + localAddress
-            + System.lineSeparator()
-            + "Principal: "
-            + httpPrincipal
-            + System.lineSeparator()
-            + "Protocol: "
-            + protocol
-            + System.lineSeparator()
-            + "Remote address: "
-            + remoteAddress
-            + System.lineSeparator()
-            + "Body: "
-            + body
-            + System.lineSeparator()
-            + "Headers:"
-            + System.lineSeparator()
-            + logMap(headers)
-            + System.lineSeparator()
-            + "Method: "
-            + method
-            + System.lineSeparator()
-            + "URI: "
-            + uri);
+        () ->
+            "Request:"
+                + System.lineSeparator()
+                + "HTTP context:"
+                + System.lineSeparator()
+                + logHttpContext(httpContext)
+                + System.lineSeparator()
+                + "Local address: "
+                + localAddress
+                + System.lineSeparator()
+                + "Principal: "
+                + httpPrincipal
+                + System.lineSeparator()
+                + "Protocol: "
+                + protocol
+                + System.lineSeparator()
+                + "Remote address: "
+                + remoteAddress
+                + System.lineSeparator()
+                + "Body: "
+                + body
+                + System.lineSeparator()
+                + "Headers:"
+                + System.lineSeparator()
+                + logMap(headers)
+                + System.lineSeparator()
+                + "Method: "
+                + method
+                + System.lineSeparator()
+                + "URI: "
+                + uri);
 
     RequestSetter requestSetter = new RequestImpl();
     setupRequest(httpContext, localAddress, requestSetter);

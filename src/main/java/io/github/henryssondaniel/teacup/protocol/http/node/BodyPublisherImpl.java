@@ -6,7 +6,8 @@ import java.net.http.HttpRequest.BodyPublisher;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class BodyPublisherImpl extends SetterImpl<BodyPublisher> implements BodyPublisherSetter {
+class BodyPublisherImpl extends SetterImpl<BodyPublisher, GenericObjectAssert<BodyPublisher, ?>>
+    implements BodyPublisherSetter {
   private static final Logger LOGGER = Logger.getLogger(BodyPublisherImpl.class.getName());
   private GenericObjectAssert<Long, ?> contentLength;
 

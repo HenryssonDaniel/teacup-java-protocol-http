@@ -8,7 +8,7 @@ import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class UriImpl extends SetterImpl<URI> implements UriSetter {
+class UriImpl extends SetterImpl<URI, GenericObjectAssert<URI, ?>> implements UriSetter {
   private static final Logger LOGGER = Logger.getLogger(UriImpl.class.getName());
 
   private GenericObjectAssert<Boolean, ?> absolute;

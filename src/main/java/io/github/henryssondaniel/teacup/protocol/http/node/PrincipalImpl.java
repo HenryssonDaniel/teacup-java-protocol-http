@@ -6,7 +6,8 @@ import java.security.Principal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class PrincipalImpl extends SetterImpl<Principal> implements PrincipalSetter {
+class PrincipalImpl extends SetterImpl<Principal, GenericObjectAssert<Principal, ?>>
+    implements PrincipalSetter {
   private static final Logger LOGGER = Logger.getLogger(PrincipalImpl.class.getName());
   private GenericObjectAssert<String, ?> name;
 

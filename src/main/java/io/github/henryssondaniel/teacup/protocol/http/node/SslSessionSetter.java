@@ -5,11 +5,13 @@ import io.github.henryssondaniel.teacup.core.assertion.GenericByteArrayAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericObjectArrayAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 import java.security.cert.Certificate;
 import javax.net.ssl.SSLSession;
 
-interface SslSessionSetter extends Setter<SSLSession>, SslSession {
+interface SslSessionSetter
+    extends Setter<SSLSession, GenericObjectAssert<SSLSession, ?>>, SslSession {
   void setApplicationBufferSize(GenericIntegerAssert<?> applicationBufferSize);
 
   void setCipherSuite(GenericStringAssert<?> cipherSuite);

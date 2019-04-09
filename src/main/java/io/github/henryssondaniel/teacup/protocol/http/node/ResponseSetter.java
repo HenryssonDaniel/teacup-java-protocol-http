@@ -9,7 +9,8 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Map;
 
-interface ResponseSetter<T> extends Response<T>, Setter<HttpResponse<T>> {
+interface ResponseSetter<T>
+    extends Response<T>, Setter<HttpResponse<T>, GenericObjectAssert<HttpResponse<T>, ?>> {
   void setBody(GenericObjectAssert<? super T, ?> body);
 
   void setHeaders(
