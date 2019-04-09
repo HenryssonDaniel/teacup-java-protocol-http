@@ -5,6 +5,7 @@ import com.sun.net.httpserver.HttpServer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +31,7 @@ class SimpleImpl implements Simple {
 
   @Override
   public Supplier<List<Request>> setContext(Context context) {
-    TimeoutSupplier timeoutSupplier = new TimeoutSupplierImpl();
+    TimeoutSupplier timeoutSupplier = new TimeoutSupplierImpl(new ReentrantLock());
 
     try {
       var httpContext = addSupplier(context, timeoutSupplier);

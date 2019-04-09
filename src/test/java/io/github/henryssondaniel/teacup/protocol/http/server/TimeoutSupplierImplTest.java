@@ -1,12 +1,14 @@
 package io.github.henryssondaniel.teacup.protocol.http.server;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
 import java.util.function.Consumer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,9 +16,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 class TimeoutSupplierImplTest {
-  private final Object lock = new Object();
-  private final TimeoutSupplier timeoutSupplier = new TimeoutSupplierImpl();
+  private final Lock lock = mock(Lock.class);
+
   @Mock private Consumer<? super List<Request>> consumer;
+  private TimeoutSupplier timeoutSupplier;
   private boolean waiting = true;
 
   @Test
@@ -27,24 +30,19 @@ class TimeoutSupplierImplTest {
   }
 
   @BeforeEach
-  void beforeEach() {
+  void beforeEach() throws InterruptedException {
     MockitoAnnotations.initMocks(this);
+
+    var condition = mock(Condition.class);
+    doNothing().doThrow(new InterruptedException("test")).when(condition).await();
+    when(lock.newCondition()).thenReturn(condition);
+
+    timeoutSupplier = new TimeoutSupplierImpl(lock);
   }
 
   @Test
-  void getWhenInterrupted() throws InterruptedException {
-    List<Request> requests = new LinkedList<>();
-
-    var thread = new Thread(() -> get(requests));
-    thread.start();
-    Thread.sleep(5L);
-    thread.interrupt();
-
-    synchronized (lock) {
-      while (waiting) lock.wait(1L);
-
-      assertThat(requests).isEmpty();
-    }
+  void getWhenInterrupted() {
+    assertThat(timeoutSupplier.get()).isEmpty();
   }
 
   @Test
@@ -62,13 +60,5 @@ class TimeoutSupplierImplTest {
     timeoutSupplier.stop();
 
     verify(consumer).accept(null);
-  }
-
-  private void get(Collection<? super Request> requests) {
-    synchronized (lock) {
-      requests.addAll(timeoutSupplier.get());
-      waiting = false;
-      lock.notifyAll();
-    }
   }
 }
