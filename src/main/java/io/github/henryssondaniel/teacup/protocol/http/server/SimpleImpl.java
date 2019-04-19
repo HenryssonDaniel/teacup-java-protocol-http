@@ -5,6 +5,7 @@ import com.sun.net.httpserver.HttpServer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Supplier;
 import java.util.logging.Level;
@@ -105,7 +106,7 @@ class SimpleImpl implements Simple {
 
   private static boolean isEquals(Context context, HttpContext httpContext) {
     return context.getAttributes().equals(httpContext.getAttributes())
-        && context.getAuthenticator().equals(httpContext.getAuthenticator());
+        && Objects.equals(context.getAuthenticator(), httpContext.getAuthenticator());
   }
 
   private static boolean isEquals(Context context, HttpContext httpContext, Response response) {

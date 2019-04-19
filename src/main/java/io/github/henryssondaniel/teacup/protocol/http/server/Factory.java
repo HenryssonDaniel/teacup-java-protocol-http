@@ -1,7 +1,6 @@
 package io.github.henryssondaniel.teacup.protocol.http.server;
 
 import com.sun.net.httpserver.HttpServer;
-import io.github.henryssondaniel.teacup.core.Server;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.logging.Level;
@@ -50,7 +49,7 @@ public enum Factory {
    * @param httpServer the HTTP server
    * @return the server
    */
-  public static Server createServer(HttpServer httpServer) {
+  public static Simple createServer(HttpServer httpServer) {
     LOGGER.log(Level.FINE, "Creating a new server");
     return new SimpleImpl(httpServer);
   }

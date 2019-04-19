@@ -33,9 +33,8 @@ class SimpleTest {
   @BeforeEach
   void beforeEach() throws IOException {
     server =
-        (io.github.henryssondaniel.teacup.protocol.http.server.Simple)
-            io.github.henryssondaniel.teacup.protocol.http.server.Factory.createServer(
-                HttpServer.create(new InetSocketAddress("localhost", PORT), 0));
+        io.github.henryssondaniel.teacup.protocol.http.server.Factory.createServer(
+            HttpServer.create(new InetSocketAddress("localhost", PORT), 0));
     server.setUp();
     server.setContext(
         io.github.henryssondaniel.teacup.protocol.http.server.Factory.createContextBuilder(
