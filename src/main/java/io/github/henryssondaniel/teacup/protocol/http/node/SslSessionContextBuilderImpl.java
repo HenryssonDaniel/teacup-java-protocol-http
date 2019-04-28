@@ -4,6 +4,7 @@ import static io.github.henryssondaniel.teacup.protocol.http.node.Constants.SETT
 
 import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,8 +14,7 @@ class SslSessionContextBuilderImpl
     extends BuilderImpl<
         SSLSessionContext, SslSessionContext, SslSessionContextSetter, SslSessionContextBuilder>
     implements SslSessionContextBuilder {
-  private static final Logger LOGGER =
-      Logger.getLogger(SslSessionContextBuilderImpl.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(SslSessionContextBuilderImpl.class);
 
   SslSessionContextBuilderImpl() {
     super(new SslSessionContextImpl());

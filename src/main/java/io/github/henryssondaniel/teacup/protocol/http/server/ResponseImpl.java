@@ -1,6 +1,7 @@
 package io.github.henryssondaniel.teacup.protocol.http.server;
 
 import com.sun.net.httpserver.Headers;
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 class ResponseImpl implements ResponseSetter {
-  private static final Logger LOGGER = Logger.getLogger(ResponseImpl.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(ResponseImpl.class);
   private static final String MESSAGE = "{0}etting the {1}";
 
   private final Map<String, Object> attributes = new HashMap<>(0);

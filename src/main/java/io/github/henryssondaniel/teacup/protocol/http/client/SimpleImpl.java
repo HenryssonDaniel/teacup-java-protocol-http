@@ -1,5 +1,6 @@
 package io.github.henryssondaniel.teacup.protocol.http.client;
 
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import io.github.henryssondaniel.teacup.protocol.http.Constants;
 import java.io.IOException;
 import java.net.http.HttpClient;
@@ -14,7 +15,7 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSessionContext;
 
 class SimpleImpl implements Simple {
-  private static final Logger LOGGER = Logger.getLogger(SimpleImpl.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(SimpleImpl.class);
   private static final String SEND = "Sending request{0}";
 
   private final HttpClient httpClient;

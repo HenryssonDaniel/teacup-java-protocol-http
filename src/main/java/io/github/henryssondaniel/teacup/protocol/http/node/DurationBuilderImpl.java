@@ -4,6 +4,7 @@ import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericListAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.time.temporal.TemporalUnit;
 import java.util.List;
 import java.util.logging.Level;
@@ -12,7 +13,7 @@ import java.util.logging.Logger;
 class DurationBuilderImpl
     extends BuilderImpl<java.time.Duration, Duration, DurationSetter, DurationBuilder>
     implements DurationBuilder {
-  private static final Logger LOGGER = Logger.getLogger(DurationBuilderImpl.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(DurationBuilderImpl.class);
 
   DurationBuilderImpl() {
     super(new DurationImpl());

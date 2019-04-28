@@ -4,6 +4,7 @@ import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericComparableAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericMapAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpRequest;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.logging.Logger;
 
 class RequestBuilderImpl extends BuilderImpl<HttpRequest, Request, RequestSetter, RequestBuilder>
     implements RequestBuilder {
-  private static final Logger LOGGER = Logger.getLogger(RequestBuilderImpl.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(RequestBuilderImpl.class);
 
   RequestBuilderImpl() {
     super(new RequestImpl());

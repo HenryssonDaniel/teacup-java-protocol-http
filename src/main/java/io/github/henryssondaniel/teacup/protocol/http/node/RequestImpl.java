@@ -6,6 +6,7 @@ import io.github.henryssondaniel.teacup.core.assertion.GenericComparableAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericMapAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.net.URI;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpRequest;
@@ -16,7 +17,7 @@ import java.util.logging.Logger;
 
 class RequestImpl extends SetterImpl<HttpRequest, GenericObjectAssert<HttpRequest, ?>>
     implements RequestSetter {
-  private static final Logger LOGGER = Logger.getLogger(RequestImpl.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(RequestImpl.class);
 
   private Node<HttpRequest.BodyPublisher> bodyPublisher;
   private GenericObjectAssert<Boolean, ?> expectContinue;

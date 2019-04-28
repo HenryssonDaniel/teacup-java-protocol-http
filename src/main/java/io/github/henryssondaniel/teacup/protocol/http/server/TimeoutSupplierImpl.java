@@ -1,5 +1,6 @@
 package io.github.henryssondaniel.teacup.protocol.http.server;
 
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 class TimeoutSupplierImpl implements TimeoutSupplier {
-  private static final Logger LOGGER = Logger.getLogger(TimeoutSupplierImpl.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(TimeoutSupplierImpl.class);
 
   private final Lock lock;
   private final Condition notEmpty;

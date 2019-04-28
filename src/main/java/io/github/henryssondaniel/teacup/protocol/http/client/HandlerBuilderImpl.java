@@ -1,6 +1,7 @@
 package io.github.henryssondaniel.teacup.protocol.http.client;
 
 import io.github.henryssondaniel.teacup.core.DefaultBuilder;
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.net.http.HttpResponse.BodyHandler;
 import java.net.http.HttpResponse.PushPromiseHandler;
 import java.util.logging.Level;
@@ -8,7 +9,7 @@ import java.util.logging.Logger;
 
 class HandlerBuilderImpl<T> extends DefaultBuilder<Handler<T>, HandlerSetter<T>>
     implements HandlerBuilder<T> {
-  private static final Logger LOGGER = Logger.getLogger(HandlerBuilderImpl.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(HandlerBuilderImpl.class);
   private final BodyHandler<T> bodyHandler;
 
   HandlerBuilderImpl(BodyHandler<T> bodyHandler) {

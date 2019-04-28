@@ -6,6 +6,7 @@ import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericListAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.time.temporal.TemporalAmount;
 import java.time.temporal.TemporalUnit;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.logging.Logger;
 class DurationImpl
     extends SetterImpl<java.time.Duration, GenericObjectAssert<java.time.Duration, ?>>
     implements DurationSetter {
-  private static final Logger LOGGER = Logger.getLogger(DurationImpl.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(DurationImpl.class);
 
   private Node<java.time.Duration> abs;
   private GenericObjectAssert<Integer, ?> nano;

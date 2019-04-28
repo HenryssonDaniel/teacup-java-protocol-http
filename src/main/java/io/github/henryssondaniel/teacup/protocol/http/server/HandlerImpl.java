@@ -6,6 +6,7 @@ import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpPrincipal;
 import com.sun.net.httpserver.HttpServer;
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
@@ -20,7 +21,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 class HandlerImpl implements Handler {
-  private static final Logger LOGGER = Logger.getLogger(HandlerImpl.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(HandlerImpl.class);
   private static final String MESSAGE = "{0}ing the timeout supplier{1}";
   private static final Pattern PATTERN = Pattern.compile("\\A");
 

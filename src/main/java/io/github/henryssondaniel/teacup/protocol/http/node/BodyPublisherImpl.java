@@ -2,13 +2,14 @@ package io.github.henryssondaniel.teacup.protocol.http.node;
 
 import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.net.http.HttpRequest.BodyPublisher;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 class BodyPublisherImpl extends SetterImpl<BodyPublisher, GenericObjectAssert<BodyPublisher, ?>>
     implements BodyPublisherSetter {
-  private static final Logger LOGGER = Logger.getLogger(BodyPublisherImpl.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(BodyPublisherImpl.class);
   private GenericObjectAssert<Long, ?> contentLength;
 
   @Override

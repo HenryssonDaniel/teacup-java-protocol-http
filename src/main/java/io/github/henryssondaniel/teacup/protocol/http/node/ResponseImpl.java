@@ -5,6 +5,7 @@ import io.github.henryssondaniel.teacup.core.assertion.GenericComparableAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericMapAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.net.URI;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpRequest;
@@ -17,7 +18,7 @@ import javax.net.ssl.SSLSession;
 
 class ResponseImpl<T> extends SetterImpl<HttpResponse<T>, GenericObjectAssert<HttpResponse<T>, ?>>
     implements ResponseSetter<T> {
-  private static final Logger LOGGER = Logger.getLogger(ResponseImpl.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(ResponseImpl.class);
 
   private GenericObjectAssert<? super T, ?> body;
   private GenericObjectAssert<? super Map<String, List<String>>, ?> headers;

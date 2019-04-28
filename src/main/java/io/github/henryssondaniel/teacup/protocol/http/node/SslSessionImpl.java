@@ -10,6 +10,7 @@ import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericObjectArrayAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.security.cert.Certificate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +20,7 @@ import javax.net.ssl.SSLSessionContext;
 
 class SslSessionImpl extends SetterImpl<SSLSession, GenericObjectAssert<SSLSession, ?>>
     implements SslSessionSetter {
-  private static final Logger LOGGER = Logger.getLogger(SslSessionImpl.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(SslSessionImpl.class);
 
   private GenericObjectAssert<? super Integer, ?> applicationBufferSize;
   private GenericObjectAssert<? super String, ?> cipherSuite;

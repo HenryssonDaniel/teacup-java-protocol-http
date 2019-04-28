@@ -4,6 +4,7 @@ import io.github.henryssondaniel.teacup.core.assertion.GenericComparableAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericMapAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpResponse;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.logging.Logger;
 class ResponseBuilderImpl<T>
     extends BuilderImpl<HttpResponse<T>, Response<T>, ResponseSetter<T>, ResponseBuilder<T>>
     implements ResponseBuilder<T> {
-  private static final Logger LOGGER = Logger.getLogger(ResponseBuilderImpl.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(ResponseBuilderImpl.class);
 
   ResponseBuilderImpl() {
     super(new ResponseImpl<>());

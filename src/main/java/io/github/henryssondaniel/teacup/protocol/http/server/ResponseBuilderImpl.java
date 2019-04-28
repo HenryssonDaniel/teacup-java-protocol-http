@@ -1,6 +1,7 @@
 package io.github.henryssondaniel.teacup.protocol.http.server;
 
 import io.github.henryssondaniel.teacup.core.DefaultBuilder;
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -8,7 +9,7 @@ import java.util.logging.Logger;
 
 class ResponseBuilderImpl extends DefaultBuilder<Response, ResponseSetter>
     implements ResponseBuilder {
-  private static final Logger LOGGER = Logger.getLogger(ResponseBuilderImpl.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(ResponseBuilderImpl.class);
   private static final String MESSAGE = "Setting the {0}";
 
   private final int code;

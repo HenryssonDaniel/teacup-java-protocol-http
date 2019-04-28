@@ -2,13 +2,14 @@ package io.github.henryssondaniel.teacup.protocol.http.node;
 
 import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.security.Principal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 class PrincipalImpl extends SetterImpl<Principal, GenericObjectAssert<Principal, ?>>
     implements PrincipalSetter {
-  private static final Logger LOGGER = Logger.getLogger(PrincipalImpl.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(PrincipalImpl.class);
   private GenericObjectAssert<String, ?> name;
 
   @Override

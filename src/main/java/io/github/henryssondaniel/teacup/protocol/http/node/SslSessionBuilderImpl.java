@@ -9,6 +9,7 @@ import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericObjectArrayAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.security.cert.Certificate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +18,7 @@ import javax.net.ssl.SSLSession;
 class SslSessionBuilderImpl
     extends BuilderImpl<SSLSession, SslSession, SslSessionSetter, SslSessionBuilder>
     implements SslSessionBuilder {
-  private static final Logger LOGGER = Logger.getLogger(SslSessionBuilderImpl.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(SslSessionBuilderImpl.class);
 
   SslSessionBuilderImpl() {
     super(new SslSessionImpl());

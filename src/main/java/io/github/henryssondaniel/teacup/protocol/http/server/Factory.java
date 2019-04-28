@@ -14,7 +14,8 @@ import java.util.logging.Logger;
 public enum Factory {
   ;
 
-  private static final Logger LOGGER = Logger.getLogger(Factory.class.getName());
+  private static final Logger LOGGER =
+      io.github.henryssondaniel.teacup.core.logging.Factory.getLogger(Factory.class);
 
   /**
    * Creates a new context builder.

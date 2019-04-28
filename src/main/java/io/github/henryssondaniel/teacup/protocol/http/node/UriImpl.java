@@ -4,12 +4,13 @@ import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 class UriImpl extends SetterImpl<URI, GenericObjectAssert<URI, ?>> implements UriSetter {
-  private static final Logger LOGGER = Logger.getLogger(UriImpl.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(UriImpl.class);
 
   private GenericObjectAssert<Boolean, ?> absolute;
   private GenericObjectAssert<String, ?> authority;

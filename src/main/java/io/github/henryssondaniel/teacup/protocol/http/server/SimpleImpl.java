@@ -2,6 +2,7 @@ package io.github.henryssondaniel.teacup.protocol.http.server;
 
 import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpServer;
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 class SimpleImpl implements Simple {
-  private static final Logger LOGGER = Logger.getLogger(SimpleImpl.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(SimpleImpl.class);
 
   private final HttpServer httpServer;
   private final Object lock = new Object();
