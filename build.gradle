@@ -82,7 +82,7 @@ publishing {
 
             pom {
                 name = project.group + ':' + project.name
-                description = 'Java Testing Framework for Communication Protocols and Web Services with HTTP'
+                description = 'Teacup client/server HTTP and HTTPS support'
                 url = 'https://github.com/HenryssonDaniel/teacup-java-protocol-http'
 
                 licenses {
