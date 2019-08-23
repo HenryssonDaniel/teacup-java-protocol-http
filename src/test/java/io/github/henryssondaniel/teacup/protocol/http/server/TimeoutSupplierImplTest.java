@@ -20,7 +20,6 @@ class TimeoutSupplierImplTest {
 
   @Mock private Consumer<? super List<Request>> consumer;
   private TimeoutSupplier timeoutSupplier;
-  private boolean waiting = true;
 
   @Test
   void addAndGetRequest() {
