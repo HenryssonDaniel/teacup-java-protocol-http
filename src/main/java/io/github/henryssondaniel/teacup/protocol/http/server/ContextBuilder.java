@@ -2,7 +2,7 @@ package io.github.henryssondaniel.teacup.protocol.http.server;
 
 import com.sun.net.httpserver.Authenticator;
 import com.sun.net.httpserver.Filter;
-import io.github.henryssondaniel.teacup.core.Builder;
+import io.github.henryssondaniel.teacup.protocol.Builder;
 import java.util.List;
 import java.util.Map;
 

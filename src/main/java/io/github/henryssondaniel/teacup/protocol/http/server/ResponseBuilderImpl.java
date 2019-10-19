@@ -1,7 +1,7 @@
 package io.github.henryssondaniel.teacup.protocol.http.server;
 
-import io.github.henryssondaniel.teacup.core.DefaultBuilder;
 import io.github.henryssondaniel.teacup.core.logging.Factory;
+import io.github.henryssondaniel.teacup.protocol.DefaultBuilder;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;

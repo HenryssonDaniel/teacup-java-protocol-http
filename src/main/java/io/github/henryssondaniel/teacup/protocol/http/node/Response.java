@@ -1,6 +1,6 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
-import io.github.henryssondaniel.teacup.core.Node;
+import io.github.henryssondaniel.teacup.protocol.Node;
 import java.net.http.HttpResponse;
 
 /**

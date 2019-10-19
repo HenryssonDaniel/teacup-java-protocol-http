@@ -1,12 +1,12 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
-import io.github.henryssondaniel.teacup.core.NodeBuilder;
 import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericByteArrayAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericObjectArrayAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
+import io.github.henryssondaniel.teacup.protocol.NodeBuilder;
 import java.security.cert.Certificate;
 import javax.net.ssl.SSLSession;
 

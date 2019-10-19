@@ -1,10 +1,10 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
-import io.github.henryssondaniel.teacup.core.NodeBuilder;
 import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericComparableAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericMapAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
+import io.github.henryssondaniel.teacup.protocol.NodeBuilder;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpRequest;
 import java.util.List;

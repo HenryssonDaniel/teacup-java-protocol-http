@@ -1,11 +1,11 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
-import io.github.henryssondaniel.teacup.core.Node;
 import io.github.henryssondaniel.teacup.core.assertion.GenericComparableAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericMapAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import io.github.henryssondaniel.teacup.core.logging.Factory;
+import io.github.henryssondaniel.teacup.protocol.Node;
 import java.net.URI;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpRequest;

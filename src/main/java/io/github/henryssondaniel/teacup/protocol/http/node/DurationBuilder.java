@@ -1,10 +1,10 @@
 package io.github.henryssondaniel.teacup.protocol.http.node;
 
-import io.github.henryssondaniel.teacup.core.NodeBuilder;
 import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericListAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericLongAssert;
+import io.github.henryssondaniel.teacup.protocol.NodeBuilder;
 import java.time.temporal.TemporalUnit;
 import java.util.List;
 

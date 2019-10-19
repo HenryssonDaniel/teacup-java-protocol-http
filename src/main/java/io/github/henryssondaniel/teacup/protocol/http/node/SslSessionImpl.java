@@ -2,7 +2,6 @@ package io.github.henryssondaniel.teacup.protocol.http.node;
 
 import static io.github.henryssondaniel.teacup.protocol.http.Constants.ERROR_FETCH;
 
-import io.github.henryssondaniel.teacup.core.Node;
 import io.github.henryssondaniel.teacup.core.assertion.GenericBooleanAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericByteArrayAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericIntegerAssert;
@@ -11,6 +10,7 @@ import io.github.henryssondaniel.teacup.core.assertion.GenericObjectArrayAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import io.github.henryssondaniel.teacup.core.assertion.GenericStringAssert;
 import io.github.henryssondaniel.teacup.core.logging.Factory;
+import io.github.henryssondaniel.teacup.protocol.Node;
 import java.security.cert.Certificate;
 import java.util.logging.Level;
 import java.util.logging.Logger;

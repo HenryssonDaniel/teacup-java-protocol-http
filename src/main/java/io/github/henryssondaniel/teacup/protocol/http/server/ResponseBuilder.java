@@ -1,6 +1,6 @@
 package io.github.henryssondaniel.teacup.protocol.http.server;
 
-import io.github.henryssondaniel.teacup.core.Builder;
+import io.github.henryssondaniel.teacup.protocol.Builder;
 import java.util.List;
 import java.util.Map;
 

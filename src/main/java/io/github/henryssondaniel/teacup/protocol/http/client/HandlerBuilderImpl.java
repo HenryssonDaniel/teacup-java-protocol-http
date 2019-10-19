@@ -1,7 +1,7 @@
 package io.github.henryssondaniel.teacup.protocol.http.client;
 
-import io.github.henryssondaniel.teacup.core.DefaultBuilder;
 import io.github.henryssondaniel.teacup.core.logging.Factory;
+import io.github.henryssondaniel.teacup.protocol.DefaultBuilder;
 import java.net.http.HttpResponse.BodyHandler;
 import java.net.http.HttpResponse.PushPromiseHandler;
 import java.util.logging.Level;
