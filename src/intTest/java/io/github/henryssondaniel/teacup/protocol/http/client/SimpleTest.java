@@ -3,6 +3,9 @@ package io.github.henryssondaniel.teacup.protocol.http.client;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.sun.net.httpserver.HttpServer;
+import io.github.henryssondaniel.teacup.protocol.Server;
+import io.github.henryssondaniel.teacup.protocol.http.server.Context;
+import io.github.henryssondaniel.teacup.protocol.http.server.Request;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.URI;
@@ -23,7 +26,7 @@ class SimpleTest {
       HttpRequest.newBuilder(URI.create("http://localhost:1234/test")).build();
   private final Simple simple = Factory.createSimple(HttpClient.newHttpClient());
 
-  private io.github.henryssondaniel.teacup.protocol.http.server.Simple server;
+  private Server<Context, Request> server;
 
   @AfterEach
   void afterEach() {

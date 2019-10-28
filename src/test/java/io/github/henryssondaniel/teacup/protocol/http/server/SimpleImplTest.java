@@ -8,7 +8,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 import com.sun.net.httpserver.Authenticator;
@@ -16,6 +16,8 @@ import com.sun.net.httpserver.Filter;
 import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import io.github.henryssondaniel.teacup.protocol.Server;
+import io.github.henryssondaniel.teacup.protocol.server.TimeoutSupplier;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -35,11 +37,11 @@ class SimpleImplTest {
   private final HttpContext httpContext = mock(HttpContext.class);
   private final HttpServer httpServer = mock(HttpServer.class);
   private final Object lock = new Object();
-  private final Simple simple = new SimpleImpl(httpServer);
-  private final TimeoutSupplier timeoutSupplier = mock(TimeoutSupplier.class);
+  private final Server<Context, Request> simple = new SimpleImpl(httpServer);
   private final Object verifyLock = new Object();
 
   @Mock private Supplier<List<Request>> supplierNonExisting;
+  @Mock private TimeoutSupplier<Request> timeoutSupplier;
   private boolean waitVerify = true;
   private boolean waiting = true;
 
@@ -51,7 +53,7 @@ class SimpleImplTest {
   @Test
   void removeSupplier() {
     simple.removeSupplier(supplierNonExisting);
-    verifyZeroInteractions(supplierNonExisting);
+    verifyNoInteractions(supplierNonExisting);
   }
 
   @Test
@@ -75,7 +77,7 @@ class SimpleImplTest {
     simple.setContext(context);
 
     synchronized (verifyLock) {
-      verify(handler, never()).removeTimeoutSupplier(any(TimeoutSupplier.class));
+      verify(handler, never()).removeTimeoutSupplier(any());
       verify(httpServer).createContext(isNull(), any(HttpHandler.class));
       verify(httpServer, never()).removeContext(httpContext);
     }
@@ -95,7 +97,7 @@ class SimpleImplTest {
     synchronized (verifyLock) {
       while (waitVerify) verifyLock.wait(1L);
 
-      verify(handler).removeTimeoutSupplier(any(TimeoutSupplier.class));
+      verify(handler).removeTimeoutSupplier(any());
       verify(httpServer).createContext(isNull(), any(HttpHandler.class));
       verify(httpServer, never()).removeContext(httpContext);
     }
@@ -248,7 +250,7 @@ class SimpleImplTest {
     synchronized (verifyLock) {
       while (waitVerify) verifyLock.wait(1L);
 
-      verify(handler).removeTimeoutSupplier(any(TimeoutSupplier.class));
+      verify(handler).removeTimeoutSupplier(any());
       verify(httpServer, times(2)).createContext(isNull(), any(HttpHandler.class));
       verify(httpServer).removeContext(httpContext);
     }

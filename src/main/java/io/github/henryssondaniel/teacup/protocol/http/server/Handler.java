@@ -1,14 +1,8 @@
 package io.github.henryssondaniel.teacup.protocol.http.server;
 
 import com.sun.net.httpserver.HttpHandler;
-import java.util.List;
 
-interface Handler extends HttpHandler {
-  void addTimeoutSupplier(TimeoutSupplier timeoutSupplier);
-
+interface Handler
+    extends HttpHandler, io.github.henryssondaniel.teacup.protocol.server.Handler<Request> {
   Response getResponse();
-
-  List<TimeoutSupplier> getTimeoutSuppliers();
-
-  void removeTimeoutSupplier(TimeoutSupplier timeoutSupplier);
 }

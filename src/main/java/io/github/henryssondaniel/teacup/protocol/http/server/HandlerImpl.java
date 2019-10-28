@@ -7,6 +7,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpPrincipal;
 import com.sun.net.httpserver.HttpServer;
 import io.github.henryssondaniel.teacup.core.logging.Factory;
+import io.github.henryssondaniel.teacup.protocol.server.TimeoutSupplier;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
@@ -26,15 +27,15 @@ class HandlerImpl implements Handler {
   private static final Pattern PATTERN = Pattern.compile("\\A");
 
   private final Response response;
-  private final List<TimeoutSupplier> timeoutSuppliers = new LinkedList<>();
+  private final List<TimeoutSupplier<Request>> timeoutSuppliers = new LinkedList<>();
 
-  HandlerImpl(Response response, TimeoutSupplier timeoutSupplier) {
+  HandlerImpl(Response response, TimeoutSupplier<Request> timeoutSupplier) {
     this.response = response;
     timeoutSuppliers.add(timeoutSupplier);
   }
 
   @Override
-  public void addTimeoutSupplier(TimeoutSupplier timeoutSupplier) {
+  public void addTimeoutSupplier(TimeoutSupplier<Request> timeoutSupplier) {
     LOGGER.log(Level.FINE, MESSAGE, new Object[] {"Add", ""});
     timeoutSuppliers.add(timeoutSupplier);
   }
@@ -45,7 +46,7 @@ class HandlerImpl implements Handler {
   }
 
   @Override
-  public List<TimeoutSupplier> getTimeoutSuppliers() {
+  public List<TimeoutSupplier<Request>> getTimeoutSuppliers() {
     LOGGER.log(Level.FINE, MESSAGE, new Object[] {"Sett", "s"});
     return new ArrayList<>(timeoutSuppliers);
   }
@@ -69,7 +70,7 @@ class HandlerImpl implements Handler {
   }
 
   @Override
-  public void removeTimeoutSupplier(TimeoutSupplier timeoutSupplier) {
+  public void removeTimeoutSupplier(TimeoutSupplier<Request> timeoutSupplier) {
     LOGGER.log(Level.FINE, MESSAGE, new Object[] {"Remov", ""});
     timeoutSuppliers.remove(timeoutSupplier);
   }

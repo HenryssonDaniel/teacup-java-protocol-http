@@ -12,24 +12,35 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
+import io.github.henryssondaniel.teacup.protocol.server.TimeoutSupplier;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 class HandlerImplTest {
   private final Headers headers = mock(Headers.class);
   private final HttpExchange httpExchange = mock(HttpExchange.class);
   private final Response response = mock(Response.class);
-  private final TimeoutSupplier timeoutSupplier = mock(TimeoutSupplier.class);
-  private final Handler handler = new HandlerImpl(response, timeoutSupplier);
+
+  private Handler handler;
+  @Mock private TimeoutSupplier<Request> timeoutSupplier;
 
   @Test
   void addAndGetTimeoutSupplier() {
     handler.addTimeoutSupplier(timeoutSupplier);
     assertThat(handler.getTimeoutSuppliers()).containsExactly(timeoutSupplier, timeoutSupplier);
+  }
+
+  @BeforeEach
+  void beforeEach() {
+    MockitoAnnotations.initMocks(this);
+    handler = new HandlerImpl(response, timeoutSupplier);
   }
 
   @Test

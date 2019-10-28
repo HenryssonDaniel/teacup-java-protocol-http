@@ -3,6 +3,7 @@ package io.github.henryssondaniel.teacup.protocol.http.server;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.sun.net.httpserver.HttpServer;
+import io.github.henryssondaniel.teacup.protocol.Server;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.URI;
@@ -55,7 +56,7 @@ class SimpleTest {
     server.tearDown();
   }
 
-  private void setContext(Simple server, ContextBuilder contextBuilder) {
+  private void setContext(Server<? super Context, Request> server, ContextBuilder contextBuilder) {
     synchronized (lock) {
       server.setContext(
           contextBuilder.setAttributes(Collections.singletonMap("key", "value")).build());
