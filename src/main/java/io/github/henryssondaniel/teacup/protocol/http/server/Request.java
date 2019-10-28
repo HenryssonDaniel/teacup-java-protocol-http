@@ -11,7 +11,7 @@ import java.net.URI;
  *
  * @since 1.0
  */
-public interface Request extends io.github.henryssondaniel.teacup.protocol.server.Request {
+public interface Request {
   /**
    * Returns the body.
    *

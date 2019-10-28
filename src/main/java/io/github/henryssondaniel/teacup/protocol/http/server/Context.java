@@ -10,7 +10,7 @@ import java.util.Map;
  *
  * @since 1.0
  */
-public interface Context extends io.github.henryssondaniel.teacup.protocol.server.Context {
+public interface Context {
   /**
    * Returns the attributes.
    *
