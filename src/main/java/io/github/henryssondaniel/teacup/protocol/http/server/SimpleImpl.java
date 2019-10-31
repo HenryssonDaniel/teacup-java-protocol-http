@@ -4,7 +4,6 @@ import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpServer;
 import io.github.henryssondaniel.teacup.core.logging.Factory;
 import io.github.henryssondaniel.teacup.protocol.server.Base;
-import io.github.henryssondaniel.teacup.protocol.server.TimeoutSupplier;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,23 +30,15 @@ class SimpleImpl extends Base<Context, HttpContext, Request> {
 
   @Override
   protected HttpContext createProtocolContext(
-      Context context, TimeoutSupplier<Request> timeoutSupplier) {
+      Context context, io.github.henryssondaniel.teacup.protocol.server.Handler<Request> handler) {
     var httpContext =
         httpServer.createContext(
-            context.getPath(), new HandlerImpl(context.getResponse(), timeoutSupplier));
+            context.getPath(), new HandlerImpl(handler, context.getResponse()));
     httpContext.getAttributes().putAll(context.getAttributes());
     httpContext.setAuthenticator(context.getAuthenticator());
     httpContext.getFilters().addAll(context.getFilters());
 
     return httpContext;
-  }
-
-  @Override
-  @SuppressWarnings("unchecked")
-  protected io.github.henryssondaniel.teacup.protocol.server.Handler<Request> getHandler(
-      HttpContext protocolContext) {
-    return (io.github.henryssondaniel.teacup.protocol.server.Handler<Request>)
-        protocolContext.getHandler();
   }
 
   @Override

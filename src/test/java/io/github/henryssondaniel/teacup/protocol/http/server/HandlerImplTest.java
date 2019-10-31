@@ -12,7 +12,6 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
-import io.github.henryssondaniel.teacup.protocol.server.TimeoutSupplier;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,28 +28,17 @@ class HandlerImplTest {
   private final Response response = mock(Response.class);
 
   private Handler handler;
-  @Mock private TimeoutSupplier<Request> timeoutSupplier;
-
-  @Test
-  void addAndGetTimeoutSupplier() {
-    handler.addTimeoutSupplier(timeoutSupplier);
-    assertThat(handler.getTimeoutSuppliers()).containsExactly(timeoutSupplier, timeoutSupplier);
-  }
+  @Mock private io.github.henryssondaniel.teacup.protocol.server.Handler<Request> handlerRequest;
 
   @BeforeEach
   void beforeEach() {
     MockitoAnnotations.initMocks(this);
-    handler = new HandlerImpl(response, timeoutSupplier);
+    handler = new HandlerImpl(handlerRequest, response);
   }
 
   @Test
   void getResponse() {
     assertThat(handler.getResponse()).isSameAs(response);
-  }
-
-  @Test
-  void getTimeoutSuppliers() {
-    assertThat(handler.getTimeoutSuppliers()).containsExactly(timeoutSupplier);
   }
 
   @Test
@@ -87,12 +75,6 @@ class HandlerImplTest {
     verifyHandle();
   }
 
-  @Test
-  void removeAndGetTimeoutSupplier() {
-    handler.removeTimeoutSupplier(timeoutSupplier);
-    assertThat(handler.getTimeoutSuppliers()).isEmpty();
-  }
-
   private void setupHttpExchange(InputStream inputStream) {
     var httpServer = mock(HttpServer.class);
 
@@ -124,7 +106,6 @@ class HandlerImplTest {
   }
 
   private void verifyHandle() throws IOException {
-    verify(timeoutSupplier).addRequest(any());
     verify(httpExchange).sendResponseHeaders(response.getCode(), response.getLength());
     verify(httpExchange).close();
   }

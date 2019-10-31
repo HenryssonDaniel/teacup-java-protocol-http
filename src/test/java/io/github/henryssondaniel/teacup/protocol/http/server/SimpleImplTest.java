@@ -17,10 +17,8 @@ import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import io.github.henryssondaniel.teacup.protocol.Server;
-import io.github.henryssondaniel.teacup.protocol.server.TimeoutSupplier;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +39,7 @@ class SimpleImplTest {
   private final Object verifyLock = new Object();
 
   @Mock private Supplier<List<Request>> supplierNonExisting;
-  @Mock private TimeoutSupplier<Request> timeoutSupplier;
+  @Mock private Supplier<List<Request>> timeoutSupplier;
   private boolean waitVerify = true;
   private boolean waiting = true;
 
@@ -59,7 +57,6 @@ class SimpleImplTest {
   @Test
   void removeSupplierWhenTimeoutSupplier() {
     simple.removeSupplier(timeoutSupplier);
-    verify(timeoutSupplier).stop();
   }
 
   @Test
@@ -77,27 +74,6 @@ class SimpleImplTest {
     simple.setContext(context);
 
     synchronized (verifyLock) {
-      verify(handler, never()).removeTimeoutSupplier(any());
-      verify(httpServer).createContext(isNull(), any(HttpHandler.class));
-      verify(httpServer, never()).removeContext(httpContext);
-    }
-  }
-
-  @Test
-  void setContextWhenInterrupted() throws InterruptedException {
-    var supplier = setFirstContext();
-    var thread = createThread();
-
-    doAnswer(invocationOnMock -> waiting(Collections.singletonList(timeoutSupplier)))
-        .when(handler)
-        .getTimeoutSuppliers();
-    removeSupplier(supplier);
-    interrupt(thread);
-
-    synchronized (verifyLock) {
-      while (waitVerify) verifyLock.wait(1L);
-
-      verify(handler).removeTimeoutSupplier(any());
       verify(httpServer).createContext(isNull(), any(HttpHandler.class));
       verify(httpServer, never()).removeContext(httpContext);
     }
@@ -250,7 +226,6 @@ class SimpleImplTest {
     synchronized (verifyLock) {
       while (waitVerify) verifyLock.wait(1L);
 
-      verify(handler).removeTimeoutSupplier(any());
       verify(httpServer, times(2)).createContext(isNull(), any(HttpHandler.class));
       verify(httpServer).removeContext(httpContext);
     }

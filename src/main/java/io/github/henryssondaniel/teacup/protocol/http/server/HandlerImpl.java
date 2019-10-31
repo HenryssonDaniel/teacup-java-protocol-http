@@ -7,13 +7,9 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpPrincipal;
 import com.sun.net.httpserver.HttpServer;
 import io.github.henryssondaniel.teacup.core.logging.Factory;
-import io.github.henryssondaniel.teacup.protocol.server.TimeoutSupplier;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -23,32 +19,21 @@ import java.util.stream.Collectors;
 
 class HandlerImpl implements Handler {
   private static final Logger LOGGER = Factory.getLogger(HandlerImpl.class);
-  private static final String MESSAGE = "{0}ing the timeout supplier{1}";
   private static final Pattern PATTERN = Pattern.compile("\\A");
 
+  private final io.github.henryssondaniel.teacup.protocol.server.Handler<? super Request> handler;
   private final Response response;
-  private final List<TimeoutSupplier<Request>> timeoutSuppliers = new LinkedList<>();
 
-  HandlerImpl(Response response, TimeoutSupplier<Request> timeoutSupplier) {
+  HandlerImpl(
+      io.github.henryssondaniel.teacup.protocol.server.Handler<? super Request> handler,
+      Response response) {
+    this.handler = handler;
     this.response = response;
-    timeoutSuppliers.add(timeoutSupplier);
-  }
-
-  @Override
-  public void addTimeoutSupplier(TimeoutSupplier<Request> timeoutSupplier) {
-    LOGGER.log(Level.FINE, MESSAGE, new Object[] {"Add", ""});
-    timeoutSuppliers.add(timeoutSupplier);
   }
 
   @Override
   public Response getResponse() {
     return response;
-  }
-
-  @Override
-  public List<TimeoutSupplier<Request>> getTimeoutSuppliers() {
-    LOGGER.log(Level.FINE, MESSAGE, new Object[] {"Sett", "s"});
-    return new ArrayList<>(timeoutSuppliers);
   }
 
   @Override
@@ -61,18 +46,11 @@ class HandlerImpl implements Handler {
     if (streams != null)
       httpExchange.setStreams(streams.getInputStream(), streams.getOutputStream());
 
-    var request = createRequest(httpExchange);
-    for (var timeoutSupplier : timeoutSuppliers) timeoutSupplier.addRequest(request);
+    handler.addRequest(createRequest(httpExchange));
 
     createResponse(httpExchange);
 
     httpExchange.close();
-  }
-
-  @Override
-  public void removeTimeoutSupplier(TimeoutSupplier<Request> timeoutSupplier) {
-    LOGGER.log(Level.FINE, MESSAGE, new Object[] {"Remov", ""});
-    timeoutSuppliers.remove(timeoutSupplier);
   }
 
   private static Request createRequest(HttpExchange httpExchange) {
