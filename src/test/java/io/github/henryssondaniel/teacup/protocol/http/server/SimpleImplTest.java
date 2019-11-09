@@ -1,242 +1,205 @@
 package io.github.henryssondaniel.teacup.protocol.http.server;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isNull;
-import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 import com.sun.net.httpserver.Authenticator;
 import com.sun.net.httpserver.Filter;
 import com.sun.net.httpserver.HttpContext;
-import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-import io.github.henryssondaniel.teacup.protocol.Server;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Supplier;
+import java.util.Collections;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 class SimpleImplTest {
-  private final Authenticator authenticator = mock(Authenticator.class);
   private final Context context = mock(Context.class);
   private final Handler handler = mock(Handler.class);
   private final HttpContext httpContext = mock(HttpContext.class);
   private final HttpServer httpServer = mock(HttpServer.class);
-  private final Object lock = new Object();
-  private final Server<Context, Request> simple = new SimpleImpl(httpServer);
-  private final Object verifyLock = new Object();
+  private final Response response = mock(Response.class);
+  private final SimpleImpl simpleImpl = new SimpleImpl(httpServer);
 
-  @Mock private Supplier<List<Request>> supplierNonExisting;
-  @Mock private Supplier<List<Request>> timeoutSupplier;
-  private boolean waitVerify = true;
-  private boolean waiting = true;
+  @Mock private io.github.henryssondaniel.teacup.protocol.server.Handler<Request> requestHandler;
 
   @BeforeEach
   void beforeEach() {
     MockitoAnnotations.initMocks(this);
+
+    when(context.getResponse()).thenReturn(response);
+    when(httpContext.getHandler()).thenReturn(handler);
   }
 
   @Test
-  void removeSupplier() {
-    simple.removeSupplier(supplierNonExisting);
-    verifyNoInteractions(supplierNonExisting);
+  void createProtocolContext() {
+    when(httpServer.createContext(isNull(), any(HandlerImpl.class))).thenReturn(httpContext);
+
+    assertThat(simpleImpl.createProtocolContext(context, requestHandler)).isNotNull();
+
+    verify(context).getAttributes();
+    verify(context).getAuthenticator();
+    verify(context).getFilters();
+    verify(context).getPath();
+    verify(context).getResponse();
+    verifyNoMoreInteractions(context);
+
+    verify(httpContext).getAttributes();
+    verify(httpContext).getFilters();
+    verify(httpContext).setAuthenticator(null);
+    verifyNoMoreInteractions(httpContext);
+
+    verifyNoInteractions(requestHandler);
+
+    verify(httpServer).createContext(isNull(), any(HandlerImpl.class));
+    verifyNoMoreInteractions(httpServer);
   }
 
   @Test
-  void removeSupplierWhenTimeoutSupplier() {
-    simple.removeSupplier(timeoutSupplier);
+  void getKey() {
+    assertThat(simpleImpl.getKey(context)).isNull();
+
+    verify(context).getPath();
+    verifyNoMoreInteractions(context);
+
+    verifyNoInteractions(httpServer);
   }
 
   @Test
-  void setContext() {
-    setFirstContext();
+  void isEquals() {
+    when(handler.getResponse()).thenReturn(response);
 
-    synchronized (lock) {
-      verify(httpServer).createContext(isNull(), any(HttpHandler.class));
-    }
+    assertThat(simpleImpl.isEquals(context, httpContext)).isTrue();
+
+    verify(context).getAttributes();
+    verify(context).getAuthenticator();
+    verify(context).getFilters();
+    verify(context).getResponse();
+    verifyNoMoreInteractions(context);
+
+    verify(httpContext).getAttributes();
+    verify(httpContext).getAuthenticator();
+    verify(httpContext).getFilters();
+    verify(httpContext).getHandler();
+    verifyNoMoreInteractions(httpContext);
+
+    verify(handler).getResponse();
+    verifyNoMoreInteractions(handler);
+
+    verifyNoInteractions(httpServer);
+    verifyNoInteractions(response);
   }
 
   @Test
-  void setContextWhenDuplicateContext() {
-    setFirstContext();
-    simple.setContext(context);
+  void isEqualsWhenAttributesNotEqual() {
+    when(context.getAttributes()).thenReturn(Collections.singletonMap("key", "value"));
 
-    synchronized (verifyLock) {
-      verify(httpServer).createContext(isNull(), any(HttpHandler.class));
-      verify(httpServer, never()).removeContext(httpContext);
-    }
+    assertThat(simpleImpl.isEquals(context, httpContext)).isFalse();
+
+    verify(context).getAttributes();
+    verifyNoMoreInteractions(context);
+
+    verify(httpContext).getAttributes();
+    verifyNoMoreInteractions(httpContext);
+
+    verifyNoInteractions(handler);
+    verifyNoInteractions(httpServer);
   }
 
   @Test
-  void setContextWhenUnequalAttributes() throws InterruptedException {
-    Map<String, Object> map = new HashMap<>(1);
-    map.put("", "");
+  void isEqualsWhenAuthenticatorNotEqual() {
+    var authenticator = mock(Authenticator.class);
+    when(context.getAuthenticator()).thenReturn(authenticator);
 
-    var supplier = setFirstContext();
+    assertThat(simpleImpl.isEquals(context, httpContext)).isFalse();
 
-    var thread =
-        new Thread(
-            () -> {
-              doAnswer(invocationOnMock -> waiting(map)).when(httpContext).getAttributes();
+    verify(context).getAttributes();
+    verify(context).getAuthenticator();
+    verifyNoMoreInteractions(context);
 
-              setSecondContext();
-            });
-    thread.start();
+    verify(httpContext).getAttributes();
+    verify(httpContext).getAuthenticator();
+    verifyNoMoreInteractions(httpContext);
 
-    removeSupplier(supplier);
-
-    verifyMocks();
+    verifyNoInteractions(handler);
+    verifyNoInteractions(httpServer);
   }
 
   @Test
-  void setContextWhenUnequalAuthenticator() throws InterruptedException {
-    var supplier = setFirstContext();
-
-    createThread();
-    removeSupplier(supplier);
-    verifyMocks();
-  }
-
-  @Test
-  void setContextWhenUnequalFilters() throws InterruptedException {
+  void isEqualsWhenFiltersNotEqual() {
     var filter = mock(Filter.class);
+    when(context.getFilters()).thenReturn(Collections.singletonList(filter));
 
-    Collection<Filter> filters = new ArrayList<>(1);
-    filters.add(filter);
+    assertThat(simpleImpl.isEquals(context, httpContext)).isFalse();
 
-    var supplier = setFirstContext();
+    verify(context).getAttributes();
+    verify(context).getAuthenticator();
+    verify(context).getFilters();
+    verifyNoMoreInteractions(context);
 
-    var thread =
-        new Thread(
-            () -> {
-              doAnswer(invocationOnMock -> waiting(filters)).when(httpContext).getFilters();
-              setSecondContext();
-            });
-    thread.start();
+    verifyNoInteractions(filter);
 
-    removeSupplier(supplier);
+    verify(httpContext).getAttributes();
+    verify(httpContext).getAuthenticator();
+    verify(httpContext).getFilters();
+    verifyNoMoreInteractions(httpContext);
 
-    verifyMocks();
+    verifyNoInteractions(handler);
+    verifyNoInteractions(httpServer);
   }
 
   @Test
-  void setContextWhenUnequalResponse() throws InterruptedException {
-    var response = mock(Response.class);
-    var supplier = setFirstContext();
+  void isEqualsWhenResponseNotEqual() {
+    assertThat(simpleImpl.isEquals(context, httpContext)).isFalse();
 
-    var thread =
-        new Thread(
-            () -> {
-              doAnswer(invocationOnMock -> waiting(response)).when(context).getResponse();
-              setSecondContext();
-            });
-    thread.start();
+    verify(context).getAttributes();
+    verify(context).getAuthenticator();
+    verify(context).getFilters();
+    verify(context).getResponse();
+    verifyNoMoreInteractions(context);
 
-    removeSupplier(supplier);
+    verify(httpContext).getAttributes();
+    verify(httpContext).getAuthenticator();
+    verify(httpContext).getFilters();
+    verify(httpContext).getHandler();
+    verifyNoMoreInteractions(httpContext);
 
-    verifyMocks();
+    verify(handler).getResponse();
+    verifyNoMoreInteractions(handler);
+
+    verifyNoInteractions(httpServer);
+    verifyNoInteractions(response);
+  }
+
+  @Test
+  void serverCleanup() {
+    simpleImpl.serverCleanup(httpContext);
+
+    verifyNoInteractions(httpContext);
+
+    verify(httpServer).removeContext(httpContext);
+    verifyNoMoreInteractions(httpServer);
   }
 
   @Test
   void setUp() {
-    simple.setUp();
+    simpleImpl.setUp();
 
-    synchronized (lock) {
-      verify(httpServer).start();
-    }
+    verify(httpServer).start();
+    verifyNoMoreInteractions(httpServer);
   }
 
   @Test
   void tearDown() {
-    simple.tearDown();
+    simpleImpl.tearDown();
 
-    synchronized (lock) {
-      verify(httpServer).stop(0);
-    }
-  }
-
-  private Thread createThread() {
-    var thread =
-        new Thread(
-            () -> {
-              doAnswer(invocationOnMock -> waiting(null)).when(httpContext).getAuthenticator();
-              setSecondContext();
-            });
-    thread.start();
-
-    return thread;
-  }
-
-  private void interrupt(Thread thread) throws InterruptedException {
-    synchronized (lock) {
-      while (waiting) lock.wait(1L);
-
-      thread.interrupt();
-    }
-  }
-
-  private void removeSupplier(Supplier<List<Request>> supplier) throws InterruptedException {
-    synchronized (lock) {
-      while (waiting) lock.wait(1L);
-
-      simple.removeSupplier(supplier);
-    }
-  }
-
-  private Supplier<List<Request>> setFirstContext() {
-    var response = mock(Response.class);
-
-    when(context.getResponse()).thenReturn(response);
-    when(context.getAuthenticator()).thenReturn(authenticator);
-
-    when(handler.getResponse()).thenReturn(response);
-
-    when(httpContext.getAuthenticator()).thenReturn(authenticator);
-    when(httpContext.getHandler()).thenReturn(handler);
-
-    synchronized (lock) {
-      when(httpServer.createContext(eq(context.getPath()), any(HandlerImpl.class)))
-          .thenReturn(httpContext);
-    }
-
-    return simple.setContext(context);
-  }
-
-  private void setSecondContext() {
-    synchronized (verifyLock) {
-      simple.setContext(context);
-      waitVerify = false;
-      verifyLock.notifyAll();
-    }
-  }
-
-  private void verifyMocks() throws InterruptedException {
-    synchronized (verifyLock) {
-      while (waitVerify) verifyLock.wait(1L);
-
-      verify(httpServer, times(2)).createContext(isNull(), any(HttpHandler.class));
-      verify(httpServer).removeContext(httpContext);
-    }
-  }
-
-  private Object waiting(Object object) {
-    synchronized (lock) {
-      waiting = false;
-      lock.notifyAll();
-    }
-
-    return object;
+    verify(httpServer).stop(0);
+    verifyNoMoreInteractions(httpServer);
   }
 }
