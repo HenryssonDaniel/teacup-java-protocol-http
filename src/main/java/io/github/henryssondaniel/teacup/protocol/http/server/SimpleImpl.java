@@ -8,12 +8,47 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class SimpleImpl extends Base<Context, HttpContext, Request> {
+class SimpleImpl extends Base<Context, HttpContext, Request> implements SimpleBase {
   private static final Logger LOGGER = Factory.getLogger(SimpleImpl.class);
   private final HttpServer httpServer;
 
   SimpleImpl(HttpServer httpServer) {
     this.httpServer = httpServer;
+  }
+
+  @Override
+  public HttpContext createProtocolContext(
+      Context context, io.github.henryssondaniel.teacup.protocol.server.Handler<Request> handler) {
+    LOGGER.log(Level.FINE, "Create protocol context");
+
+    var httpContext =
+        httpServer.createContext(
+            context.getPath(), new HandlerImpl(handler, context.getResponse()));
+    httpContext.getAttributes().putAll(context.getAttributes());
+    httpContext.setAuthenticator(context.getAuthenticator());
+    httpContext.getFilters().addAll(context.getFilters());
+
+    return httpContext;
+  }
+
+  @Override
+  public String getKey(Context context) {
+    LOGGER.log(Level.FINE, "Get key");
+    return context.getPath();
+  }
+
+  @Override
+  public boolean isEquals(Context context, HttpContext protocolContext) {
+    LOGGER.log(Level.FINE, "Is equals");
+    return equals(context, protocolContext)
+        && context.getFilters().equals(protocolContext.getFilters())
+        && context.getResponse().equals(((Handler) protocolContext.getHandler()).getResponse());
+  }
+
+  @Override
+  public void serverCleanup(HttpContext protocolContext) {
+    LOGGER.log(Level.FINE, "Server cleanup");
+    httpServer.removeContext(protocolContext);
   }
 
   @Override
@@ -26,36 +61,6 @@ class SimpleImpl extends Base<Context, HttpContext, Request> {
   public void tearDown() {
     LOGGER.log(Level.FINE, "Tear down");
     httpServer.stop(0);
-  }
-
-  @Override
-  protected HttpContext createProtocolContext(
-      Context context, io.github.henryssondaniel.teacup.protocol.server.Handler<Request> handler) {
-    var httpContext =
-        httpServer.createContext(
-            context.getPath(), new HandlerImpl(handler, context.getResponse()));
-    httpContext.getAttributes().putAll(context.getAttributes());
-    httpContext.setAuthenticator(context.getAuthenticator());
-    httpContext.getFilters().addAll(context.getFilters());
-
-    return httpContext;
-  }
-
-  @Override
-  protected String getKey(Context context) {
-    return context.getPath();
-  }
-
-  @Override
-  protected boolean isEquals(Context context, HttpContext protocolContext) {
-    return equals(context, protocolContext)
-        && context.getFilters().equals(protocolContext.getFilters())
-        && context.getResponse().equals(((Handler) protocolContext.getHandler()).getResponse());
-  }
-
-  @Override
-  protected void serverCleanup(HttpContext protocolContext) {
-    httpServer.removeContext(protocolContext);
   }
 
   private static boolean equals(Context context, HttpContext httpContext) {

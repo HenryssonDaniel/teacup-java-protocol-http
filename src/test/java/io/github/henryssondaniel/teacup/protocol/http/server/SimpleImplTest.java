@@ -25,7 +25,7 @@ class SimpleImplTest {
   private final HttpContext httpContext = mock(HttpContext.class);
   private final HttpServer httpServer = mock(HttpServer.class);
   private final Response response = mock(Response.class);
-  private final SimpleImpl simpleImpl = new SimpleImpl(httpServer);
+  private final SimpleBase simpleBase = new SimpleImpl(httpServer);
 
   @Mock private io.github.henryssondaniel.teacup.protocol.server.Handler<Request> requestHandler;
 
@@ -41,7 +41,7 @@ class SimpleImplTest {
   void createProtocolContext() {
     when(httpServer.createContext(isNull(), any(HandlerImpl.class))).thenReturn(httpContext);
 
-    assertThat(simpleImpl.createProtocolContext(context, requestHandler)).isNotNull();
+    assertThat(simpleBase.createProtocolContext(context, requestHandler)).isNotNull();
 
     verify(context).getAttributes();
     verify(context).getAuthenticator();
@@ -63,7 +63,7 @@ class SimpleImplTest {
 
   @Test
   void getKey() {
-    assertThat(simpleImpl.getKey(context)).isNull();
+    assertThat(simpleBase.getKey(context)).isNull();
 
     verify(context).getPath();
     verifyNoMoreInteractions(context);
@@ -75,7 +75,7 @@ class SimpleImplTest {
   void isEquals() {
     when(handler.getResponse()).thenReturn(response);
 
-    assertThat(simpleImpl.isEquals(context, httpContext)).isTrue();
+    assertThat(simpleBase.isEquals(context, httpContext)).isTrue();
 
     verify(context).getAttributes();
     verify(context).getAuthenticator();
@@ -100,7 +100,7 @@ class SimpleImplTest {
   void isEqualsWhenAttributesNotEqual() {
     when(context.getAttributes()).thenReturn(Collections.singletonMap("key", "value"));
 
-    assertThat(simpleImpl.isEquals(context, httpContext)).isFalse();
+    assertThat(simpleBase.isEquals(context, httpContext)).isFalse();
 
     verify(context).getAttributes();
     verifyNoMoreInteractions(context);
@@ -117,7 +117,7 @@ class SimpleImplTest {
     var authenticator = mock(Authenticator.class);
     when(context.getAuthenticator()).thenReturn(authenticator);
 
-    assertThat(simpleImpl.isEquals(context, httpContext)).isFalse();
+    assertThat(simpleBase.isEquals(context, httpContext)).isFalse();
 
     verify(context).getAttributes();
     verify(context).getAuthenticator();
@@ -136,7 +136,7 @@ class SimpleImplTest {
     var filter = mock(Filter.class);
     when(context.getFilters()).thenReturn(Collections.singletonList(filter));
 
-    assertThat(simpleImpl.isEquals(context, httpContext)).isFalse();
+    assertThat(simpleBase.isEquals(context, httpContext)).isFalse();
 
     verify(context).getAttributes();
     verify(context).getAuthenticator();
@@ -156,7 +156,7 @@ class SimpleImplTest {
 
   @Test
   void isEqualsWhenResponseNotEqual() {
-    assertThat(simpleImpl.isEquals(context, httpContext)).isFalse();
+    assertThat(simpleBase.isEquals(context, httpContext)).isFalse();
 
     verify(context).getAttributes();
     verify(context).getAuthenticator();
@@ -179,7 +179,7 @@ class SimpleImplTest {
 
   @Test
   void serverCleanup() {
-    simpleImpl.serverCleanup(httpContext);
+    simpleBase.serverCleanup(httpContext);
 
     verifyNoInteractions(httpContext);
 
@@ -189,7 +189,7 @@ class SimpleImplTest {
 
   @Test
   void setUp() {
-    simpleImpl.setUp();
+    simpleBase.setUp();
 
     verify(httpServer).start();
     verifyNoMoreInteractions(httpServer);
@@ -197,7 +197,7 @@ class SimpleImplTest {
 
   @Test
   void tearDown() {
-    simpleImpl.tearDown();
+    simpleBase.tearDown();
 
     verify(httpServer).stop(0);
     verifyNoMoreInteractions(httpServer);
