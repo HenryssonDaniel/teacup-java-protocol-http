@@ -1,3 +1,11 @@
+#### 1.2.0
+- 2019-11-19
+- Add dependency to protocol repository
+- Moved logic to the protocol repository, no API changes done
+- Use AssertJ version 3.14.0, stepped from 3.12.2
+- Use Gradle version 6.0, stepped from 5.6.2
+- Use JUnit version 5.6.0-M1, stepped from 5.5.2
+- Use Teacup Core version 1.2.0, stepped from 1.1.4
 #### 1.1.3
 - 2019-10-06
 - Use Gradle version 5.6.2, stepped from 5.6
